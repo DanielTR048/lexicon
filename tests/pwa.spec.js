@@ -29,11 +29,19 @@ test.beforeAll(async () => {
     const pathname = decodeURIComponent(
       new URL(request.url, "http://localhost").pathname,
     );
-    const mount = ["/repositorio-do-jogo/", "/outro-jogo/"].find((prefix) =>
-      pathname.startsWith(prefix),
-    );
+    const mount = [
+      "/repositorio-do-jogo/",
+      "/outro-jogo/",
+      "/site-canonico/",
+    ].find((prefix) => pathname.startsWith(prefix));
     if (!mount) {
       response.writeHead(404).end();
+      return;
+    }
+    // Sites canonicalizes index.html to the directory URL. Cache Storage retains
+    // the redirected flag even though the final response has status 200.
+    if (mount === "/site-canonico/" && pathname === `${mount}index.html`) {
+      response.writeHead(301, { Location: mount }).end();
       return;
     }
     const path = resolve(
@@ -156,7 +164,9 @@ test("install requires a tap, cancellation preserves the game, and the Android b
   page,
 }) => {
   const apkRequests = [];
-  page.on("request", (request) => { if (request.url().endsWith(".apk")) apkRequests.push(request.url()); });
+  page.on("request", (request) => {
+    if (request.url().endsWith(".apk")) apkRequests.push(request.url());
+  });
   await openGame(page);
   const androidLink = page.getByRole("link", { name: "Baixar Android" });
   await expect(androidLink).toBeVisible();
@@ -269,4 +279,56 @@ test("offline-ready is withdrawn when a required cached asset is missing", async
     "unavailable",
   );
   await expect(page.locator(".install-status")).not.toContainText("Pronto");
+});
+
+test("offline navigation works when hosting redirects index.html to its canonical directory", async ({
+  page,
+  context,
+}) => {
+  await openGame(page, "/site-canonico/");
+  const cachedShells = await page.evaluate(async () => {
+    const root = await caches.match(location.href, { ignoreVary: true });
+    const index = await caches.match(
+      new URL("index.html", location.href).href,
+      { ignoreVary: true },
+    );
+    return {
+      root: { status: root.status, redirected: root.redirected },
+      index: { status: index.status, redirected: index.redirected },
+    };
+  });
+  expect(cachedShells).toEqual({
+    root: { status: 200, redirected: false },
+    index: { status: 200, redirected: true },
+  });
+  const seed = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("lexicon-lab-v1")).session.seed,
+  );
+  await context.setOffline(true);
+  try {
+    const navigation = await page.goto(
+      origin + "/site-canonico/?origem=instalado",
+    );
+    expect(navigation.fromServiceWorker()).toBe(true);
+    await expect(page.getByRole("grid")).toBeVisible();
+    await expect(page.locator("html")).toHaveAttribute(
+      "data-offline-ready",
+      "true",
+    );
+    expect(
+      await page.evaluate(
+        () => JSON.parse(localStorage.getItem("lexicon-lab-v1")).session.seed,
+      ),
+    ).toBe(seed);
+    const reload = await page.reload();
+    expect(reload.fromServiceWorker()).toBe(true);
+    await expect(page.getByRole("grid")).toBeVisible();
+    expect(
+      await page
+        .locator(".hero-art img")
+        .evaluate((image) => image.complete && image.naturalWidth > 0),
+    ).toBe(true);
+  } finally {
+    await context.setOffline(false);
+  }
 });

@@ -30,7 +30,9 @@ export default defineConfig({
           ),
           ...Object.keys(bundle).filter((file) => file !== "index.html"),
         ];
-        const hash = createHash("sha256").update(JSON.stringify(bundle));
+        const hash = createHash("sha256")
+          .update("lexicon-scope-shell-v2")
+          .update(JSON.stringify(bundle));
         for (const path of assets)
           hash
             .update(relative(publicDirectory, path))
@@ -45,7 +47,9 @@ const PREFIX = 'lexicon-' + encodeURIComponent(new URL(SCOPE).pathname) + '-';
 const CACHE = PREFIX + '${version}';
 const FILES = ${JSON.stringify(files)}.map(file => new URL(file, SCOPE).href);
 const PRECACHED_URLS = new Set(FILES);
-const INDEX = new URL('index.html', SCOPE).href;
+// Canonical-directory hosts redirect index.html. A cached redirected response
+// cannot satisfy every navigation request, so use the direct directory shell.
+const SHELL = new URL('./', SCOPE).href;
 // These are public static files. Module requests add Origin while install
 // requests do not, so a server's Vary: Origin must not hide our precached copy.
 const readPrecached = request => caches.open(CACHE).then(cache => cache.match(request, { ignoreVary: true }));
@@ -66,7 +70,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET' || url.origin !== self.location.origin || !url.href.startsWith(SCOPE)) return;
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).catch(() => readPrecached(INDEX)));
+    event.respondWith(fetch(event.request).catch(() => readPrecached(SHELL)));
   } else if (PRECACHED_URLS.has(event.request.url)) {
     event.respondWith(readPrecached(event.request).then(cached => cached || fetch(event.request)));
   }

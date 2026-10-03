@@ -44,7 +44,7 @@ O workflow `.github/workflows/pages.yml` prepara a publicação no GitHub Pages:
 
 O APK assinado está em `public/android/lexicon.apk`; `.env.production` configura o botão **“Baixar Android”** para esse arquivo. Para usar outro endereço, altere `VITE_ANDROID_APK_URL` antes do build. No workflow de Pages, a variável **`LEXICON_ANDROID_APK_URL`** permite sobrescrever esse endereço. O APK não integra o cache da versão web; o download começa apenas quando o usuário toca no link.
 
-A hospedagem escolhida é o **Sites**, com acesso público. A identidade fica em `.openai/hosting.json` e o endereço reservado é https://lexicon-laboratorio.nexcoreadm.chatgpt.site . Os fontes são sincronizados pelo helper do plugin antes de cada publicação. Credenciais, chaves de assinatura e arquivos locais de compilação ficam fora do controle de versão.
+A hospedagem escolhida é o **Sites**, com acesso público em https://lexicon-laboratorio.nexcoreadm.chatgpt.site . A identidade fica em `.openai/hosting.json`. Os fontes são sincronizados pelo helper do plugin antes de cada publicação. Credenciais, chaves de assinatura e arquivos locais de compilação ficam fora do controle de versão. Após gerar um novo APK, execute `npm run package:mobile` para atualizar a cópia distribuída no site.
 
 ```powershell
 $env:VITE_ANDROID_APK_URL = 'https://seu-endereco/lexicon-android.apk'
@@ -81,7 +81,7 @@ Temas próprios escolhem apenas termos que caibam no tabuleiro. Se houver menos 
 
 ## Desenvolvimento e validação
 
-Entrega local validada em 03/10/2026: **49 testes web e 28 testes Android passaram**. O APK release foi compilado, assinado e verificado; o lint Android terminou com zero erros. Os testes nativos executaram Compose em um runtime Android local (Robolectric), com capturas de tela, toque, arraste e retomada do salvamento. Vibração, áudio e instalação em aparelho físico ainda precisam dessa verificação no dispositivo.
+Entrega local validada em 03/10/2026: **50 testes web e 28 testes Android passaram**. O APK release foi compilado, assinado e verificado; o lint Android terminou com zero erros. Os testes nativos executaram Compose em um runtime Android local (Robolectric), com capturas de tela, toque, arraste e retomada do salvamento. Vibração, áudio e instalação em aparelho físico ainda precisam dessa verificação no dispositivo.
 
 Artefatos em `output/`: `Lexicon-Android-release.apk` (3.449.690 bytes), `Lexicon-Site.zip` (site com download Android), `android-home.png`, `android-game.png` e `android-download.png`. O download pelo botão do site foi conferido por SHA-256 e não acontece automaticamente ao abrir a página.
 
