@@ -15,6 +15,7 @@ android-native/.signing/
 *.aab
 output/
 !public/android/lexicon.apk
-.env.local
-.env.*.local
+.env
+.env.*
+!.env.production
 .sites-runtime/
