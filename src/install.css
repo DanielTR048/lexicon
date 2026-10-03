@@ -1,0 +1,86 @@
+.install-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 30px;
+  gap: 11px;
+  margin: 12px auto 0;
+  width: calc(100% - 24px);
+  max-width: 620px;
+  padding: 14px 10px 14px 14px;
+  border: 1px solid #cdd5c8;
+  border-radius: 16px;
+  background: #edf1e7;
+  color: #29473b;
+  text-align: left;
+  animation: install-appear 300ms ease-out both;
+}
+.install-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+.install-copy > strong {
+  font-size: 14px;
+}
+.install-copy p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 3px;
+}
+.install-status {
+  color: #52624d;
+}
+.install-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 9px;
+}
+.install-button {
+  background: #294f40;
+  color: #fffaf0;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 650;
+  min-height: 38px;
+}
+.install-apk {
+  font-size: 12px;
+  font-weight: 650;
+  color: #294f40;
+  text-underline-offset: 3px;
+  padding: 9px 0;
+}
+.install-dismiss {
+  width: 30px;
+  height: 32px;
+  font-size: 23px;
+  line-height: 1;
+  border-radius: 8px;
+  align-self: start;
+}
+.install-copy .install-help {
+  margin-top: 9px;
+}
+@keyframes install-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .install-card {
+    animation: none;
+  }
+}
+@media print {
+  .install-card {
+    display: none;
+  }
+}

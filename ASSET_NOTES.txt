@@ -1,0 +1,14 @@
+LEXICON - Original illustration asset
+
+File: public/images/lab-genius.png
+Generation: Built-in image_gen tool (2026-10-03)
+Mode: New image, transparent_background=true
+Source retained: C:\Users\Daniel\.codex\generated_images\01a1030d-94dd-7072-8c46-1ead9c647334\exec-2bed3788-1bd2-4fe1-954b-485ed17434c0.png
+
+Final prompt:
+Use case: stylized-concept.
+Asset type: web-game landing page hero illustration for a retro scientific word-search game.
+Create an original eccentric genius in a whimsical 1950s/1960s laboratory, mature tasteful mid-century editorial art. Wild white hair, round eyeglasses, kindly expressive face, white laboratory coat, holding a coral-red bubbling flask, next to a larger round-bottom flask and a restrained atomic orbit. Tiny geometric starbursts and geometric paper-cut shapes. Screen-printed cut-paper collage with visible stippled paper and imperfect ink texture, sophisticated vintage science-magazine cover quality, confident expressive silhouettes.
+Wide landscape composition, 3:2 aspect ratio. The scientist and laboratory objects are grouped in the right two-thirds, with sparse atomic orbit and small stars at left; the full illustration is visible with generous transparent margin, no cropped head or elbows.
+Palette strictly dark forest green #203d32, terracotta coral #c26044, mustard #c2a457, warm ivory #f5f0e5. White hair and coat use warm ivory with forest-green shading. True transparent background with clean alpha edges, suitable over warm ivory website background.
+No words, letters, numbers, symbols that resemble lettering, text, signatures, watermarks, modern 3D, photorealism, neon, glossy surfaces, gradients, or childish cartoon rendering.

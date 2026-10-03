@@ -1,0 +1,25 @@
+{
+  "name": "lexicon-laboratorio-de-palavras",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/engine.test.js tests/data.test.js tests/storage.test.js",
+    "test:e2e": "playwright test",
+    "android:sync": "node scripts/sync-android-assets.mjs",
+    "package:mobile": "node scripts/package-mobile-site.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0",
+    "lucide": "^0.468.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "prettier": "^3.9.9",
+    "vite": "^6.4.1"
+  }
+}

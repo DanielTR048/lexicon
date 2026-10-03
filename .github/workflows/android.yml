@@ -1,0 +1,44 @@
+name: Android
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['android-native/**', 'src/data.js', 'public/images/lab-genius.png', 'scripts/sync-android-assets.mjs', '.github/workflows/android.yml']
+  pull_request:
+    paths: ['android-native/**', 'src/data.js', 'public/images/lab-genius.png', 'scripts/sync-android-assets.mjs', '.github/workflows/android.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Sync bundled catalog and illustration
+        run: node scripts/sync-android-assets.mjs
+      - name: Verify and build installable preview
+        working-directory: android-native
+        run: gradle testDebugUnitTest lintDebug assembleDebug --console=plain
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Lexicon-Android-preview
+          path: android-native/app/build/outputs/apk/debug/app-debug.apk
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Android-validation
+          path: |
+            android-native/app/build/reports/
+            android-native/app/build/test-results/

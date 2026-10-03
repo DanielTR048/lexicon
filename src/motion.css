@@ -1,0 +1,548 @@
+/* A little kinetic energy for the Institute of Restless Minds.
+   Event animations live in motion.js; these styles never move grid hitboxes. */
+:root {
+  --motion-spring: cubic-bezier(0.2, 0.85, 0.25, 1.25);
+  --motion-settle: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand-mark svg {
+  animation: laboratory-orbit 32s linear infinite;
+  transform-origin: center;
+}
+
+.hero-art img {
+  animation: laboratory-float 6.5s ease-in-out infinite;
+  transform-origin: 50% 75%;
+}
+
+.art-note {
+  animation: annotation-sway 7s ease-in-out infinite;
+  transform-origin: 15% 80%;
+}
+
+.status-dot {
+  animation: laboratory-pulse 3s ease-in-out infinite;
+}
+
+.status-dot.done {
+  animation: none;
+  box-shadow: 0 0 0 3px #c18d351a;
+}
+
+.tiny-star {
+  display: inline-block;
+  animation: laboratory-orbit 24s linear infinite reverse;
+}
+
+.button,
+.daily-button,
+.theme-select,
+.difficulty,
+.icon-button,
+.favorite,
+.category-tabs button {
+  transition:
+    transform 220ms var(--motion-spring),
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.theme-card {
+  transition:
+    transform 300ms var(--motion-spring),
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+.theme-card-icon svg,
+.theme-card-footer svg,
+.theme-mini svg,
+.nav-link svg,
+.text-button svg,
+.button svg,
+.daily-button svg,
+.icon-button svg,
+.favorite svg,
+.profile-button > svg,
+.hint-button svg {
+  transition:
+    transform 280ms var(--motion-spring),
+    color 180ms ease,
+    fill 180ms ease;
+}
+
+.nav-link,
+.text-button,
+.word-item,
+.hint-button {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.word-check {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.search-field {
+  transition:
+    border-color 180ms ease,
+    box-shadow 240ms ease,
+    background-color 180ms ease;
+}
+
+.search-field:focus-within {
+  border-color: #849775;
+  background: #fffef9;
+  box-shadow:
+    0 3px 0 #82986e15,
+    0 0 0 4px #82986e12;
+}
+
+.button:active:not(:disabled),
+.daily-button:active:not(:disabled),
+.theme-select:active:not(:disabled),
+.difficulty:active:not(:disabled),
+.category-tabs button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.975);
+  transition-duration: 75ms;
+}
+
+.button.primary:active:not(:disabled) {
+  box-shadow: 0 0 0 #173629;
+}
+
+.icon-button:active:not(:disabled),
+.favorite:active:not(:disabled) {
+  transform: scale(0.88);
+  transition-duration: 75ms;
+}
+
+.letter-cell {
+  /* Deliberately no geometry transition: the pointer must stay over its cell. */
+  transition:
+    background-color 90ms ease,
+    color 90ms ease;
+}
+
+.letter-glyph {
+  display: inline-block;
+  pointer-events: none;
+  transform-origin: 50% 65%;
+  transition:
+    transform 170ms var(--motion-spring),
+    text-shadow 170ms ease;
+}
+
+.letter-cell.selection-start {
+  box-shadow: inset 0 0 0 2px #edce7f;
+  z-index: 2;
+}
+
+.letter-cell.selection-tip {
+  box-shadow:
+    inset 0 0 0 2px #f6dfab,
+    0 0 0 1px #315b46;
+  z-index: 2;
+}
+
+.letter-cell.motion-miss {
+  background: #f0d0bf !important;
+  color: #923f31 !important;
+  box-shadow: inset 0 0 0 1px #bd60455c;
+}
+
+.letter-cell.motion-hit {
+  box-shadow:
+    inset 0 0 0 1px #c7a65c,
+    0 0 9px #dfba6840;
+  z-index: 2;
+}
+
+.word-item.motion-found {
+  border-radius: 4px;
+  background: #e5ecd9;
+  box-shadow: 0 0 0 4px #e5ecd9;
+}
+
+.word-item.motion-found > span:nth-child(2) {
+  color: #48623d;
+}
+
+.word-item.motion-found .word-check {
+  background: #d2dfb9;
+  border-color: #94aa75;
+  box-shadow: 0 0 0 3px #a7bc8626;
+}
+
+.word-list.motion-nudge .word-item:not(.found) .word-check {
+  border-color: #bf9863;
+  background: #f4e9ce;
+}
+
+.experiment.motion-error {
+  border-color: #bd785f;
+  box-shadow:
+    0 3px 0 #d6ad93,
+    0 0 0 3px #bd604510;
+}
+
+.discovery-note.motion-discovery {
+  background: #f4edce;
+  border-color: #ccb56e;
+}
+
+.discovery-note.motion-discovery p {
+  color: #77734f;
+}
+
+.ink-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ink-letter {
+  display: inline-block;
+  transform-origin: 50% 90%;
+}
+
+/* Animated words retain the heading's original two-color typography. */
+.hero h1 > .ink-word {
+  color: inherit;
+  font-style: inherit;
+}
+
+.modal-motion-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+  user-select: none;
+}
+
+.progress-track span {
+  transition: width 500ms var(--motion-settle);
+}
+
+.toast {
+  transition:
+    transform 340ms var(--motion-spring),
+    opacity 200ms ease;
+}
+
+#motion-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+  contain: strict;
+}
+
+.motion-particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: var(--particle-color, #bf9550);
+  pointer-events: none;
+}
+
+.motion-particle.shape-ring {
+  border: 2px solid var(--particle-color, #bf9550);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.motion-particle.shape-star {
+  clip-path: polygon(
+    50% 0,
+    62% 35%,
+    100% 50%,
+    62% 63%,
+    50% 100%,
+    37% 63%,
+    0 50%,
+    37% 35%
+  );
+  border-radius: 0;
+}
+
+.motion-score,
+.motion-word-bubble,
+.motion-celebration {
+  position: absolute;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.motion-score {
+  padding: 7px 12px;
+  border: 1px solid #d6ba76;
+  border-radius: 999px;
+  background: #fcf3d8;
+  color: #725c25;
+  font-size: 12px;
+  box-shadow:
+    0 3px 0 #9d833e20,
+    0 6px 15px #493f2110;
+}
+
+.motion-word-bubble {
+  padding: 6px 11px;
+  border: 1px solid #94ab82;
+  border-radius: 4px;
+  background: #294f40;
+  color: #fff4d9;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  box-shadow: 0 3px 0 #193a2b30;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.motion-celebration {
+  padding: 10px 18px;
+  border: 1px solid #bf9749;
+  border-radius: 5px;
+  background: #f7e8ba;
+  color: #77592b;
+  font-size: 13px;
+  letter-spacing: 1px;
+  box-shadow:
+    0 4px 0 #95733826,
+    0 8px 24px #443e2412;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled),
+  .daily-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 #29473b12;
+  }
+
+  .button.primary:hover:not(:disabled) {
+    box-shadow:
+      0 4px 0 #173629,
+      0 7px 14px #294f4014;
+  }
+
+  .theme-card:hover {
+    transform: translateY(-5px) rotate(-0.45deg);
+    box-shadow:
+      0 7px 0 #293e2e0b,
+      0 12px 18px #293e2e07;
+  }
+
+  .theme-card:hover .theme-card-icon svg {
+    transform: rotate(-9deg) scale(1.1);
+  }
+
+  .theme-card:hover .theme-card-footer svg,
+  .daily-button:hover > svg:last-child {
+    transform: translate(3px, -3px);
+  }
+
+  .theme-card:active {
+    transform: translateY(-1px) scale(0.985);
+    transition-duration: 90ms;
+  }
+
+  .theme-select:hover {
+    border-color: #aebd9c;
+    box-shadow: 0 2px 0 #29473b0c;
+  }
+
+  .theme-select:hover .theme-mini svg,
+  .nav-link:hover svg {
+    transform: translateY(-2px) rotate(-7deg);
+  }
+
+  .difficulty:hover:not(:disabled) {
+    transform: translateX(3px);
+    border-color: #aebd9c;
+  }
+
+  .text-button:hover svg,
+  .button:hover svg:last-child:not(:first-child) {
+    transform: translateX(3px);
+  }
+
+  .new-button:hover svg {
+    transform: rotate(16deg);
+  }
+
+  .daily-button:hover > svg:first-child {
+    transform: rotate(24deg);
+  }
+
+  .icon-button:hover:not(:disabled) svg {
+    transform: rotate(-8deg) scale(1.12);
+  }
+
+  .favorite:hover svg {
+    transform: rotate(-8deg) scale(1.18);
+    fill: #c5786230;
+  }
+
+  .profile-button:hover > svg,
+  .hint-button:hover:not(:disabled) svg {
+    transform: rotate(-12deg) scale(1.16);
+    color: #ae8438;
+  }
+
+  .category-tabs button:hover:not(.active) {
+    background: #e9ecdf;
+    color: #466044;
+    transform: translateY(-2px);
+  }
+
+  .word-item:hover {
+    color: #395833;
+  }
+
+  .word-item:hover .word-check {
+    border-color: #9cae88;
+    box-shadow: 0 0 0 3px #82986e16;
+  }
+
+  .letter-cell:hover:not(.selecting):not(.hinted) .letter-glyph {
+    transform: translateY(-1px) scale(1.17);
+    text-shadow: 0 2px 0 #29473b0f;
+  }
+
+  .letter-cell:hover:not(.selecting):not(.hinted):not(.found-cell) {
+    background: #e5e9d6;
+    box-shadow: inset 0 0 0 1px #b8c4a9;
+  }
+
+  .button:active:not(:disabled),
+  .daily-button:active:not(:disabled),
+  .difficulty:active:not(:disabled),
+  .category-tabs button:active:not(:disabled) {
+    transform: translateY(1px) scale(0.975);
+  }
+}
+
+/* Coarse pointers should never retain the desktop hover lift after a tap. */
+@media (hover: none) {
+  .theme-card:hover,
+  .button.primary:hover {
+    transform: none;
+  }
+
+  .button.primary:active:not(:disabled) {
+    transform: translateY(1px) scale(0.975);
+  }
+}
+
+@keyframes laboratory-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes laboratory-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.6deg);
+  }
+}
+
+@keyframes annotation-sway {
+  0%,
+  100% {
+    transform: rotate(9deg);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-2px);
+  }
+}
+
+@keyframes laboratory-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px #8fa0841a;
+  }
+  50% {
+    box-shadow: 0 0 0 6px #8fa0840a;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-art img,
+  .brand-mark svg,
+  .tiny-star,
+  .theme-card:hover,
+  .theme-card:active,
+  .button:hover,
+  .button:active,
+  .daily-button:hover,
+  .daily-button:active,
+  .difficulty:hover,
+  .difficulty:active,
+  .theme-select:active,
+  .category-tabs button:hover,
+  .category-tabs button:active,
+  .icon-button:active,
+  .favorite:active,
+  .theme-card:hover .theme-card-icon svg,
+  .theme-card:hover .theme-card-footer svg,
+  .theme-select:hover .theme-mini svg,
+  .nav-link:hover svg,
+  .text-button:hover svg,
+  .button:hover svg,
+  .daily-button:hover svg,
+  .icon-button:hover svg,
+  .favorite:hover svg,
+  .profile-button:hover > svg,
+  .hint-button:hover svg,
+  .letter-cell:hover .letter-glyph {
+    transform: none !important;
+  }
+
+  #motion-layer,
+  .modal-motion-layer {
+    display: none;
+  }
+}
+
+@media print {
+  #motion-layer,
+  .modal-motion-layer {
+    display: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

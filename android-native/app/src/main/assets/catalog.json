@@ -1,0 +1,3474 @@
+{
+  "categories": [
+    {
+      "id": "ficcao",
+      "label": "Ficção & universos"
+    },
+    {
+      "id": "historia",
+      "label": "História & épocas"
+    },
+    {
+      "id": "filosofia",
+      "label": "Filosofia & ideias"
+    },
+    {
+      "id": "ciencia",
+      "label": "Ciência & natureza"
+    },
+    {
+      "id": "politica",
+      "label": "Política & sociedade"
+    },
+    {
+      "id": "cultura",
+      "label": "Cultura & artes"
+    }
+  ],
+  "themes": [
+    {
+      "id": "mentes-brilhantes",
+      "title": "Mentes brilhantes",
+      "category": "ciencia",
+      "icon": "Brain",
+      "description": "As ideias que fizeram o mundo sair da órbita.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Einstein",
+          "clue": "Físico associado à teoria da relatividade."
+        },
+        {
+          "word": "Curie",
+          "clue": "Sobrenome da cientista pioneira nos estudos da radioatividade."
+        },
+        {
+          "word": "Tesla",
+          "clue": "Inventor associado ao desenvolvimento de sistemas de corrente alternada."
+        },
+        {
+          "word": "Darwin",
+          "clue": "Naturalista que formulou a evolução por seleção natural."
+        },
+        {
+          "word": "Newton",
+          "clue": "Físico que formulou leis do movimento e da gravitação."
+        },
+        {
+          "word": "Galileu",
+          "clue": "Astrônomo que observou luas de Júpiter com um telescópio."
+        },
+        {
+          "word": "Hawking",
+          "clue": "Físico que estudou buracos negros e cosmologia."
+        },
+        {
+          "word": "Turing",
+          "clue": "Matemático fundamental para a ciência da computação."
+        },
+        {
+          "word": "Lovelace",
+          "clue": "Autora de um algoritmo para a máquina analítica de Babbage."
+        },
+        {
+          "word": "Kepler",
+          "clue": "Astrônomo que descreveu leis do movimento planetário."
+        },
+        {
+          "word": "Faraday",
+          "clue": "Cientista que investigou a indução eletromagnética."
+        },
+        {
+          "word": "Pasteur",
+          "clue": "Pesquisador associado à pasteurização e ao estudo de microrganismos."
+        },
+        {
+          "word": "Lavoisier",
+          "clue": "Químico associado à lei de conservação da massa."
+        },
+        {
+          "word": "Noether",
+          "clue": "Matemática que relacionou simetrias e leis de conservação."
+        },
+        {
+          "word": "Franklin",
+          "clue": "Rosalind produziu dados de difração de raios X importantes para o DNA."
+        },
+        {
+          "word": "Bohr",
+          "clue": "Físico que propôs um modelo atômico com níveis de energia."
+        },
+        {
+          "word": "Planck",
+          "clue": "Físico que introduziu a quantização da energia em seus estudos."
+        },
+        {
+          "word": "Mendel",
+          "clue": "Monge cujos experimentos com ervilhas fundamentaram a genética."
+        }
+      ]
+    },
+    {
+      "id": "universo-infinito",
+      "title": "Universo infinito",
+      "category": "ciencia",
+      "icon": "Telescope",
+      "description": "Sintonize o rádio cósmico e procure entre as estrelas.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Estrela",
+          "clue": "Corpo celeste que produz energia por fusão nuclear."
+        },
+        {
+          "word": "Planeta",
+          "clue": "Corpo que orbita uma estrela e não realiza fusão como ela."
+        },
+        {
+          "word": "Galáxia",
+          "clue": "Grande conjunto de estrelas, gás e poeira ligado pela gravidade."
+        },
+        {
+          "word": "Nebulosa",
+          "clue": "Nuvem interestelar de gás e poeira."
+        },
+        {
+          "word": "Cometa",
+          "clue": "Corpo gelado que pode formar uma cauda perto do Sol."
+        },
+        {
+          "word": "Asteroide",
+          "clue": "Pequeno corpo rochoso que orbita o Sol."
+        },
+        {
+          "word": "Satélite",
+          "clue": "Corpo que orbita outro corpo maior."
+        },
+        {
+          "word": "Órbita",
+          "clue": "Trajetória de um corpo sob influência gravitacional."
+        },
+        {
+          "word": "Quasar",
+          "clue": "Núcleo galáctico extremamente luminoso."
+        },
+        {
+          "word": "Pulsar",
+          "clue": "Estrela de nêutrons observada por seus pulsos regulares."
+        },
+        {
+          "word": "Gravidade",
+          "clue": "Interação que atrai corpos com massa."
+        },
+        {
+          "word": "Eclipse",
+          "clue": "Ocultação total ou parcial de um astro por outro."
+        },
+        {
+          "word": "Solstício",
+          "clue": "Momento do ano associado aos extremos da duração do dia."
+        },
+        {
+          "word": "Equinócio",
+          "clue": "Momento em que o Sol cruza o equador celeste."
+        },
+        {
+          "word": "Cosmos",
+          "clue": "Nome usado para o universo como um todo."
+        },
+        {
+          "word": "Supernova",
+          "clue": "Explosão estelar que pode alcançar enorme luminosidade."
+        },
+        {
+          "word": "Via Láctea",
+          "clue": "Galáxia que abriga o Sistema Solar."
+        },
+        {
+          "word": "Buraco Negro",
+          "clue": "Região cujo horizonte impede a saída da própria luz."
+        }
+      ]
+    },
+    {
+      "id": "laboratorio-atomico",
+      "title": "Laboratório atômico",
+      "category": "ciencia",
+      "icon": "FlaskConical",
+      "description": "Vidros borbulhantes, jalecos e a matéria em transformação.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Átomo",
+          "clue": "Unidade de matéria com núcleo e elétrons."
+        },
+        {
+          "word": "Próton",
+          "clue": "Partícula de carga positiva presente no núcleo atômico."
+        },
+        {
+          "word": "Nêutron",
+          "clue": "Partícula eletricamente neutra presente em muitos núcleos."
+        },
+        {
+          "word": "Elétron",
+          "clue": "Partícula de carga negativa que participa das ligações químicas."
+        },
+        {
+          "word": "Molécula",
+          "clue": "Conjunto de átomos unidos por ligações químicas."
+        },
+        {
+          "word": "Íon",
+          "clue": "Átomo ou grupo de átomos com carga elétrica."
+        },
+        {
+          "word": "Isótopo",
+          "clue": "Variante de um elemento com diferente número de nêutrons."
+        },
+        {
+          "word": "Reação",
+          "clue": "Processo em que substâncias se transformam em outras."
+        },
+        {
+          "word": "Catalisador",
+          "clue": "Substância que acelera uma reação sem ser consumida globalmente."
+        },
+        {
+          "word": "Solução",
+          "clue": "Mistura homogênea de duas ou mais substâncias."
+        },
+        {
+          "word": "Solvente",
+          "clue": "Componente que dissolve um soluto."
+        },
+        {
+          "word": "Soluto",
+          "clue": "Substância dissolvida em uma solução."
+        },
+        {
+          "word": "Ácido",
+          "clue": "Substância que pode doar prótons segundo Brønsted e Lowry."
+        },
+        {
+          "word": "Base",
+          "clue": "Substância que pode receber prótons segundo Brønsted e Lowry."
+        },
+        {
+          "word": "Oxidação",
+          "clue": "Processo que envolve perda de elétrons."
+        },
+        {
+          "word": "Redução",
+          "clue": "Processo que envolve ganho de elétrons."
+        },
+        {
+          "word": "Entalpia",
+          "clue": "Grandeza termodinâmica relacionada à energia e à pressão."
+        },
+        {
+          "word": "Carbono",
+          "clue": "Elemento químico central nas moléculas orgânicas."
+        }
+      ]
+    },
+    {
+      "id": "corpo-humano",
+      "title": "Máquina humana",
+      "category": "ciencia",
+      "icon": "Microscope",
+      "description": "Uma expedição microscópica pela engenharia do corpo.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Coração",
+          "clue": "Órgão muscular que impulsiona o sangue."
+        },
+        {
+          "word": "Pulmão",
+          "clue": "Órgão em que ocorrem trocas gasosas com o sangue."
+        },
+        {
+          "word": "Cérebro",
+          "clue": "Órgão do sistema nervoso envolvido em percepção e pensamento."
+        },
+        {
+          "word": "Neurônio",
+          "clue": "Célula especializada na transmissão de sinais nervosos."
+        },
+        {
+          "word": "Sinapse",
+          "clue": "Região de comunicação entre um neurônio e outra célula."
+        },
+        {
+          "word": "Rim",
+          "clue": "Órgão que filtra o sangue e participa da formação da urina."
+        },
+        {
+          "word": "Fígado",
+          "clue": "Órgão que participa do metabolismo e produz bile."
+        },
+        {
+          "word": "Estômago",
+          "clue": "Órgão digestivo que mistura alimento e secreções."
+        },
+        {
+          "word": "Intestino",
+          "clue": "Trecho do sistema digestório importante para a absorção."
+        },
+        {
+          "word": "Artéria",
+          "clue": "Vaso que conduz sangue para fora do coração."
+        },
+        {
+          "word": "Veia",
+          "clue": "Vaso que conduz sangue em direção ao coração."
+        },
+        {
+          "word": "Capilar",
+          "clue": "Vaso microscópico que permite trocas com os tecidos."
+        },
+        {
+          "word": "Músculo",
+          "clue": "Tecido capaz de contrair e produzir movimento."
+        },
+        {
+          "word": "Tendão",
+          "clue": "Estrutura que conecta um músculo a um osso."
+        },
+        {
+          "word": "Cartilagem",
+          "clue": "Tecido de sustentação presente em articulações e outras estruturas."
+        },
+        {
+          "word": "Hemácia",
+          "clue": "Célula sanguínea que transporta oxigênio com hemoglobina."
+        },
+        {
+          "word": "Plaqueta",
+          "clue": "Fragmento celular que participa da coagulação."
+        },
+        {
+          "word": "Diafragma",
+          "clue": "Músculo importante para os movimentos respiratórios."
+        }
+      ]
+    },
+    {
+      "id": "codigo-da-vida",
+      "title": "O código da vida",
+      "category": "ciencia",
+      "icon": "Dna",
+      "description": "Decifre as instruções escondidas em cada célula.",
+      "color": "green",
+      "words": [
+        {
+          "word": "DNA",
+          "clue": "Molécula que armazena informações genéticas em muitos organismos."
+        },
+        {
+          "word": "RNA",
+          "clue": "Molécula que atua na expressão da informação genética."
+        },
+        {
+          "word": "Gene",
+          "clue": "Sequência de material genético associada a um produto funcional."
+        },
+        {
+          "word": "Genoma",
+          "clue": "Conjunto do material genético de um organismo."
+        },
+        {
+          "word": "Célula",
+          "clue": "Unidade estrutural e funcional básica dos seres vivos."
+        },
+        {
+          "word": "Núcleo",
+          "clue": "Compartimento que abriga a maior parte do DNA em células eucarióticas."
+        },
+        {
+          "word": "Ribossomo",
+          "clue": "Estrutura celular responsável pela síntese de proteínas."
+        },
+        {
+          "word": "Mitose",
+          "clue": "Divisão celular que normalmente mantém o número de cromossomos."
+        },
+        {
+          "word": "Meiose",
+          "clue": "Divisão celular que reduz o número de cromossomos pela metade."
+        },
+        {
+          "word": "Proteína",
+          "clue": "Molécula formada por uma ou mais cadeias de aminoácidos."
+        },
+        {
+          "word": "Enzima",
+          "clue": "Catalisador biológico que acelera reações químicas."
+        },
+        {
+          "word": "Mutação",
+          "clue": "Alteração na sequência do material genético."
+        },
+        {
+          "word": "Alelos",
+          "clue": "Diferentes versões de um mesmo gene."
+        },
+        {
+          "word": "Herança",
+          "clue": "Transmissão de características genéticas entre gerações."
+        },
+        {
+          "word": "Cromossomo",
+          "clue": "Estrutura que organiza o DNA associado a proteínas."
+        },
+        {
+          "word": "Membrana",
+          "clue": "Barreira seletiva que delimita a célula."
+        },
+        {
+          "word": "Citoplasma",
+          "clue": "Conteúdo celular interno à membrana, excluindo o núcleo quando ele existe."
+        },
+        {
+          "word": "Mitocôndria",
+          "clue": "Organela associada à produção de ATP na respiração celular."
+        }
+      ]
+    },
+    {
+      "id": "planeta-vivo",
+      "title": "Planeta vivo",
+      "category": "ciencia",
+      "icon": "Leaf",
+      "description": "Florestas, oceanos e as conexões invisíveis da natureza.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Ecologia",
+          "clue": "Estudo das relações dos seres vivos entre si e com o ambiente."
+        },
+        {
+          "word": "Bioma",
+          "clue": "Grande conjunto de ecossistemas com características ambientais comuns."
+        },
+        {
+          "word": "Habitat",
+          "clue": "Ambiente em que uma espécie vive."
+        },
+        {
+          "word": "Nicho",
+          "clue": "Conjunto de condições e relações que caracteriza o modo de vida de uma espécie."
+        },
+        {
+          "word": "Fauna",
+          "clue": "Conjunto dos animais de uma região."
+        },
+        {
+          "word": "Flora",
+          "clue": "Conjunto das plantas de uma região."
+        },
+        {
+          "word": "Fungo",
+          "clue": "Organismo do reino que inclui cogumelos e leveduras."
+        },
+        {
+          "word": "Líquen",
+          "clue": "Associação entre um fungo e um parceiro fotossintetizante."
+        },
+        {
+          "word": "Coral",
+          "clue": "Animal que pode formar colônias e estruturas de recifes."
+        },
+        {
+          "word": "Manguezal",
+          "clue": "Ecossistema costeiro associado a águas salobras."
+        },
+        {
+          "word": "Savana",
+          "clue": "Vegetação com gramíneas e árvores espaçadas."
+        },
+        {
+          "word": "Tundra",
+          "clue": "Bioma frio com vegetação rasteira."
+        },
+        {
+          "word": "Taiga",
+          "clue": "Floresta boreal dominada por coníferas."
+        },
+        {
+          "word": "Predação",
+          "clue": "Relação em que um organismo captura outro para se alimentar."
+        },
+        {
+          "word": "Simbiose",
+          "clue": "Associação próxima e persistente entre organismos de espécies diferentes."
+        },
+        {
+          "word": "Polinização",
+          "clue": "Transporte de pólen até a estrutura reprodutiva receptora."
+        },
+        {
+          "word": "Fotossíntese",
+          "clue": "Processo que usa energia luminosa para produzir matéria orgânica."
+        },
+        {
+          "word": "Biosfera",
+          "clue": "Conjunto das regiões da Terra onde existe vida."
+        }
+      ]
+    },
+    {
+      "id": "mundo-dos-numeros",
+      "title": "A lógica dos números",
+      "category": "ciencia",
+      "icon": "Orbit",
+      "description": "Equações clandestinas no quadro-negro do laboratório.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Álgebra",
+          "clue": "Área da matemática que estuda estruturas e relações simbólicas."
+        },
+        {
+          "word": "Geometria",
+          "clue": "Estudo de formas, medidas e propriedades do espaço."
+        },
+        {
+          "word": "Teorema",
+          "clue": "Proposição demonstrada a partir de premissas e regras."
+        },
+        {
+          "word": "Axioma",
+          "clue": "Proposição adotada como ponto de partida de uma teoria."
+        },
+        {
+          "word": "Fração",
+          "clue": "Representação de uma razão entre dois números."
+        },
+        {
+          "word": "Primo",
+          "clue": "Número natural maior que um com exatamente dois divisores positivos."
+        },
+        {
+          "word": "Vetor",
+          "clue": "Objeto matemático que pode representar módulo, direção e sentido."
+        },
+        {
+          "word": "Matriz",
+          "clue": "Arranjo retangular de elementos matemáticos."
+        },
+        {
+          "word": "Limite",
+          "clue": "Valor de aproximação descrito no estudo de funções e sequências."
+        },
+        {
+          "word": "Derivada",
+          "clue": "Medida da taxa de variação instantânea de uma função."
+        },
+        {
+          "word": "Integral",
+          "clue": "Operação relacionada ao acúmulo e ao cálculo de áreas."
+        },
+        {
+          "word": "Tangente",
+          "clue": "Reta que representa uma direção local de uma curva."
+        },
+        {
+          "word": "Seno",
+          "clue": "Razão trigonométrica entre cateto oposto e hipotenusa."
+        },
+        {
+          "word": "Cosseno",
+          "clue": "Razão trigonométrica entre cateto adjacente e hipotenusa."
+        },
+        {
+          "word": "Logaritmo",
+          "clue": "Expoente necessário para obter um número a partir de uma base."
+        },
+        {
+          "word": "Parábola",
+          "clue": "Curva formada pelos pontos equidistantes de um foco e uma diretriz."
+        },
+        {
+          "word": "Elipse",
+          "clue": "Curva cuja soma das distâncias a dois focos é constante."
+        },
+        {
+          "word": "Infinito",
+          "clue": "Conceito que expressa ausência de limite finito."
+        }
+      ]
+    },
+    {
+      "id": "herois-marvel",
+      "title": "Liga Marvel",
+      "category": "ficcao",
+      "icon": "Shield",
+      "description": "Entre arranha-céus, armaduras e portais interdimensionais.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Thor",
+          "clue": "Herói asgardiano associado ao martelo Mjolnir."
+        },
+        {
+          "word": "Hulk",
+          "clue": "Alter ego de Bruce Banner conhecido por sua força."
+        },
+        {
+          "word": "Vespa",
+          "clue": "Heroína que pode reduzir o tamanho do corpo e voar."
+        },
+        {
+          "word": "Visão",
+          "clue": "Androide heroico integrante dos Vingadores."
+        },
+        {
+          "word": "Wolverine",
+          "clue": "Mutante conhecido pelas garras e pelo fator de cura."
+        },
+        {
+          "word": "Tempestade",
+          "clue": "Mutante dos X-Men que controla fenômenos atmosféricos."
+        },
+        {
+          "word": "Fera",
+          "clue": "Nome heroico do cientista e mutante Hank McCoy."
+        },
+        {
+          "word": "Ciclope",
+          "clue": "Líder dos X-Men que emite rajadas ópticas."
+        },
+        {
+          "word": "Vampira",
+          "clue": "Mutante capaz de absorver poderes por contato."
+        },
+        {
+          "word": "Gambit",
+          "clue": "Mutante que carrega objetos com energia cinética."
+        },
+        {
+          "word": "Elektra",
+          "clue": "Personagem da Marvel conhecida como assassina e artista marcial."
+        },
+        {
+          "word": "Demolidor",
+          "clue": "Herói de Hell's Kitchen cujo nome civil é Matt Murdock."
+        },
+        {
+          "word": "Homem-Aranha",
+          "clue": "Herói associado a Peter Parker e ao sentido de aranha."
+        },
+        {
+          "word": "Homem de Ferro",
+          "clue": "Identidade heroica de Tony Stark e suas armaduras."
+        },
+        {
+          "word": "Pantera Negra",
+          "clue": "Título heroico associado ao reino fictício de Wakanda."
+        },
+        {
+          "word": "Viúva Negra",
+          "clue": "Codinome de espionagem associado a Natasha Romanoff."
+        },
+        {
+          "word": "Kate Bishop",
+          "clue": "Arqueira da Marvel que também utiliza o nome Gaviã Arqueira."
+        },
+        {
+          "word": "Doutor Estranho",
+          "clue": "Mago da Marvel cujo nome civil é Stephen Strange."
+        }
+      ]
+    },
+    {
+      "id": "herois-dc",
+      "title": "Arquivo DC",
+      "category": "ficcao",
+      "icon": "Zap",
+      "description": "A frequência secreta dos vigilantes de Gotham e Metrópolis.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Superman",
+          "clue": "Herói kryptoniano criado na Terra como Clark Kent."
+        },
+        {
+          "word": "Batman",
+          "clue": "Identidade heroica de Bruce Wayne em Gotham City."
+        },
+        {
+          "word": "Flash",
+          "clue": "Nome heroico associado a velocistas como Barry Allen."
+        },
+        {
+          "word": "Aquaman",
+          "clue": "Herói da DC associado ao reino de Atlântida."
+        },
+        {
+          "word": "Ciborgue",
+          "clue": "Herói que combina seu corpo humano com tecnologia avançada."
+        },
+        {
+          "word": "Shazam",
+          "clue": "Palavra mágica e identidade heroica associadas a Billy Batson."
+        },
+        {
+          "word": "Zatanna",
+          "clue": "Maga da DC conhecida por encantamentos falados ao contrário."
+        },
+        {
+          "word": "Robin",
+          "clue": "Identidade usada por parceiros de Batman."
+        },
+        {
+          "word": "Batgirl",
+          "clue": "Identidade heroica associada a personagens como Barbara Gordon."
+        },
+        {
+          "word": "Supergirl",
+          "clue": "Heroína kryptoniana conhecida como Kara Zor-El."
+        },
+        {
+          "word": "Estelar",
+          "clue": "Heroína alienígena de Tamaran integrante dos Titãs."
+        },
+        {
+          "word": "Ravena",
+          "clue": "Heroína dos Titãs com poderes ligados à magia e às emoções."
+        },
+        {
+          "word": "Mutano",
+          "clue": "Integrante dos Titãs capaz de assumir formas animais."
+        },
+        {
+          "word": "Asa Noturna",
+          "clue": "Identidade heroica adotada por Dick Grayson após ser Robin."
+        },
+        {
+          "word": "Mulher-Maravilha",
+          "clue": "Heroína amazona conhecida como Diana."
+        },
+        {
+          "word": "Lanterna Verde",
+          "clue": "Título dos portadores dos anéis de uma tropa intergaláctica."
+        },
+        {
+          "word": "Arqueiro Verde",
+          "clue": "Identidade heroica do arqueiro Oliver Queen."
+        },
+        {
+          "word": "Canário Negro",
+          "clue": "Heroína conhecida por seu poderoso grito sônico."
+        }
+      ]
+    },
+    {
+      "id": "galeria-viloes",
+      "title": "Galeria dos vilões",
+      "category": "ficcao",
+      "icon": "Skull",
+      "description": "Planos impossíveis, gargalhadas sinistras e egos enormes.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Coringa",
+          "clue": "Vilão de Gotham conhecido por seu visual de palhaço."
+        },
+        {
+          "word": "Thanos",
+          "clue": "Titã da Marvel associado à busca pelas Joias do Infinito."
+        },
+        {
+          "word": "Loki",
+          "clue": "Personagem asgardiano da Marvel associado à trapaça."
+        },
+        {
+          "word": "Ultron",
+          "clue": "Inteligência artificial que se torna inimiga dos Vingadores."
+        },
+        {
+          "word": "Magneto",
+          "clue": "Mutante da Marvel capaz de manipular campos magnéticos."
+        },
+        {
+          "word": "Venom",
+          "clue": "Nome associado a um simbionte e a seus hospedeiros."
+        },
+        {
+          "word": "Darkseid",
+          "clue": "Governante de Apokolips e inimigo dos heróis da DC."
+        },
+        {
+          "word": "Charada",
+          "clue": "Vilão de Batman obcecado por enigmas."
+        },
+        {
+          "word": "Pinguim",
+          "clue": "Vilão de Gotham cujo nome civil é Oswald Cobblepot."
+        },
+        {
+          "word": "Brainiac",
+          "clue": "Vilão da DC associado à coleta de conhecimento e cidades."
+        },
+        {
+          "word": "Sauron",
+          "clue": "Senhor sombrio associado ao Um Anel na Terra-média."
+        },
+        {
+          "word": "Saruman",
+          "clue": "Mago de O Senhor dos Anéis que governa Isengard."
+        },
+        {
+          "word": "Voldemort",
+          "clue": "Bruxo das trevas adversário de Harry Potter."
+        },
+        {
+          "word": "Palpatine",
+          "clue": "Lorde Sith que assume o título de imperador em Star Wars."
+        },
+        {
+          "word": "Darth Vader",
+          "clue": "Identidade Sith assumida por Anakin Skywalker."
+        },
+        {
+          "word": "Lex Luthor",
+          "clue": "Intelectual e empresário conhecido como inimigo de Superman."
+        },
+        {
+          "word": "Duas-Caras",
+          "clue": "Vilão de Gotham que decide ações com uma moeda."
+        },
+        {
+          "word": "Doutor Destino",
+          "clue": "Vilão da Marvel que governa a fictícia Latvéria."
+        }
+      ]
+    },
+    {
+      "id": "galaxia-distante",
+      "title": "Uma galáxia distante",
+      "category": "ficcao",
+      "icon": "Rocket",
+      "description": "Uma transmissão rebelde acaba de chegar ao laboratório.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Luke",
+          "clue": "Skywalker que se torna um Jedi na trilogia original."
+        },
+        {
+          "word": "Leia",
+          "clue": "Princesa e líder rebelde da família Organa."
+        },
+        {
+          "word": "Yoda",
+          "clue": "Mestre Jedi conhecido por sua pequena estatura."
+        },
+        {
+          "word": "Obi-Wan",
+          "clue": "Mestre Jedi que treinou Anakin Skywalker."
+        },
+        {
+          "word": "Anakin",
+          "clue": "Jedi que assume a identidade de Darth Vader."
+        },
+        {
+          "word": "Padmé",
+          "clue": "Senadora de Naboo e antiga rainha do planeta."
+        },
+        {
+          "word": "Han Solo",
+          "clue": "Contrabandista que pilota a Millennium Falcon."
+        },
+        {
+          "word": "Chewbacca",
+          "clue": "Wookiee e parceiro de Han Solo."
+        },
+        {
+          "word": "Droide",
+          "clue": "Robô que pode cumprir funções de protocolo, combate ou manutenção."
+        },
+        {
+          "word": "Coruscant",
+          "clue": "Planeta coberto por uma grande cidade e sede da República Galáctica."
+        },
+        {
+          "word": "Rey",
+          "clue": "Protagonista que descobre sua conexão com a Força."
+        },
+        {
+          "word": "Finn",
+          "clue": "Ex-soldado da Primeira Ordem que se une à Resistência."
+        },
+        {
+          "word": "Ahsoka",
+          "clue": "Aprendiz de Anakin durante as Guerras Clônicas."
+        },
+        {
+          "word": "Grogu",
+          "clue": "Pequeno ser sensível à Força protegido por Din Djarin."
+        },
+        {
+          "word": "Tatooine",
+          "clue": "Planeta desértico com dois sóis."
+        },
+        {
+          "word": "Naboo",
+          "clue": "Planeta natal de Padmé Amidala."
+        },
+        {
+          "word": "Jedi",
+          "clue": "Ordem de usuários da Força associada ao lado luminoso."
+        },
+        {
+          "word": "Sith",
+          "clue": "Tradição de usuários da Força associada ao lado sombrio."
+        }
+      ]
+    },
+    {
+      "id": "terra-media",
+      "title": "Cartas da Terra-média",
+      "category": "ficcao",
+      "icon": "Compass",
+      "description": "Um mapa antigo, um anel e uma aventura muito longa.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Frodo",
+          "clue": "Hobbit encarregado de levar o Um Anel a Mordor."
+        },
+        {
+          "word": "Samwise",
+          "clue": "Companheiro de Frodo na jornada para destruir o Anel."
+        },
+        {
+          "word": "Bilbo",
+          "clue": "Hobbit protagonista de O Hobbit."
+        },
+        {
+          "word": "Gandalf",
+          "clue": "Mago que orienta a Sociedade do Anel."
+        },
+        {
+          "word": "Aragorn",
+          "clue": "Herdeiro de Isildur conhecido inicialmente como Passolargo."
+        },
+        {
+          "word": "Legolas",
+          "clue": "Elfo arqueiro integrante da Sociedade do Anel."
+        },
+        {
+          "word": "Gimli",
+          "clue": "Anão guerreiro integrante da Sociedade do Anel."
+        },
+        {
+          "word": "Boromir",
+          "clue": "Filho de Denethor que integra a Sociedade do Anel."
+        },
+        {
+          "word": "Merry",
+          "clue": "Hobbit amigo de Frodo e Pippin."
+        },
+        {
+          "word": "Pippin",
+          "clue": "Hobbit da família Tûk que participa da aventura do Anel."
+        },
+        {
+          "word": "Arwen",
+          "clue": "Elfa filha de Elrond e companheira de Aragorn."
+        },
+        {
+          "word": "Elrond",
+          "clue": "Senhor de Valfenda e pai de Arwen."
+        },
+        {
+          "word": "Galadriel",
+          "clue": "Senhora élfica de Lothlórien."
+        },
+        {
+          "word": "Gollum",
+          "clue": "Antigo portador do Anel que o chama de precioso."
+        },
+        {
+          "word": "Mordor",
+          "clue": "Território governado por Sauron."
+        },
+        {
+          "word": "Condado",
+          "clue": "Região da Terra-média habitada pelos hobbits."
+        },
+        {
+          "word": "Rohan",
+          "clue": "Reino conhecido por seus cavaleiros."
+        },
+        {
+          "word": "Gondor",
+          "clue": "Reino humano cuja capital é Minas Tirith."
+        }
+      ]
+    },
+    {
+      "id": "mundo-bruxo",
+      "title": "Gabinete de magia",
+      "category": "ficcao",
+      "icon": "Sparkles",
+      "description": "Feitiços catalogados entre frascos e pergaminhos.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Harry Potter",
+          "clue": "Bruxo conhecido pela cicatriz em forma de raio."
+        },
+        {
+          "word": "Hermione",
+          "clue": "Amiga de Harry reconhecida por sua dedicação aos estudos."
+        },
+        {
+          "word": "Rony",
+          "clue": "Integrante da família Weasley e amigo de Harry."
+        },
+        {
+          "word": "Dumbledore",
+          "clue": "Diretor de Hogwarts durante grande parte da saga."
+        },
+        {
+          "word": "Hagrid",
+          "clue": "Guardião das chaves e das terras de Hogwarts."
+        },
+        {
+          "word": "Snape",
+          "clue": "Professor de Poções ligado à casa Sonserina."
+        },
+        {
+          "word": "Luna",
+          "clue": "Estudante da Corvinal cujo sobrenome é Lovegood."
+        },
+        {
+          "word": "Neville",
+          "clue": "Estudante da Grifinória que se destaca em Herbologia."
+        },
+        {
+          "word": "Draco",
+          "clue": "Estudante da família Malfoy e rival de Harry."
+        },
+        {
+          "word": "Sirius",
+          "clue": "Padrinho de Harry cujo sobrenome é Black."
+        },
+        {
+          "word": "Lupin",
+          "clue": "Professor de Defesa Contra as Artes das Trevas e lobisomem."
+        },
+        {
+          "word": "Dobby",
+          "clue": "Elfo doméstico que se torna amigo de Harry."
+        },
+        {
+          "word": "Hogwarts",
+          "clue": "Escola de magia e bruxaria frequentada por Harry."
+        },
+        {
+          "word": "Grifinória",
+          "clue": "Casa de Hogwarts simbolizada por um leão."
+        },
+        {
+          "word": "Sonserina",
+          "clue": "Casa de Hogwarts simbolizada por uma serpente."
+        },
+        {
+          "word": "Corvinal",
+          "clue": "Casa de Hogwarts associada à inteligência e ao aprendizado."
+        },
+        {
+          "word": "Lufa-Lufa",
+          "clue": "Casa de Hogwarts associada à lealdade e à dedicação."
+        },
+        {
+          "word": "Quadribol",
+          "clue": "Esporte mágico disputado em vassouras voadoras."
+        }
+      ]
+    },
+    {
+      "id": "mundos-fantasticos",
+      "title": "Mundos fantásticos",
+      "category": "ficcao",
+      "icon": "Globe",
+      "description": "Personagens atravessaram o portal. Identifique os visitantes.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Alice",
+          "clue": "Menina que segue um coelho até o País das Maravilhas."
+        },
+        {
+          "word": "Dorothy",
+          "clue": "Garota que chega à terra de Oz após um ciclone."
+        },
+        {
+          "word": "Aslan",
+          "clue": "Leão que ocupa papel central nas histórias de Nárnia."
+        },
+        {
+          "word": "Peter Pan",
+          "clue": "Menino que vive aventuras na Terra do Nunca."
+        },
+        {
+          "word": "Pinóquio",
+          "clue": "Boneco de madeira criado por Gepeto."
+        },
+        {
+          "word": "Sherlock",
+          "clue": "Detetive de sobrenome Holmes criado por Conan Doyle."
+        },
+        {
+          "word": "Watson",
+          "clue": "Médico e companheiro de Sherlock Holmes."
+        },
+        {
+          "word": "Drácula",
+          "clue": "Vampiro que dá nome ao romance de Bram Stoker."
+        },
+        {
+          "word": "Conan",
+          "clue": "Herói bárbaro criado por Robert E. Howard."
+        },
+        {
+          "word": "Tarzan",
+          "clue": "Personagem criado por Edgar Rice Burroughs e criado por grandes símios."
+        },
+        {
+          "word": "Duna",
+          "clue": "Romance de ficção científica ambientado em torno de Arrakis."
+        },
+        {
+          "word": "Arrakis",
+          "clue": "Planeta desértico ligado à produção da especiaria em Duna."
+        },
+        {
+          "word": "Spock",
+          "clue": "Oficial de origem humana e vulcana em Star Trek."
+        },
+        {
+          "word": "Kirk",
+          "clue": "Capitão da Enterprise na série original de Star Trek."
+        },
+        {
+          "word": "Godzilla",
+          "clue": "Monstro gigante japonês que estreou no cinema em 1954."
+        },
+        {
+          "word": "Goku",
+          "clue": "Protagonista de Dragon Ball criado por Akira Toriyama."
+        },
+        {
+          "word": "Totoro",
+          "clue": "Espírito da floresta de um filme de Hayao Miyazaki."
+        },
+        {
+          "word": "Pikachu",
+          "clue": "Pokémon elétrico associado ao protagonista Ash."
+        }
+      ]
+    },
+    {
+      "id": "egito-antigo",
+      "title": "Segredos do Egito",
+      "category": "historia",
+      "icon": "Crown",
+      "description": "Desenterre palavras sob a areia de civilizações milenares.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Nilo",
+          "clue": "Rio fundamental para a agricultura do Egito antigo."
+        },
+        {
+          "word": "Faraó",
+          "clue": "Título usado para os governantes do Egito antigo."
+        },
+        {
+          "word": "Pirâmide",
+          "clue": "Monumento de forma geométrica associado a tumbas reais."
+        },
+        {
+          "word": "Esfinge",
+          "clue": "Figura mitológica com corpo de leão e cabeça humana."
+        },
+        {
+          "word": "Papiro",
+          "clue": "Planta usada para produzir um antigo suporte de escrita."
+        },
+        {
+          "word": "Múmia",
+          "clue": "Corpo preservado por processos naturais ou artificiais."
+        },
+        {
+          "word": "Sarcófago",
+          "clue": "Recipiente funerário usado para abrigar um corpo."
+        },
+        {
+          "word": "Obelisco",
+          "clue": "Monumento alto de pedra com ponta piramidal."
+        },
+        {
+          "word": "Escriba",
+          "clue": "Profissional dedicado à escrita e aos registros."
+        },
+        {
+          "word": "Hieróglifo",
+          "clue": "Sinal de um sistema de escrita usado no Egito antigo."
+        },
+        {
+          "word": "Anúbis",
+          "clue": "Divindade egípcia associada à mumificação."
+        },
+        {
+          "word": "Ísis",
+          "clue": "Divindade egípcia associada à maternidade e à magia."
+        },
+        {
+          "word": "Osíris",
+          "clue": "Divindade egípcia associada ao mundo dos mortos."
+        },
+        {
+          "word": "Hórus",
+          "clue": "Divindade egípcia frequentemente representada como falcão."
+        },
+        {
+          "word": "Ramsés",
+          "clue": "Nome usado por vários faraós do Egito."
+        },
+        {
+          "word": "Tebas",
+          "clue": "Importante cidade do Egito antigo situada junto ao Nilo."
+        },
+        {
+          "word": "Mênfis",
+          "clue": "Antiga capital egípcia próxima ao início do delta do Nilo."
+        },
+        {
+          "word": "Roseta",
+          "clue": "Cidade que dá nome à pedra com inscrições em três escritas."
+        }
+      ]
+    },
+    {
+      "id": "grecia-antiga",
+      "title": "A aurora grega",
+      "category": "historia",
+      "icon": "Landmark",
+      "description": "Das praças de Atenas às histórias do mar Egeu.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Atenas",
+          "clue": "Pólis grega associada ao desenvolvimento da democracia antiga."
+        },
+        {
+          "word": "Esparta",
+          "clue": "Pólis grega conhecida por sua organização militar."
+        },
+        {
+          "word": "Pólis",
+          "clue": "Cidade-estado característica do mundo grego antigo."
+        },
+        {
+          "word": "Ágora",
+          "clue": "Espaço público de encontro e comércio nas cidades gregas."
+        },
+        {
+          "word": "Acrópole",
+          "clue": "Área elevada e fortificada de uma cidade grega."
+        },
+        {
+          "word": "Partenon",
+          "clue": "Templo ateniense dedicado à deusa Atena."
+        },
+        {
+          "word": "Hoplita",
+          "clue": "Soldado de infantaria pesada da Grécia antiga."
+        },
+        {
+          "word": "Falange",
+          "clue": "Formação militar compacta de combatentes."
+        },
+        {
+          "word": "Trirreme",
+          "clue": "Embarcação de guerra com três níveis de remadores."
+        },
+        {
+          "word": "Oráculo",
+          "clue": "Santuário ou resposta associada à consulta divina."
+        },
+        {
+          "word": "Delfos",
+          "clue": "Local do célebre oráculo dedicado a Apolo."
+        },
+        {
+          "word": "Olímpia",
+          "clue": "Local associado aos Jogos Olímpicos da Antiguidade."
+        },
+        {
+          "word": "Homero",
+          "clue": "Poeta tradicionalmente associado à Ilíada e à Odisseia."
+        },
+        {
+          "word": "Hesíodo",
+          "clue": "Poeta grego autor da Teogonia."
+        },
+        {
+          "word": "Heródoto",
+          "clue": "Autor de Histórias e importante nome da historiografia antiga."
+        },
+        {
+          "word": "Tucídides",
+          "clue": "Historiador que escreveu sobre a Guerra do Peloponeso."
+        },
+        {
+          "word": "Péricles",
+          "clue": "Líder político ateniense do século V antes de Cristo."
+        },
+        {
+          "word": "Helenismo",
+          "clue": "Período de difusão da cultura grega após Alexandre."
+        }
+      ]
+    },
+    {
+      "id": "roma-antiga",
+      "title": "Todos os caminhos",
+      "category": "historia",
+      "icon": "Landmark",
+      "description": "Reconstitua um império entre estradas, leis e aquedutos.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Roma",
+          "clue": "Cidade que se tornou o centro do Império Romano."
+        },
+        {
+          "word": "Senado",
+          "clue": "Conselho político importante nas instituições romanas."
+        },
+        {
+          "word": "Cônsul",
+          "clue": "Magistrado de alto cargo na República Romana."
+        },
+        {
+          "word": "Legião",
+          "clue": "Grande unidade militar do exército romano."
+        },
+        {
+          "word": "Centurião",
+          "clue": "Oficial que comandava uma centúria romana."
+        },
+        {
+          "word": "Fórum",
+          "clue": "Centro público de atividades políticas, religiosas e comerciais."
+        },
+        {
+          "word": "Aqueduto",
+          "clue": "Estrutura construída para conduzir água."
+        },
+        {
+          "word": "Coliseu",
+          "clue": "Anfiteatro monumental situado em Roma."
+        },
+        {
+          "word": "Patrício",
+          "clue": "Membro da aristocracia tradicional de Roma."
+        },
+        {
+          "word": "Plebeu",
+          "clue": "Integrante da população livre fora do patriciado."
+        },
+        {
+          "word": "Tribuno",
+          "clue": "Cargo romano que incluía representantes da plebe."
+        },
+        {
+          "word": "Augusto",
+          "clue": "Título assumido por Otaviano, primeiro imperador romano."
+        },
+        {
+          "word": "César",
+          "clue": "Nome do general e governante romano Júlio César."
+        },
+        {
+          "word": "Nero",
+          "clue": "Imperador romano da dinastia júlio-claudiana."
+        },
+        {
+          "word": "Trajano",
+          "clue": "Imperador sob o qual o território romano atingiu grande extensão."
+        },
+        {
+          "word": "Pompeia",
+          "clue": "Cidade romana soterrada pela erupção do Vesúvio."
+        },
+        {
+          "word": "Vesúvio",
+          "clue": "Vulcão associado à destruição de Pompeia em 79."
+        },
+        {
+          "word": "Latim",
+          "clue": "Língua da Roma antiga que originou as línguas românicas."
+        }
+      ]
+    },
+    {
+      "id": "idade-media",
+      "title": "Crônicas medievais",
+      "category": "historia",
+      "icon": "Scroll",
+      "description": "Castelos, manuscritos e cidades além das muralhas.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Feudo",
+          "clue": "Domínio ligado a relações de poder e obrigações medievais."
+        },
+        {
+          "word": "Vassalo",
+          "clue": "Pessoa ligada a um senhor por compromisso de fidelidade."
+        },
+        {
+          "word": "Suserano",
+          "clue": "Senhor a quem um vassalo devia fidelidade."
+        },
+        {
+          "word": "Servo",
+          "clue": "Camponês sujeito a obrigações e vínculos com um domínio."
+        },
+        {
+          "word": "Castelo",
+          "clue": "Construção fortificada usada como residência e defesa."
+        },
+        {
+          "word": "Muralha",
+          "clue": "Estrutura defensiva que cerca uma cidade ou fortificação."
+        },
+        {
+          "word": "Cavaleiro",
+          "clue": "Combatente montado associado à nobreza medieval."
+        },
+        {
+          "word": "Mosteiro",
+          "clue": "Comunidade e edifício dedicados à vida monástica."
+        },
+        {
+          "word": "Abadia",
+          "clue": "Mosteiro dirigido por um abade ou uma abadessa."
+        },
+        {
+          "word": "Manuscrito",
+          "clue": "Texto produzido à mão antes ou depois da imprensa."
+        },
+        {
+          "word": "Iluminura",
+          "clue": "Decoração ou ilustração feita em um manuscrito."
+        },
+        {
+          "word": "Trovador",
+          "clue": "Poeta e compositor associado à tradição lírica medieval."
+        },
+        {
+          "word": "Burgo",
+          "clue": "Núcleo urbano que se desenvolveu na Europa medieval."
+        },
+        {
+          "word": "Guilda",
+          "clue": "Associação de artesãos ou comerciantes."
+        },
+        {
+          "word": "Catedral",
+          "clue": "Igreja que abriga a sede de um bispo."
+        },
+        {
+          "word": "Gótico",
+          "clue": "Estilo arquitetônico associado a arcos ogivais e grandes vitrais."
+        },
+        {
+          "word": "Românico",
+          "clue": "Estilo medieval associado a arcos redondos e paredes espessas."
+        },
+        {
+          "word": "Cruzadas",
+          "clue": "Expedições militares e religiosas da cristandade medieval."
+        }
+      ]
+    },
+    {
+      "id": "renascimento",
+      "title": "O mundo renasce",
+      "category": "historia",
+      "icon": "Palette",
+      "description": "Arte, observação e novas ideias na oficina do tempo.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Leonardo",
+          "clue": "Artista e inventor italiano autor da Mona Lisa."
+        },
+        {
+          "word": "Rafael",
+          "clue": "Pintor renascentista autor de A Escola de Atenas."
+        },
+        {
+          "word": "Donatello",
+          "clue": "Escultor florentino autor de um célebre Davi em bronze."
+        },
+        {
+          "word": "Botticelli",
+          "clue": "Pintor italiano autor de O Nascimento de Vênus."
+        },
+        {
+          "word": "Michelangelo",
+          "clue": "Artista responsável pela pintura do teto da Capela Sistina."
+        },
+        {
+          "word": "Florença",
+          "clue": "Cidade italiana central na história do Renascimento."
+        },
+        {
+          "word": "Veneza",
+          "clue": "Cidade italiana associada a uma importante escola de pintura."
+        },
+        {
+          "word": "Mecenas",
+          "clue": "Pessoa que patrocina a produção artística ou intelectual."
+        },
+        {
+          "word": "Humanismo",
+          "clue": "Movimento intelectual que valorizou o estudo dos textos clássicos."
+        },
+        {
+          "word": "Perspectiva",
+          "clue": "Técnica de representação da profundidade em uma superfície."
+        },
+        {
+          "word": "Afresco",
+          "clue": "Pintura realizada sobre uma camada de argamassa ainda úmida."
+        },
+        {
+          "word": "Sfumato",
+          "clue": "Técnica de transições suaves entre tons na pintura."
+        },
+        {
+          "word": "Anatomia",
+          "clue": "Estudo da estrutura dos organismos, importante para artistas da época."
+        },
+        {
+          "word": "Imprensa",
+          "clue": "Tecnologia que ampliou a reprodução de textos na Europa."
+        },
+        {
+          "word": "Gutenberg",
+          "clue": "Nome associado à difusão dos tipos móveis na Europa."
+        },
+        {
+          "word": "Erasmo",
+          "clue": "Humanista autor de Elogio da Loucura."
+        },
+        {
+          "word": "Petrarca",
+          "clue": "Poeta e humanista italiano conhecido por seu Cancioneiro."
+        },
+        {
+          "word": "Medici",
+          "clue": "Família florentina associada ao patrocínio das artes."
+        }
+      ]
+    },
+    {
+      "id": "grandes-navegacoes",
+      "title": "Além do horizonte",
+      "category": "historia",
+      "icon": "Compass",
+      "description": "Cartas náuticas e encontros que transformaram continentes.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Caravela",
+          "clue": "Embarcação associada às navegações portuguesas."
+        },
+        {
+          "word": "Nau",
+          "clue": "Grande embarcação usada em viagens marítimas de longa distância."
+        },
+        {
+          "word": "Bússola",
+          "clue": "Instrumento que indica direções por uma agulha magnetizada."
+        },
+        {
+          "word": "Astrolábio",
+          "clue": "Instrumento usado para medir a altura de astros."
+        },
+        {
+          "word": "Sextante",
+          "clue": "Instrumento que mede ângulos em navegação astronômica."
+        },
+        {
+          "word": "Cartografia",
+          "clue": "Arte e ciência da produção de mapas."
+        },
+        {
+          "word": "Latitude",
+          "clue": "Distância angular em relação ao equador."
+        },
+        {
+          "word": "Longitude",
+          "clue": "Distância angular em relação a um meridiano de referência."
+        },
+        {
+          "word": "Meridiano",
+          "clue": "Linha imaginária que liga os polos terrestres."
+        },
+        {
+          "word": "Equador",
+          "clue": "Círculo imaginário que divide os hemisférios norte e sul."
+        },
+        {
+          "word": "Oceano",
+          "clue": "Grande extensão de água salgada do planeta."
+        },
+        {
+          "word": "Porto",
+          "clue": "Local preparado para receber embarcações."
+        },
+        {
+          "word": "Cabral",
+          "clue": "Navegador português cuja expedição chegou ao Brasil em 1500."
+        },
+        {
+          "word": "Colombo",
+          "clue": "Navegador que alcançou o Caribe em uma expedição de 1492."
+        },
+        {
+          "word": "Magalhães",
+          "clue": "Navegador que iniciou a primeira expedição a circundar o planeta."
+        },
+        {
+          "word": "Elcano",
+          "clue": "Navegador que completou a primeira circum-navegação."
+        },
+        {
+          "word": "Vasco da Gama",
+          "clue": "Navegador que chegou à Índia pela rota marítima do Cabo."
+        },
+        {
+          "word": "Especiarias",
+          "clue": "Produtos vegetais valiosos no comércio de longa distância."
+        }
+      ]
+    },
+    {
+      "id": "brasil-historico",
+      "title": "Brasil em camadas",
+      "category": "historia",
+      "icon": "Scroll",
+      "description": "Pessoas, processos e marcos para investigar a nossa história.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Pau-brasil",
+          "clue": "Árvore explorada por seu pigmento no início da colonização."
+        },
+        {
+          "word": "Engenho",
+          "clue": "Unidade de produção de açúcar do período colonial."
+        },
+        {
+          "word": "Capitania",
+          "clue": "Divisão territorial adotada pela Coroa portuguesa na colonização."
+        },
+        {
+          "word": "Quilombo",
+          "clue": "Comunidade ligada à resistência de pessoas escravizadas."
+        },
+        {
+          "word": "Palmares",
+          "clue": "Grande conjunto de comunidades quilombolas do período colonial."
+        },
+        {
+          "word": "Zumbi",
+          "clue": "Liderança histórica associada ao Quilombo dos Palmares."
+        },
+        {
+          "word": "Mineração",
+          "clue": "Atividade econômica marcante no Brasil do século XVIII."
+        },
+        {
+          "word": "Tiradentes",
+          "clue": "Participante da Inconfidência Mineira executado em 1792."
+        },
+        {
+          "word": "Salvador",
+          "clue": "Cidade que foi a primeira capital do Brasil colonial."
+        },
+        {
+          "word": "Ouro Preto",
+          "clue": "Cidade mineira ligada ao ciclo do ouro."
+        },
+        {
+          "word": "Regência",
+          "clue": "Período entre a abdicação de Pedro I e a maioridade de Pedro II."
+        },
+        {
+          "word": "Canudos",
+          "clue": "Comunidade baiana destruída em conflito no fim do século XIX."
+        },
+        {
+          "word": "Abolição",
+          "clue": "Processo de extinção legal da escravidão."
+        },
+        {
+          "word": "República",
+          "clue": "Forma de governo adotada no Brasil em 1889."
+        },
+        {
+          "word": "Imigração",
+          "clue": "Entrada de pessoas vindas de outros países."
+        },
+        {
+          "word": "Industrialização",
+          "clue": "Expansão da produção por indústrias na economia."
+        },
+        {
+          "word": "Brasília",
+          "clue": "Cidade inaugurada como capital federal em 1960."
+        },
+        {
+          "word": "Constituição",
+          "clue": "Conjunto fundamental de normas de organização do Estado."
+        }
+      ]
+    },
+    {
+      "id": "filosofos-classicos",
+      "title": "O clube dos filósofos",
+      "category": "filosofia",
+      "icon": "Brain",
+      "description": "Pensadores antigos deixaram pistas para perguntas eternas.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Sócrates",
+          "clue": "Filósofo ateniense conhecido por interrogar conceitos em diálogo."
+        },
+        {
+          "word": "Platão",
+          "clue": "Filósofo grego autor de A República."
+        },
+        {
+          "word": "Aristóteles",
+          "clue": "Filósofo grego que escreveu sobre lógica, ética e natureza."
+        },
+        {
+          "word": "Tales",
+          "clue": "Pensador de Mileto tradicionalmente associado à água como princípio."
+        },
+        {
+          "word": "Anaximandro",
+          "clue": "Filósofo de Mileto associado ao conceito de ápeiron."
+        },
+        {
+          "word": "Anaxímenes",
+          "clue": "Pensador de Mileto que atribuiu papel fundamental ao ar."
+        },
+        {
+          "word": "Heráclito",
+          "clue": "Filósofo de Éfeso associado à mudança e ao logos."
+        },
+        {
+          "word": "Parmênides",
+          "clue": "Filósofo de Eleia que investigou o ser."
+        },
+        {
+          "word": "Pitágoras",
+          "clue": "Pensador associado a uma tradição que valorizava os números."
+        },
+        {
+          "word": "Demócrito",
+          "clue": "Filósofo associado ao atomismo antigo."
+        },
+        {
+          "word": "Epicuro",
+          "clue": "Filósofo que relacionou a vida boa à ausência de perturbação."
+        },
+        {
+          "word": "Diógenes",
+          "clue": "Filósofo cínico associado à crítica das convenções sociais."
+        },
+        {
+          "word": "Zenão",
+          "clue": "Nome do fundador da escola estoica de Cítio."
+        },
+        {
+          "word": "Epicteto",
+          "clue": "Filósofo estoico que distinguiu o que depende de nós."
+        },
+        {
+          "word": "Sêneca",
+          "clue": "Filósofo romano ligado à tradição estoica."
+        },
+        {
+          "word": "Plotino",
+          "clue": "Pensador associado ao neoplatonismo."
+        },
+        {
+          "word": "Hipátia",
+          "clue": "Filósofa e matemática que ensinou em Alexandria."
+        },
+        {
+          "word": "Confúcio",
+          "clue": "Pensador chinês que destacou a ética das relações humanas."
+        }
+      ]
+    },
+    {
+      "id": "mentes-modernas",
+      "title": "Mentes inquietas",
+      "category": "filosofia",
+      "icon": "BookOpen",
+      "description": "A razão encontrou a dúvida e nunca mais voltou igual.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Descartes",
+          "clue": "Filósofo francês associado à dúvida metódica e ao cogito."
+        },
+        {
+          "word": "Spinoza",
+          "clue": "Filósofo autor da Ética demonstrada em ordem geométrica."
+        },
+        {
+          "word": "Leibniz",
+          "clue": "Filósofo que desenvolveu uma teoria das mônadas."
+        },
+        {
+          "word": "Locke",
+          "clue": "Pensador associado ao empirismo e à teoria política liberal."
+        },
+        {
+          "word": "Hume",
+          "clue": "Filósofo escocês que investigou causalidade e experiência."
+        },
+        {
+          "word": "Kant",
+          "clue": "Filósofo prussiano autor da Crítica da Razão Pura."
+        },
+        {
+          "word": "Hegel",
+          "clue": "Filósofo alemão autor da Fenomenologia do Espírito."
+        },
+        {
+          "word": "Nietzsche",
+          "clue": "Filósofo alemão autor de Assim Falou Zaratustra."
+        },
+        {
+          "word": "Kierkegaard",
+          "clue": "Pensador dinamarquês associado à existência e à escolha."
+        },
+        {
+          "word": "Schopenhauer",
+          "clue": "Filósofo autor de O Mundo como Vontade e Representação."
+        },
+        {
+          "word": "Sartre",
+          "clue": "Filósofo francês associado ao existencialismo."
+        },
+        {
+          "word": "Beauvoir",
+          "clue": "Filósofa francesa autora de O Segundo Sexo."
+        },
+        {
+          "word": "Camus",
+          "clue": "Escritor e pensador associado ao absurdo."
+        },
+        {
+          "word": "Arendt",
+          "clue": "Pensadora que investigou ação política e totalitarismo."
+        },
+        {
+          "word": "Foucault",
+          "clue": "Filósofo que estudou relações entre poder e saber."
+        },
+        {
+          "word": "Russell",
+          "clue": "Filósofo britânico com contribuições para a lógica."
+        },
+        {
+          "word": "Wittgenstein",
+          "clue": "Filósofo austríaco que investigou linguagem e significado."
+        },
+        {
+          "word": "Merleau-Ponty",
+          "clue": "Filósofo da fenomenologia que destacou a percepção e o corpo."
+        }
+      ]
+    },
+    {
+      "id": "ideias-filosoficas",
+      "title": "Ideias perigosamente boas",
+      "category": "filosofia",
+      "icon": "Sparkles",
+      "description": "Gire os botões do pensamento e questione as certezas.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Ética",
+          "clue": "Investigação filosófica sobre ação, valores e vida boa."
+        },
+        {
+          "word": "Estética",
+          "clue": "Reflexão sobre arte, beleza e experiência sensível."
+        },
+        {
+          "word": "Lógica",
+          "clue": "Estudo das formas válidas de inferência."
+        },
+        {
+          "word": "Metafísica",
+          "clue": "Investigação sobre aspectos fundamentais da realidade."
+        },
+        {
+          "word": "Ontologia",
+          "clue": "Área filosófica que investiga o ser."
+        },
+        {
+          "word": "Razão",
+          "clue": "Capacidade de organizar pensamentos e formular argumentos."
+        },
+        {
+          "word": "Liberdade",
+          "clue": "Conceito ligado à possibilidade de agir e escolher."
+        },
+        {
+          "word": "Verdade",
+          "clue": "Conceito central na avaliação de crenças e afirmações."
+        },
+        {
+          "word": "Justiça",
+          "clue": "Conceito que envolve o que é devido a cada pessoa."
+        },
+        {
+          "word": "Virtude",
+          "clue": "Disposição considerada boa no caráter ou na ação."
+        },
+        {
+          "word": "Alteridade",
+          "clue": "Reconhecimento da condição e da diferença do outro."
+        },
+        {
+          "word": "Consciência",
+          "clue": "Noção ligada à experiência e à percepção de si e do mundo."
+        },
+        {
+          "word": "Dialética",
+          "clue": "Modo de investigação que trabalha relações e tensões entre ideias."
+        },
+        {
+          "word": "Niilismo",
+          "clue": "Posição ligada à negação ou crise de valores e sentidos."
+        },
+        {
+          "word": "Práxis",
+          "clue": "Ação humana refletida em sua relação com a teoria."
+        },
+        {
+          "word": "Utopia",
+          "clue": "Representação de uma sociedade imaginada como ideal."
+        },
+        {
+          "word": "Absurdo",
+          "clue": "Conceito ligado à tensão entre busca de sentido e mundo."
+        },
+        {
+          "word": "Autonomia",
+          "clue": "Capacidade de orientar a própria ação segundo princípios."
+        }
+      ]
+    },
+    {
+      "id": "etica-virtudes",
+      "title": "A bússola moral",
+      "category": "filosofia",
+      "icon": "Scale",
+      "description": "Experimentos mentais sobre como escolher e conviver.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Coragem",
+          "clue": "Disposição de agir diante do medo e do risco."
+        },
+        {
+          "word": "Prudência",
+          "clue": "Capacidade de deliberar com cuidado sobre a ação."
+        },
+        {
+          "word": "Temperança",
+          "clue": "Virtude associada à moderação dos desejos."
+        },
+        {
+          "word": "Honestidade",
+          "clue": "Qualidade de agir com franqueza e integridade."
+        },
+        {
+          "word": "Empatia",
+          "clue": "Capacidade de compreender a perspectiva ou o sentimento alheio."
+        },
+        {
+          "word": "Respeito",
+          "clue": "Reconhecimento do valor e dos limites de outras pessoas."
+        },
+        {
+          "word": "Dever",
+          "clue": "Obrigação considerada moralmente exigível."
+        },
+        {
+          "word": "Intenção",
+          "clue": "Finalidade que orienta uma ação deliberada."
+        },
+        {
+          "word": "Escolha",
+          "clue": "Ato de selecionar uma possibilidade entre alternativas."
+        },
+        {
+          "word": "Dilema",
+          "clue": "Situação em que opções relevantes entram em conflito."
+        },
+        {
+          "word": "Caráter",
+          "clue": "Conjunto de disposições relativamente estáveis de uma pessoa."
+        },
+        {
+          "word": "Cuidado",
+          "clue": "Atenção às necessidades e à vulnerabilidade de alguém."
+        },
+        {
+          "word": "Equidade",
+          "clue": "Consideração de diferenças relevantes na busca de justiça."
+        },
+        {
+          "word": "Compaixão",
+          "clue": "Sensibilidade ao sofrimento de outra pessoa."
+        },
+        {
+          "word": "Altruísmo",
+          "clue": "Orientação da ação para o bem de outras pessoas."
+        },
+        {
+          "word": "Egoísmo",
+          "clue": "Prioridade atribuída aos próprios interesses."
+        },
+        {
+          "word": "Dignidade",
+          "clue": "Valor atribuído à pessoa como merecedora de respeito."
+        },
+        {
+          "word": "Reciprocidade",
+          "clue": "Relação de correspondência entre ações e obrigações mútuas."
+        }
+      ]
+    },
+    {
+      "id": "logica-argumentos",
+      "title": "Máquina de argumentos",
+      "category": "filosofia",
+      "icon": "Brain",
+      "description": "Nem toda frase convincente sobrevive a este teste.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Premissa",
+          "clue": "Afirmação usada como ponto de partida de um argumento."
+        },
+        {
+          "word": "Conclusão",
+          "clue": "Afirmação que um argumento procura sustentar."
+        },
+        {
+          "word": "Inferência",
+          "clue": "Passagem de uma ou mais afirmações a outra."
+        },
+        {
+          "word": "Dedução",
+          "clue": "Raciocínio em que a conclusão decorre necessariamente das premissas."
+        },
+        {
+          "word": "Indução",
+          "clue": "Raciocínio que amplia conclusões a partir de casos observados."
+        },
+        {
+          "word": "Abdução",
+          "clue": "Raciocínio que propõe uma explicação para uma observação."
+        },
+        {
+          "word": "Validade",
+          "clue": "Propriedade de um argumento cuja forma preserva a verdade."
+        },
+        {
+          "word": "Falácia",
+          "clue": "Erro de raciocínio que pode parecer persuasivo."
+        },
+        {
+          "word": "Sofisma",
+          "clue": "Argumento enganoso apresentado com aparência de correção."
+        },
+        {
+          "word": "Silogismo",
+          "clue": "Forma de argumento tradicionalmente composta por duas premissas."
+        },
+        {
+          "word": "Proposição",
+          "clue": "Conteúdo de uma afirmação que pode ser verdadeiro ou falso."
+        },
+        {
+          "word": "Negação",
+          "clue": "Operação lógica que inverte o valor de verdade."
+        },
+        {
+          "word": "Conjunção",
+          "clue": "Conectivo lógico correspondente a um e."
+        },
+        {
+          "word": "Disjunção",
+          "clue": "Conectivo lógico correspondente a um ou."
+        },
+        {
+          "word": "Contradição",
+          "clue": "Incompatibilidade entre uma afirmação e sua negação."
+        },
+        {
+          "word": "Tautologia",
+          "clue": "Fórmula verdadeira em todas as suas interpretações lógicas."
+        },
+        {
+          "word": "Analogia",
+          "clue": "Comparação de relações ou características entre casos."
+        },
+        {
+          "word": "Paradoxo",
+          "clue": "Resultado ou afirmação que desafia expectativas e intuições."
+        }
+      ]
+    },
+    {
+      "id": "escolas-filosoficas",
+      "title": "Escolas do pensamento",
+      "category": "filosofia",
+      "icon": "Landmark",
+      "description": "Um corredor inteiro de portas para enxergar o mundo.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Estoicismo",
+          "clue": "Escola antiga que valoriza a virtude e o exame dos juízos."
+        },
+        {
+          "word": "Cinismo",
+          "clue": "Escola antiga que questiona convenções e valoriza a simplicidade."
+        },
+        {
+          "word": "Ceticismo",
+          "clue": "Tradição que examina os limites das pretensões de conhecimento."
+        },
+        {
+          "word": "Epicurismo",
+          "clue": "Escola associada a Epicuro e à busca de tranquilidade."
+        },
+        {
+          "word": "Platonismo",
+          "clue": "Tradição filosófica inspirada no pensamento de Platão."
+        },
+        {
+          "word": "Atomismo",
+          "clue": "Concepção antiga que explica a realidade por átomos e vazio."
+        },
+        {
+          "word": "Empirismo",
+          "clue": "Posição que destaca a experiência na formação do conhecimento."
+        },
+        {
+          "word": "Racionalismo",
+          "clue": "Posição que atribui papel fundamental à razão no conhecimento."
+        },
+        {
+          "word": "Idealismo",
+          "clue": "Família de posições que atribui papel central ao ideal ou mental."
+        },
+        {
+          "word": "Realismo",
+          "clue": "Família de posições que afirma a realidade independente de algo."
+        },
+        {
+          "word": "Materialismo",
+          "clue": "Posição que atribui caráter fundamental à matéria."
+        },
+        {
+          "word": "Dualismo",
+          "clue": "Concepção que distingue dois princípios fundamentais."
+        },
+        {
+          "word": "Monismo",
+          "clue": "Concepção que admite um princípio fundamental."
+        },
+        {
+          "word": "Pragmatismo",
+          "clue": "Tradição que examina ideias por suas relações com práticas e efeitos."
+        },
+        {
+          "word": "Humanismo",
+          "clue": "Tradição que valoriza a formação e a reflexão sobre o humano."
+        },
+        {
+          "word": "Positivismo",
+          "clue": "Corrente associada a Auguste Comte e ao conhecimento científico."
+        },
+        {
+          "word": "Existencialismo",
+          "clue": "Corrente que destaca a existência, a liberdade e a escolha."
+        },
+        {
+          "word": "Fenomenologia",
+          "clue": "Tradição que investiga as estruturas da experiência vivida."
+        }
+      ]
+    },
+    {
+      "id": "conhecimento-realidade",
+      "title": "O que podemos saber?",
+      "category": "filosofia",
+      "icon": "BookOpen",
+      "description": "Desconfie do óbvio: o experimento agora acontece na mente.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Crença",
+          "clue": "Atitude de tomar uma afirmação como verdadeira."
+        },
+        {
+          "word": "Saber",
+          "clue": "Noção de conhecimento investigada pela epistemologia."
+        },
+        {
+          "word": "Dúvida",
+          "clue": "Suspensão ou questionamento de uma certeza."
+        },
+        {
+          "word": "Evidência",
+          "clue": "Elemento que oferece apoio a uma afirmação."
+        },
+        {
+          "word": "Percepção",
+          "clue": "Modo de acesso ao mundo por meio dos sentidos."
+        },
+        {
+          "word": "Memória",
+          "clue": "Capacidade de conservar e recuperar experiências e informações."
+        },
+        {
+          "word": "Experiência",
+          "clue": "Contato vivido com acontecimentos e fenômenos."
+        },
+        {
+          "word": "Intuição",
+          "clue": "Apreensão que parece ocorrer sem uma cadeia explícita de raciocínio."
+        },
+        {
+          "word": "Conceito",
+          "clue": "Representação geral usada para pensar e classificar."
+        },
+        {
+          "word": "Objeto",
+          "clue": "Aquilo a que um ato de conhecimento se dirige."
+        },
+        {
+          "word": "Sujeito",
+          "clue": "Polo que percebe, pensa ou conhece."
+        },
+        {
+          "word": "Fenômeno",
+          "clue": "Aquilo que aparece ou se apresenta à experiência."
+        },
+        {
+          "word": "Essência",
+          "clue": "Conjunto de características consideradas fundamentais de algo."
+        },
+        {
+          "word": "Aparência",
+          "clue": "Modo como algo se apresenta à percepção."
+        },
+        {
+          "word": "Causa",
+          "clue": "Condição ou fator ao qual se atribui a produção de um efeito."
+        },
+        {
+          "word": "Efeito",
+          "clue": "Resultado associado à ação de uma causa."
+        },
+        {
+          "word": "Necessidade",
+          "clue": "Qualidade do que não pode ser diferente sob certas condições."
+        },
+        {
+          "word": "Contingência",
+          "clue": "Qualidade do que poderia ser diferente ou não ocorrer."
+        }
+      ]
+    },
+    {
+      "id": "engrenagens-democracia",
+      "title": "Engrenagens da democracia",
+      "category": "politica",
+      "icon": "Landmark",
+      "description": "Conheça peças e processos da representação política.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Democracia",
+          "clue": "Forma de organização política baseada na participação do povo."
+        },
+        {
+          "word": "Parlamento",
+          "clue": "Órgão representativo que participa da elaboração de leis."
+        },
+        {
+          "word": "Constituição",
+          "clue": "Conjunto fundamental de normas que organiza um Estado."
+        },
+        {
+          "word": "Cidadania",
+          "clue": "Condição ligada a direitos e deveres na vida pública."
+        },
+        {
+          "word": "Eleição",
+          "clue": "Processo de escolha de representantes ou ocupantes de cargos."
+        },
+        {
+          "word": "República",
+          "clue": "Forma de governo cuja chefia de Estado não é, em princípio, hereditária."
+        },
+        {
+          "word": "Senado",
+          "clue": "Nome de uma câmara legislativa em diversos países."
+        },
+        {
+          "word": "Câmara",
+          "clue": "Nome usado por órgãos legislativos representativos."
+        },
+        {
+          "word": "Voto",
+          "clue": "Expressão formal de uma escolha em uma decisão coletiva."
+        },
+        {
+          "word": "Urna",
+          "clue": "Recipiente ou equipamento usado na coleta de votos."
+        },
+        {
+          "word": "Mandato",
+          "clue": "Período e atribuição de exercício de um cargo representativo."
+        },
+        {
+          "word": "Candidato",
+          "clue": "Pessoa que se apresenta para disputar uma eleição."
+        },
+        {
+          "word": "Partido",
+          "clue": "Organização que reúne pessoas em torno de propostas políticas."
+        },
+        {
+          "word": "Oposição",
+          "clue": "Forças políticas que não integram o apoio ao governo."
+        },
+        {
+          "word": "Coalizão",
+          "clue": "Aliança entre grupos ou partidos para uma finalidade política."
+        },
+        {
+          "word": "Debate",
+          "clue": "Discussão pública de argumentos e propostas."
+        },
+        {
+          "word": "Quórum",
+          "clue": "Número mínimo exigido para uma deliberação ou reunião."
+        },
+        {
+          "word": "Referendo",
+          "clue": "Consulta popular para aprovar ou rejeitar uma decisão normativa já tomada."
+        }
+      ]
+    },
+    {
+      "id": "estado-poder",
+      "title": "A arquitetura do Estado",
+      "category": "politica",
+      "icon": "Scale",
+      "description": "Entre instituições, regras e a divisão de responsabilidades.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Estado",
+          "clue": "Organização política que exerce autoridade sobre território e população."
+        },
+        {
+          "word": "Governo",
+          "clue": "Conjunto de autoridades responsáveis pela direção política do Estado."
+        },
+        {
+          "word": "Nação",
+          "clue": "Comunidade ligada por referências históricas, culturais ou políticas."
+        },
+        {
+          "word": "Soberania",
+          "clue": "Autoridade suprema de um Estado em sua ordem política."
+        },
+        {
+          "word": "Território",
+          "clue": "Espaço sobre o qual se exerce uma autoridade política."
+        },
+        {
+          "word": "Federação",
+          "clue": "Organização estatal que reparte competências entre entes federados."
+        },
+        {
+          "word": "Município",
+          "clue": "Unidade local de organização política e administrativa."
+        },
+        {
+          "word": "União",
+          "clue": "Ente que exerce as competências federais no Brasil."
+        },
+        {
+          "word": "Executivo",
+          "clue": "Poder associado à administração e à execução das políticas públicas."
+        },
+        {
+          "word": "Legislativo",
+          "clue": "Poder associado à elaboração de leis e à fiscalização."
+        },
+        {
+          "word": "Judiciário",
+          "clue": "Poder associado à solução institucional de conflitos jurídicos."
+        },
+        {
+          "word": "Tribunal",
+          "clue": "Órgão colegiado ou instituição de julgamento."
+        },
+        {
+          "word": "Ministério",
+          "clue": "Órgão da administração responsável por uma área de governo."
+        },
+        {
+          "word": "Autarquia",
+          "clue": "Entidade administrativa com personalidade jurídica de direito público."
+        },
+        {
+          "word": "Burocracia",
+          "clue": "Organização administrativa baseada em funções e procedimentos."
+        },
+        {
+          "word": "Orçamento",
+          "clue": "Planejamento de receitas e despesas para um período."
+        },
+        {
+          "word": "Tributo",
+          "clue": "Prestação compulsória instituída por lei para financiar o poder público."
+        },
+        {
+          "word": "Diplomacia",
+          "clue": "Condução de relações entre Estados e outros atores internacionais."
+        }
+      ]
+    },
+    {
+      "id": "ideias-politicas",
+      "title": "O mapa das ideias",
+      "category": "politica",
+      "icon": "BookOpen",
+      "description": "Vocabulário para entender debates sem desligar o pensamento.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Liberalismo",
+          "clue": "Família de ideias que atribui importância às liberdades individuais."
+        },
+        {
+          "word": "Socialismo",
+          "clue": "Família de ideias que propõe formas sociais de controle da produção."
+        },
+        {
+          "word": "Anarquismo",
+          "clue": "Tradição política crítica da autoridade estatal e de hierarquias coercivas."
+        },
+        {
+          "word": "Federalismo",
+          "clue": "Princípio de repartição do poder entre unidades de uma federação."
+        },
+        {
+          "word": "Pluralismo",
+          "clue": "Reconhecimento da diversidade de grupos e posições na sociedade."
+        },
+        {
+          "word": "Pacifismo",
+          "clue": "Posição que defende a paz e a oposição à guerra."
+        },
+        {
+          "word": "Feminismo",
+          "clue": "Conjunto de movimentos voltados à igualdade de direitos entre gêneros."
+        },
+        {
+          "word": "Ecologismo",
+          "clue": "Corrente política que coloca questões ambientais no centro do debate."
+        },
+        {
+          "word": "Nacionalismo",
+          "clue": "Família de ideias que atribui centralidade política à nação."
+        },
+        {
+          "word": "Reformismo",
+          "clue": "Estratégia de transformação por mudanças graduais nas instituições."
+        },
+        {
+          "word": "Laicidade",
+          "clue": "Princípio de autonomia do Estado em relação a instituições religiosas."
+        },
+        {
+          "word": "Autocracia",
+          "clue": "Forma de governo marcada pela concentração do poder decisório."
+        },
+        {
+          "word": "Oligarquia",
+          "clue": "Governo ou domínio político exercido por um grupo restrito."
+        },
+        {
+          "word": "Monarquia",
+          "clue": "Forma de governo em que a chefia do Estado cabe a um monarca."
+        },
+        {
+          "word": "Igualdade",
+          "clue": "Princípio que rejeita distinções injustificadas entre pessoas."
+        },
+        {
+          "word": "Liberdade",
+          "clue": "Condição ligada à possibilidade de agir sem coerção indevida."
+        },
+        {
+          "word": "Poder",
+          "clue": "Capacidade de influenciar condutas e decisões."
+        },
+        {
+          "word": "Consenso",
+          "clue": "Acordo amplamente compartilhado em um grupo."
+        }
+      ]
+    },
+    {
+      "id": "liderancas-historicas",
+      "title": "Figuras da história política",
+      "category": "politica",
+      "icon": "Crown",
+      "description": "Biografias que ajudam a ler épocas, escolhas e conflitos.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Mandela",
+          "clue": "Líder contra o apartheid que se tornou presidente da África do Sul."
+        },
+        {
+          "word": "Gandhi",
+          "clue": "Liderança do movimento de independência da Índia."
+        },
+        {
+          "word": "Lincoln",
+          "clue": "Presidente dos Estados Unidos durante a Guerra Civil."
+        },
+        {
+          "word": "Churchill",
+          "clue": "Primeiro-ministro britânico durante parte da Segunda Guerra Mundial."
+        },
+        {
+          "word": "Vargas",
+          "clue": "Político que governou o Brasil em diferentes períodos do século XX."
+        },
+        {
+          "word": "Dom Pedro",
+          "clue": "Nome de dois imperadores do Brasil."
+        },
+        {
+          "word": "Cleópatra",
+          "clue": "Rainha da dinastia ptolomaica do Egito."
+        },
+        {
+          "word": "César",
+          "clue": "General e governante romano morto em 44 antes de Cristo."
+        },
+        {
+          "word": "Péricles",
+          "clue": "Líder ateniense associado ao século V antes de Cristo."
+        },
+        {
+          "word": "Bolívar",
+          "clue": "Liderança das independências de países da América do Sul."
+        },
+        {
+          "word": "San Martín",
+          "clue": "Liderança militar das independências sul-americanas."
+        },
+        {
+          "word": "Bismarck",
+          "clue": "Estadista ligado à unificação alemã no século XIX."
+        },
+        {
+          "word": "Catarina",
+          "clue": "Nome da imperatriz russa conhecida como a Grande."
+        },
+        {
+          "word": "Elizabeth",
+          "clue": "Nome da rainha inglesa que governou entre 1558 e 1603."
+        },
+        {
+          "word": "Akbar",
+          "clue": "Imperador mogol que governou parte do sul da Ásia."
+        },
+        {
+          "word": "Atatürk",
+          "clue": "Fundador e primeiro presidente da República da Turquia."
+        },
+        {
+          "word": "Indira",
+          "clue": "Primeiro nome da primeira mulher a ocupar o cargo de primeira-ministra da Índia."
+        },
+        {
+          "word": "Nasser",
+          "clue": "Presidente egípcio associado ao nacionalismo árabe no século XX."
+        }
+      ]
+    },
+    {
+      "id": "direitos-cidadania",
+      "title": "Vida em sociedade",
+      "category": "politica",
+      "icon": "Scale",
+      "description": "Direitos, participação e o trabalho cotidiano de conviver.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Direito",
+          "clue": "Faculdade ou garantia reconhecida por uma ordem normativa."
+        },
+        {
+          "word": "Dever",
+          "clue": "Obrigação ligada à vida em sociedade."
+        },
+        {
+          "word": "Dignidade",
+          "clue": "Valor da pessoa que fundamenta a proteção de direitos humanos."
+        },
+        {
+          "word": "Educação",
+          "clue": "Processo de formação e acesso ao conhecimento."
+        },
+        {
+          "word": "Saúde",
+          "clue": "Dimensão do bem-estar ligada às condições de vida e de cuidado."
+        },
+        {
+          "word": "Moradia",
+          "clue": "Lugar de habitação e tema de proteção social."
+        },
+        {
+          "word": "Trabalho",
+          "clue": "Atividade humana de produção e transformação."
+        },
+        {
+          "word": "Cultura",
+          "clue": "Conjunto de práticas, expressões e referências de grupos humanos."
+        },
+        {
+          "word": "Inclusão",
+          "clue": "Processo de ampliar acesso e participação na sociedade."
+        },
+        {
+          "word": "Acesso",
+          "clue": "Possibilidade de alcançar um serviço, espaço ou recurso."
+        },
+        {
+          "word": "Equidade",
+          "clue": "Consideração de necessidades diferentes na distribuição de recursos."
+        },
+        {
+          "word": "Proteção",
+          "clue": "Ação destinada a resguardar pessoas contra danos."
+        },
+        {
+          "word": "Pluralidade",
+          "clue": "Presença e convivência de diferenças em uma coletividade."
+        },
+        {
+          "word": "Associação",
+          "clue": "Organização formada pela reunião de pessoas para um objetivo."
+        },
+        {
+          "word": "Sindicato",
+          "clue": "Organização que representa interesses de uma categoria."
+        },
+        {
+          "word": "Petição",
+          "clue": "Pedido formal dirigido a uma autoridade."
+        },
+        {
+          "word": "Audiência",
+          "clue": "Reunião institucional que pode permitir escuta e participação pública."
+        },
+        {
+          "word": "Ouvidoria",
+          "clue": "Canal institucional para receber manifestações da população."
+        }
+      ]
+    },
+    {
+      "id": "politica-internacional",
+      "title": "O mundo à mesa",
+      "category": "politica",
+      "icon": "Globe",
+      "description": "Fronteiras, tratados e conversas que atravessam oceanos.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "ONU",
+          "clue": "Organização internacional criada em 1945 com objetivos de cooperação."
+        },
+        {
+          "word": "UNESCO",
+          "clue": "Agência da ONU dedicada à educação, à ciência e à cultura."
+        },
+        {
+          "word": "UNICEF",
+          "clue": "Fundo das Nações Unidas dedicado à infância."
+        },
+        {
+          "word": "OMS",
+          "clue": "Organização internacional voltada à saúde pública."
+        },
+        {
+          "word": "OIT",
+          "clue": "Organização internacional especializada em questões do trabalho."
+        },
+        {
+          "word": "OMC",
+          "clue": "Organização que trata de regras do comércio internacional."
+        },
+        {
+          "word": "Mercosul",
+          "clue": "Processo de integração regional iniciado pelo Tratado de Assunção."
+        },
+        {
+          "word": "Embaixada",
+          "clue": "Representação diplomática de um Estado em outro."
+        },
+        {
+          "word": "Consulado",
+          "clue": "Repartição que presta funções consulares no exterior."
+        },
+        {
+          "word": "Tratado",
+          "clue": "Acordo internacional regido pelo direito internacional."
+        },
+        {
+          "word": "Acordo",
+          "clue": "Entendimento formal ou informal entre partes."
+        },
+        {
+          "word": "Fronteira",
+          "clue": "Limite entre territórios políticos."
+        },
+        {
+          "word": "Asilo",
+          "clue": "Proteção concedida a uma pessoa em circunstâncias previstas pelo direito."
+        },
+        {
+          "word": "Refúgio",
+          "clue": "Proteção internacional ligada a perseguição e outras situações reconhecidas."
+        },
+        {
+          "word": "Migração",
+          "clue": "Deslocamento de pessoas entre lugares."
+        },
+        {
+          "word": "Sanção",
+          "clue": "Medida restritiva aplicada como resposta a determinada conduta."
+        },
+        {
+          "word": "Mediação",
+          "clue": "Participação de um terceiro na busca de solução de um conflito."
+        },
+        {
+          "word": "Armistício",
+          "clue": "Acordo para suspender hostilidades militares."
+        }
+      ]
+    },
+    {
+      "id": "economia-sociedade",
+      "title": "A economia do cotidiano",
+      "category": "politica",
+      "icon": "Scale",
+      "description": "Investigue os mecanismos que conectam preços, trabalho e escolhas.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Mercado",
+          "clue": "Ambiente de interação entre compradores e vendedores."
+        },
+        {
+          "word": "Oferta",
+          "clue": "Quantidade de bens ou serviços que vendedores dispõem a oferecer."
+        },
+        {
+          "word": "Demanda",
+          "clue": "Quantidade de bens ou serviços que compradores desejam adquirir."
+        },
+        {
+          "word": "Preço",
+          "clue": "Valor expresso para uma troca."
+        },
+        {
+          "word": "Inflação",
+          "clue": "Elevação persistente do nível geral de preços."
+        },
+        {
+          "word": "Moeda",
+          "clue": "Instrumento usado como meio de troca e unidade de conta."
+        },
+        {
+          "word": "Juros",
+          "clue": "Remuneração ou custo pelo uso de recursos ao longo do tempo."
+        },
+        {
+          "word": "Crédito",
+          "clue": "Disponibilização de recursos com compromisso de pagamento futuro."
+        },
+        {
+          "word": "Renda",
+          "clue": "Fluxo de recursos recebido em determinado período."
+        },
+        {
+          "word": "Salário",
+          "clue": "Remuneração recebida por um trabalho contratado."
+        },
+        {
+          "word": "Consumo",
+          "clue": "Uso de bens e serviços para atender necessidades e desejos."
+        },
+        {
+          "word": "Poupança",
+          "clue": "Parcela da renda que não é consumida."
+        },
+        {
+          "word": "Capital",
+          "clue": "Recursos empregados na produção ou em atividades econômicas."
+        },
+        {
+          "word": "Imposto",
+          "clue": "Espécie de tributo que não depende de uma contraprestação específica."
+        },
+        {
+          "word": "Exportação",
+          "clue": "Venda de bens ou serviços para o exterior."
+        },
+        {
+          "word": "Importação",
+          "clue": "Compra de bens ou serviços do exterior."
+        },
+        {
+          "word": "Câmbio",
+          "clue": "Relação de troca entre moedas."
+        },
+        {
+          "word": "Cooperativa",
+          "clue": "Organização econômica de associados voltada a interesses comuns."
+        }
+      ]
+    },
+    {
+      "id": "literatura-brasileira",
+      "title": "Estante brasileira",
+      "category": "cultura",
+      "icon": "BookOpen",
+      "description": "Vozes e obras para uma viagem pela nossa literatura.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Machado",
+          "clue": "Sobrenome do autor de Dom Casmurro."
+        },
+        {
+          "word": "Clarice",
+          "clue": "Primeiro nome da autora de A Hora da Estrela."
+        },
+        {
+          "word": "Drummond",
+          "clue": "Sobrenome do poeta autor de A Rosa do Povo."
+        },
+        {
+          "word": "Cecília",
+          "clue": "Primeiro nome da autora de Romanceiro da Inconfidência."
+        },
+        {
+          "word": "Bandeira",
+          "clue": "Sobrenome do poeta autor de Libertinagem."
+        },
+        {
+          "word": "Graciliano",
+          "clue": "Primeiro nome do autor de Vidas Secas."
+        },
+        {
+          "word": "Guimarães Rosa",
+          "clue": "Autor de Grande Sertão: Veredas."
+        },
+        {
+          "word": "Jorge Amado",
+          "clue": "Autor de Capitães da Areia."
+        },
+        {
+          "word": "Carolina",
+          "clue": "Primeiro nome da autora de Quarto de Despejo."
+        },
+        {
+          "word": "Conceição",
+          "clue": "Primeiro nome da autora de Ponciá Vicêncio."
+        },
+        {
+          "word": "Lima Barreto",
+          "clue": "Autor de Triste Fim de Policarpo Quaresma."
+        },
+        {
+          "word": "Alencar",
+          "clue": "Sobrenome do autor de Iracema."
+        },
+        {
+          "word": "Aluísio",
+          "clue": "Primeiro nome do autor de O Cortiço."
+        },
+        {
+          "word": "Rachel",
+          "clue": "Primeiro nome da autora de O Quinze."
+        },
+        {
+          "word": "Hilda",
+          "clue": "Primeiro nome da escritora autora de A Obscena Senhora D."
+        },
+        {
+          "word": "Lygia",
+          "clue": "Primeiro nome da autora de As Meninas."
+        },
+        {
+          "word": "Capitu",
+          "clue": "Personagem central do romance Dom Casmurro."
+        },
+        {
+          "word": "Macunaíma",
+          "clue": "Herói que dá título a um romance de Mário de Andrade."
+        }
+      ]
+    },
+    {
+      "id": "literatura-mundial",
+      "title": "Biblioteca sem fronteiras",
+      "category": "cultura",
+      "icon": "BookOpen",
+      "description": "Uma coleção de autores que atravessou línguas e séculos.",
+      "color": "purple",
+      "words": [
+        {
+          "word": "Shakespeare",
+          "clue": "Dramaturgo inglês autor de Hamlet."
+        },
+        {
+          "word": "Cervantes",
+          "clue": "Escritor espanhol autor de Dom Quixote."
+        },
+        {
+          "word": "Dante",
+          "clue": "Poeta italiano autor da Divina Comédia."
+        },
+        {
+          "word": "Goethe",
+          "clue": "Escritor alemão autor de Fausto."
+        },
+        {
+          "word": "Austen",
+          "clue": "Sobrenome da autora de Orgulho e Preconceito."
+        },
+        {
+          "word": "Dickens",
+          "clue": "Escritor inglês autor de Oliver Twist."
+        },
+        {
+          "word": "Tolstói",
+          "clue": "Escritor russo autor de Guerra e Paz."
+        },
+        {
+          "word": "Dostoiévski",
+          "clue": "Escritor russo autor de Crime e Castigo."
+        },
+        {
+          "word": "Kafka",
+          "clue": "Escritor de língua alemã autor de A Metamorfose."
+        },
+        {
+          "word": "Woolf",
+          "clue": "Sobrenome da autora de Mrs. Dalloway."
+        },
+        {
+          "word": "Joyce",
+          "clue": "Escritor irlandês autor de Ulisses."
+        },
+        {
+          "word": "Borges",
+          "clue": "Escritor argentino autor de Ficções."
+        },
+        {
+          "word": "Cortázar",
+          "clue": "Escritor argentino autor de O Jogo da Amarelinha."
+        },
+        {
+          "word": "García Márquez",
+          "clue": "Escritor colombiano autor de Cem Anos de Solidão."
+        },
+        {
+          "word": "Saramago",
+          "clue": "Escritor português autor de Ensaio sobre a Cegueira."
+        },
+        {
+          "word": "Pessoa",
+          "clue": "Poeta português conhecido por seus heterônimos."
+        },
+        {
+          "word": "Morrison",
+          "clue": "Sobrenome da escritora estadunidense autora de Amada."
+        },
+        {
+          "word": "Shelley",
+          "clue": "Sobrenome de Mary, autora de Frankenstein."
+        }
+      ]
+    },
+    {
+      "id": "arte-em-movimento",
+      "title": "Arte em movimento",
+      "category": "cultura",
+      "icon": "Palette",
+      "description": "Tinta, ruptura e formas de reinventar o olhar.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Barroco",
+          "clue": "Estilo artístico associado a dramaticidade e contrastes."
+        },
+        {
+          "word": "Rococó",
+          "clue": "Estilo associado a ornamentação delicada e curvas."
+        },
+        {
+          "word": "Realismo",
+          "clue": "Movimento que valoriza a representação da vida social observável."
+        },
+        {
+          "word": "Cubismo",
+          "clue": "Movimento que explora a decomposição geométrica das formas."
+        },
+        {
+          "word": "Dadaísmo",
+          "clue": "Movimento que desafiou convenções da arte no século XX."
+        },
+        {
+          "word": "Surrealismo",
+          "clue": "Movimento que explorou sonhos e associações do inconsciente."
+        },
+        {
+          "word": "Futurismo",
+          "clue": "Movimento que exaltou temas como velocidade e máquinas."
+        },
+        {
+          "word": "Fauvismo",
+          "clue": "Movimento de pintura conhecido pelo uso intenso das cores."
+        },
+        {
+          "word": "Abstração",
+          "clue": "Produção visual que pode se afastar da representação reconhecível."
+        },
+        {
+          "word": "Pop Art",
+          "clue": "Movimento que incorporou imagens da cultura de massa."
+        },
+        {
+          "word": "Muralismo",
+          "clue": "Prática artística de produção de pinturas em grandes paredes."
+        },
+        {
+          "word": "Colagem",
+          "clue": "Técnica que reúne fragmentos de materiais em uma composição."
+        },
+        {
+          "word": "Gravura",
+          "clue": "Imagem produzida por impressão a partir de uma matriz."
+        },
+        {
+          "word": "Escultura",
+          "clue": "Arte de criar formas tridimensionais."
+        },
+        {
+          "word": "Aquarela",
+          "clue": "Pintura com pigmentos diluídos em água."
+        },
+        {
+          "word": "Retrato",
+          "clue": "Representação visual de uma pessoa."
+        },
+        {
+          "word": "Paisagem",
+          "clue": "Representação artística de um ambiente."
+        },
+        {
+          "word": "Ready-made",
+          "clue": "Objeto cotidiano apresentado como obra de arte."
+        }
+      ]
+    },
+    {
+      "id": "musica-sonora",
+      "title": "Frequências musicais",
+      "category": "cultura",
+      "icon": "Music",
+      "description": "O oscilador do laboratório está tocando a sua próxima pista.",
+      "color": "blue",
+      "words": [
+        {
+          "word": "Melodia",
+          "clue": "Sequência de sons percebida como uma linha musical."
+        },
+        {
+          "word": "Harmonia",
+          "clue": "Organização de sons simultâneos e suas relações."
+        },
+        {
+          "word": "Ritmo",
+          "clue": "Organização das durações e dos acentos musicais."
+        },
+        {
+          "word": "Timbre",
+          "clue": "Qualidade sonora que ajuda a distinguir fontes de som."
+        },
+        {
+          "word": "Compasso",
+          "clue": "Organização dos pulsos em grupos regulares."
+        },
+        {
+          "word": "Acorde",
+          "clue": "Conjunto de notas que soam juntas em uma estrutura harmônica."
+        },
+        {
+          "word": "Escala",
+          "clue": "Sequência ordenada de notas musicais."
+        },
+        {
+          "word": "Oitava",
+          "clue": "Intervalo entre frequências em proporção de dois para um."
+        },
+        {
+          "word": "Sonata",
+          "clue": "Composição instrumental geralmente organizada em vários movimentos."
+        },
+        {
+          "word": "Sinfonia",
+          "clue": "Composição de grande escala geralmente destinada à orquestra."
+        },
+        {
+          "word": "Ópera",
+          "clue": "Obra cênica em que a música e o canto têm papel central."
+        },
+        {
+          "word": "Fuga",
+          "clue": "Composição contrapontística construída a partir de um tema."
+        },
+        {
+          "word": "Jazz",
+          "clue": "Tradição musical associada à improvisação e a matrizes afro-americanas."
+        },
+        {
+          "word": "Blues",
+          "clue": "Tradição musical afro-americana que influenciou diversos gêneros."
+        },
+        {
+          "word": "Samba",
+          "clue": "Gênero musical brasileiro ligado a matrizes afro-brasileiras."
+        },
+        {
+          "word": "Choro",
+          "clue": "Gênero instrumental brasileiro associado a conjuntos de pequenos grupos."
+        },
+        {
+          "word": "Bossa Nova",
+          "clue": "Movimento musical brasileiro associado a João Gilberto."
+        },
+        {
+          "word": "Baião",
+          "clue": "Gênero nordestino difundido nacionalmente por Luiz Gonzaga."
+        }
+      ]
+    },
+    {
+      "id": "cinema-classico",
+      "title": "Cinema de outra dimensão",
+      "category": "cultura",
+      "icon": "Sparkles",
+      "description": "Luzes baixas, projetor ligado e histórias na tela grande.",
+      "color": "coral",
+      "words": [
+        {
+          "word": "Chaplin",
+          "clue": "Cineasta e ator conhecido pelo personagem Carlitos."
+        },
+        {
+          "word": "Keaton",
+          "clue": "Ator e cineasta do cinema mudo conhecido pela expressão impassível."
+        },
+        {
+          "word": "Hitchcock",
+          "clue": "Cineasta associado a filmes de suspense como Janela Indiscreta."
+        },
+        {
+          "word": "Kubrick",
+          "clue": "Diretor de 2001: Uma Odisseia no Espaço."
+        },
+        {
+          "word": "Kurosawa",
+          "clue": "Cineasta japonês diretor de Os Sete Samurais."
+        },
+        {
+          "word": "Fellini",
+          "clue": "Cineasta italiano diretor de A Doce Vida."
+        },
+        {
+          "word": "Bergman",
+          "clue": "Cineasta sueco diretor de O Sétimo Selo."
+        },
+        {
+          "word": "Varda",
+          "clue": "Sobrenome de Agnès, diretora de Cléo das 5 às 7."
+        },
+        {
+          "word": "Glauber",
+          "clue": "Primeiro nome do diretor de Deus e o Diabo na Terra do Sol."
+        },
+        {
+          "word": "Méliès",
+          "clue": "Cineasta pioneiro conhecido por Viagem à Lua."
+        },
+        {
+          "word": "Lumière",
+          "clue": "Sobrenome dos irmãos associados às primeiras exibições cinematográficas."
+        },
+        {
+          "word": "Roteiro",
+          "clue": "Texto que organiza cenas, ações e falas de uma obra audiovisual."
+        },
+        {
+          "word": "Montagem",
+          "clue": "Organização dos planos na construção de um filme."
+        },
+        {
+          "word": "Enquadramento",
+          "clue": "Escolha do que aparece dentro dos limites da imagem."
+        },
+        {
+          "word": "Plano",
+          "clue": "Trecho contínuo de imagem entre dois cortes."
+        },
+        {
+          "word": "Cena",
+          "clue": "Unidade de ação situada em determinado contexto narrativo."
+        },
+        {
+          "word": "Trilha",
+          "clue": "Conjunto musical associado a uma obra audiovisual."
+        },
+        {
+          "word": "Claquete",
+          "clue": "Instrumento de identificação de tomadas e sincronização de som."
+        }
+      ]
+    },
+    {
+      "id": "mitologia-grega",
+      "title": "O arquivo do Olimpo",
+      "category": "cultura",
+      "icon": "Crown",
+      "description": "Deuses, criaturas e jornadas guardados em velhos mitos.",
+      "color": "gold",
+      "words": [
+        {
+          "word": "Zeus",
+          "clue": "Deus grego associado ao céu e ao trovão."
+        },
+        {
+          "word": "Hera",
+          "clue": "Deusa grega associada ao casamento."
+        },
+        {
+          "word": "Atena",
+          "clue": "Deusa grega associada à sabedoria e à estratégia."
+        },
+        {
+          "word": "Apolo",
+          "clue": "Deus grego associado à música e à profecia."
+        },
+        {
+          "word": "Ártemis",
+          "clue": "Deusa grega associada à caça."
+        },
+        {
+          "word": "Afrodite",
+          "clue": "Deusa grega associada ao amor e à beleza."
+        },
+        {
+          "word": "Ares",
+          "clue": "Deus grego associado à guerra."
+        },
+        {
+          "word": "Hermes",
+          "clue": "Mensageiro dos deuses na mitologia grega."
+        },
+        {
+          "word": "Hefesto",
+          "clue": "Deus grego associado à forja e ao trabalho dos metais."
+        },
+        {
+          "word": "Deméter",
+          "clue": "Deusa grega associada à agricultura."
+        },
+        {
+          "word": "Poseidon",
+          "clue": "Deus grego associado aos mares."
+        },
+        {
+          "word": "Hades",
+          "clue": "Deus grego associado ao mundo dos mortos."
+        },
+        {
+          "word": "Perséfone",
+          "clue": "Filha de Deméter e rainha do mundo dos mortos."
+        },
+        {
+          "word": "Dioniso",
+          "clue": "Deus grego associado ao vinho e ao teatro."
+        },
+        {
+          "word": "Héracles",
+          "clue": "Herói grego conhecido por seus doze trabalhos."
+        },
+        {
+          "word": "Perseu",
+          "clue": "Herói grego associado à derrota de Medusa."
+        },
+        {
+          "word": "Teseu",
+          "clue": "Herói grego que enfrenta o Minotauro."
+        },
+        {
+          "word": "Ícaro",
+          "clue": "Personagem que voou com asas construídas por Dédalo."
+        }
+      ]
+    },
+    {
+      "id": "linguas-e-escritas",
+      "title": "Códigos da palavra",
+      "category": "cultura",
+      "icon": "Scroll",
+      "description": "Como transformamos pensamentos em símbolos e histórias.",
+      "color": "green",
+      "words": [
+        {
+          "word": "Alfabeto",
+          "clue": "Sistema de escrita que usa letras para representar sons."
+        },
+        {
+          "word": "Fonema",
+          "clue": "Unidade sonora capaz de distinguir palavras em uma língua."
+        },
+        {
+          "word": "Grafema",
+          "clue": "Unidade básica de um sistema de escrita."
+        },
+        {
+          "word": "Sílaba",
+          "clue": "Unidade de organização dos sons da fala."
+        },
+        {
+          "word": "Léxico",
+          "clue": "Conjunto de palavras de uma língua ou domínio."
+        },
+        {
+          "word": "Sintaxe",
+          "clue": "Estudo da organização das palavras em estruturas."
+        },
+        {
+          "word": "Semântica",
+          "clue": "Estudo do significado nas línguas."
+        },
+        {
+          "word": "Pragmática",
+          "clue": "Estudo do uso da linguagem em contexto."
+        },
+        {
+          "word": "Etimologia",
+          "clue": "Investigação da origem e da história das palavras."
+        },
+        {
+          "word": "Dialeto",
+          "clue": "Variedade linguística associada a uma comunidade."
+        },
+        {
+          "word": "Metáfora",
+          "clue": "Figura que aproxima sentidos por uma relação de semelhança."
+        },
+        {
+          "word": "Metonímia",
+          "clue": "Figura que relaciona termos por proximidade de sentidos."
+        },
+        {
+          "word": "Hipérbole",
+          "clue": "Figura de linguagem que utiliza exagero expressivo."
+        },
+        {
+          "word": "Ironia",
+          "clue": "Recurso em que o sentido pode contrariar a expressão literal."
+        },
+        {
+          "word": "Soneto",
+          "clue": "Poema de forma tradicional composto por quatorze versos."
+        },
+        {
+          "word": "Haicai",
+          "clue": "Forma poética breve de origem japonesa."
+        },
+        {
+          "word": "Crônica",
+          "clue": "Gênero de prosa frequentemente ligado a acontecimentos cotidianos."
+        },
+        {
+          "word": "Fábula",
+          "clue": "Narrativa breve frequentemente associada a um ensinamento."
+        }
+      ]
+    }
+  ]
+}
