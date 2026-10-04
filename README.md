@@ -1,6 +1,6 @@
 # Lexicon — Laboratório de Palavras
 
-[Jogar online](https://lexicon-laboratorio.nexcoreadm.chatgpt.site) · [Baixar para Android](https://lexicon-laboratorio.nexcoreadm.chatgpt.site/android/lexicon.apk)
+[Jogar online](https://danieltr048.github.io/lexicon/) · [Baixar para Android](https://danieltr048.github.io/lexicon/android/lexicon.apk)
 
 Projeto pessoal de [DanielTR048](https://github.com/DanielTR048): um caça-palavras em português com estética de laboratório científico dos anos 1950/60. Versão web estática e aplicativo Android nativo em Kotlin/Jetpack Compose, sem conta, servidor de dados, API ou assinatura.
 
@@ -47,11 +47,11 @@ Também é possível instalar a **versão web** pelo navegador Android. O cartã
 
 O build em `dist/` usa caminhos relativos e funciona tanto na raiz quanto em um subdiretório, como `https://usuario.github.io/lexicon/`. O manifesto, a ilustração, os ícones Android e o cache offline acompanham esse diretório. Cada escopo mantém seu próprio cache.
 
-Este repositório público apresenta o projeto pessoal e seus fontes; a hospedagem ativa continua no Sites. O workflow `.github/workflows/pages.yml` está disponível para publicação **manual** no GitHub Pages: instala dependências, executa os testes unitários, gera o build e publica o artefato. Para usá-lo, configure **Settings → Pages → Source → GitHub Actions** e execute o workflow. Não há publicação na Play Store.
+Este repositório público apresenta o projeto pessoal e seus fontes; a hospedagem principal é o GitHub Pages. O workflow `.github/workflows/pages.yml` publica o site **manualmente**: instala dependências, executa os testes unitários, gera o build e publica o artefato. O Pages usa **Settings → Pages → Source → GitHub Actions**. Para publicar uma atualização, execute o workflow. Não há publicação na Play Store.
 
 O APK assinado está em `public/android/lexicon.apk`; `.env.production` configura o botão **“Baixar Android”** para esse arquivo. Para usar outro endereço, altere `VITE_ANDROID_APK_URL` antes do build. No workflow de Pages, a variável **`LEXICON_ANDROID_APK_URL`** permite sobrescrever esse endereço. O APK não integra o cache da versão web; o download começa apenas quando o usuário toca no link.
 
-A hospedagem escolhida é o **Sites**, com acesso público em https://lexicon-laboratorio.nexcoreadm.chatgpt.site . A identidade fica em `.openai/hosting.json`. Os fontes são sincronizados pelo helper do plugin antes de cada publicação. Credenciais, chaves de assinatura e arquivos locais de compilação ficam fora do controle de versão. Após gerar um novo APK, execute `npm run package:mobile` para atualizar a cópia distribuída no site.
+A hospedagem principal é o **GitHub Pages**, com acesso público em https://danieltr048.github.io/lexicon/ e download direto do aplicativo Android nativo em https://danieltr048.github.io/lexicon/android/lexicon.apk . A publicação anterior no Sites mantém sua identidade em `.openai/hosting.json` e pode ser atualizada pelo helper do plugin. Credenciais, chaves de assinatura e arquivos locais de compilação ficam fora do controle de versão. Após gerar um novo APK, execute `npm run package:mobile` para atualizar a cópia distribuída no site, envie `public/android/lexicon.apk` ao repositório e execute o workflow de Pages.
 
 Para gerar o pacote web com download do APK já compilado: `npm run package:mobile`. O resultado em `dist/` contém o site e `android/lexicon.apk`; o navegador só baixa o APK quando a pessoa toca em **Baixar Android**. O cache offline do jogo não baixa esse arquivo automaticamente.
 
