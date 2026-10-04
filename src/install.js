@@ -13,7 +13,7 @@ function storageDismissed() {
   }
 }
 
-function apkURL() {
+export function apkURL() {
   const configured = import.meta.env.VITE_ANDROID_APK_URL;
   if (!configured) return null;
   try {

@@ -52,22 +52,11 @@ fun LexiconApp(vm: GameViewModel) {
     var systemMotionEnabled by remember { mutableStateOf(ValueAnimator.areAnimatorsEnabled()) }
     val rawState = vm.state
     val state = rawState.copy(settings = rawState.settings.copy(reduceMotion = rawState.settings.reduceMotion || !systemMotionEnabled))
-    var tab by rememberSaveable { mutableIntStateOf(0) }
-    var settingsOpen by rememberSaveable { mutableStateOf(false) }
-    var howToOpen by rememberSaveable { mutableStateOf(false) }
-    var pausedForOverlay by rememberSaveable { mutableStateOf(false) }
-    var pendingLaunch by remember { mutableStateOf<LaunchRequest?>(null) }
-    var dismissedVictory by rememberSaveable { mutableStateOf("") }
     val lifecycleOwner = LocalLifecycleOwner.current
-    val haptic = LocalHapticFeedback.current
-    val tone = remember(state.settings.sound) {
-        if (state.settings.sound) runCatching { ToneGenerator(AudioManager.STREAM_MUSIC, 25) }.getOrNull() else null
-    }
-    DisposableEffect(tone) { onDispose { tone?.release() } }
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_STOP) vm.onBackground()
-            if (event == Lifecycle.Event.ON_START) systemMotionEnabled = ValueAnimator.areAnimatorsEnabled()
+            if (event == Lifecycle.Event.ON_START) { systemMotionEnabled = ValueAnimator.areAnimatorsEnabled(); vm.onForeground() }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
@@ -77,6 +66,32 @@ fun LexiconApp(vm: GameViewModel) {
             while (true) { delay(1_000); vm.tick() }
         }
     }
+    key(state.activePlayerId) {
+        if (state.activePlayerId == null) PlayerPicker(state, vm)
+        else ActivePlayerApp(vm, rawState, state)
+    }
+    if (state.syncConflict) {
+        AlertDialog(onDismissRequest = {}, title = { Text("Qual progresso continuar?") },
+            text = { Text("Este perfil foi jogado em dois aparelhos. ${state.syncStatus} Escolha qual continuar. A outra versão será guardada como cópia neste aparelho.") },
+            confirmButton = { TextButton(onClick = { vm.syncNow("cloud") }, enabled = !state.syncing) { Text("CONTINUAR ONLINE") } },
+            dismissButton = { TextButton(onClick = { vm.syncNow("local") }, enabled = !state.syncing) { Text("USAR ESTE APARELHO") } }, containerColor = PaperBright)
+    }
+}
+
+@Composable
+private fun ActivePlayerApp(vm: GameViewModel, rawState: GameUiState, state: GameUiState) {
+    var tab by rememberSaveable { mutableIntStateOf(0) }
+    var settingsOpen by rememberSaveable { mutableStateOf(false) }
+    var syncOpen by rememberSaveable { mutableStateOf(false) }
+    var howToOpen by rememberSaveable { mutableStateOf(false) }
+    var pausedForOverlay by rememberSaveable { mutableStateOf(false) }
+    var pendingLaunch by remember { mutableStateOf<LaunchRequest?>(null) }
+    var dismissedVictory by rememberSaveable { mutableStateOf("") }
+    val haptic = LocalHapticFeedback.current
+    val tone = remember(state.settings.sound) {
+        if (state.settings.sound) runCatching { ToneGenerator(AudioManager.STREAM_MUSIC, 25) }.getOrNull() else null
+    }
+    DisposableEffect(tone) { onDispose { tone?.release() } }
     LaunchedEffect(state.feedback?.id) {
         val feedback = state.feedback ?: return@LaunchedEffect
         if (feedback.kind in listOf(FeedbackKind.SUCCESS, FeedbackKind.COMPLETE, FeedbackKind.ERROR, FeedbackKind.HINT)) {
@@ -146,6 +161,15 @@ fun LexiconApp(vm: GameViewModel) {
                         Text("⚙", fontSize = 25.sp, color = Forest)
                     }
                 }
+                TextButton(onClick = vm::showPlayerPicker, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).semantics { contentDescription = "Trocar de perfil" }) {
+                    PlayerAvatar(state.activePlayer?.avatar ?: "atom", Modifier.size(24.dp).clip(RoundedCornerShape(7.dp)))
+                    Spacer(Modifier.width(8.dp))
+                    Text(state.activePlayer?.name ?: "Meu perfil", maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f), style = MaterialTheme.typography.labelLarge)
+                    Text("TROCAR PERFIL  ⇄", style = MaterialTheme.typography.labelSmall)
+                }
+                TextButton(onClick = { syncOpen = true }, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
+                    Text(state.syncStatus + "  ·  CONECTAR APARELHOS", style = MaterialTheme.typography.labelSmall)
+                }
                 HorizontalDivider(color = PaperLine)
             }
         },
@@ -183,7 +207,7 @@ fun LexiconApp(vm: GameViewModel) {
             } else when (tab) {
                 1 -> ThemeScreen(state, vm, onStart = { requestLaunch(LaunchRequest(themeId = it)) })
                 2 -> NotebookScreen(state)
-                3 -> ProfileScreen(state, onSettings = { openOverlay(true) })
+                3 -> ProfileScreen(state, onSettings = { openOverlay(true) }, onSwitchPlayer = vm::showPlayerPicker)
                 else -> HomeScreen(state, vm, onThemes = { tab = 1 }, onHelp = { openOverlay(false) }, onStart = { requestLaunch(LaunchRequest(themeId = it)) }, onDaily = { requestLaunch(LaunchRequest(daily = true)) })
             }
         }
@@ -208,6 +232,7 @@ fun LexiconApp(vm: GameViewModel) {
         )
     }
     if (settingsOpen) SettingsDialog(rawState.settings, vm, onDismiss = { closeOverlay() })
+    if (syncOpen) DeviceSyncDialog(rawState, vm) { syncOpen = false; vm.dismissError() }
     if (howToOpen) HowToDialog { closeOverlay() }
     pendingLaunch?.let { request ->
         AlertDialog(onDismissRequest = { pendingLaunch = null }, title = { Text("Uma nova descoberta?") },
@@ -467,18 +492,19 @@ private fun NotebookScreen(state: GameUiState) {
 }
 
 @Composable
-private fun ProfileScreen(state: GameUiState, onSettings: () -> Unit) {
+private fun ProfileScreen(state: GameUiState, onSettings: () -> Unit, onSwitchPlayer: () -> Unit) {
     val profile = state.profile
     LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(18.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
         item {
             PaperCard {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(Modifier.size(66.dp).clip(CircleShape).background(Forest), contentAlignment = Alignment.Center) { Text("✦", fontSize = 35.sp, color = PaperBright) }
+                    PlayerAvatar(state.activePlayer?.avatar ?: "atom", Modifier.size(66.dp).clip(RoundedCornerShape(18.dp)))
                     Spacer(Modifier.width(16.dp))
-                    Column { Eyebrow("CREDENCIAL DO LABORATÓRIO"); Spacer(Modifier.height(5.dp)); Text(profile.level, style = MaterialTheme.typography.headlineMedium, fontSize = 22.sp); Text("${profile.xp} pontos de experiência", color = MutedInk, fontSize = 12.sp) }
+                    Column(Modifier.weight(1f)) { Eyebrow("CREDENCIAL DO LABORATÓRIO"); Spacer(Modifier.height(5.dp)); Text(state.activePlayer?.name ?: "Meu perfil", style = MaterialTheme.typography.headlineMedium, fontSize = 22.sp); Text("${profile.level} · ${profile.xp} XP", color = MutedInk, fontSize = 12.sp) }
                 }
                 Spacer(Modifier.height(15.dp))
-                Text("Sua curiosidade deixa rastros. Todo o progresso fica salvo neste aparelho.", style = MaterialTheme.typography.bodyMedium, color = MutedInk)
+                Text("Seu progresso fica separado dos outros perfis e salvo neste aparelho.", style = MaterialTheme.typography.bodyMedium, color = MutedInk)
+                TextButton(onClick = onSwitchPlayer) { Text("ESCOLHER OUTRO PERFIL  →") }
             }
         }
         item {

@@ -4,14 +4,67 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** All content ships in the APK; progress never requires a network or an account. */
+/** All content ships in the APK; local progress works independently of optional cloud sync. */
 class GameRepository(context: Context) {
     private val assets = context.applicationContext.assets
     private val preferences = context.applicationContext.getSharedPreferences("lexicon_native_v1", Context.MODE_PRIVATE)
 
     fun catalog(): Pair<List<Category>, List<Theme>> = assets.open("catalog.json").bufferedReader().use { StoreCodec.catalog(it.readText()) }
-    fun load(): SavedGame = StoreCodec.decode(preferences.getString("state", null))
-    fun save(value: SavedGame): Boolean = preferences.edit().putString("state", StoreCodec.encode(value)).commit()
+    fun players(): List<PlayerSummary> = synchronized(lock) { readPlayers().players.map { it.summary } }
+    fun load(playerId: String): SavedGame? = synchronized(lock) { readPlayers().players.firstOrNull { it.id == playerId }?.game }
+
+    /** Re-read before updating one explicit player, so a second activity cannot overwrite another player's save. */
+    fun save(playerId: String, value: SavedGame): Boolean = synchronized(lock) {
+        val current = readPlayers()
+        if (current.players.none { it.id == playerId }) return@synchronized false
+        val updated = current.copy(players = current.players.map { if (it.id == playerId) it.copy(game = value) else it })
+        val meta = syncMeta(playerId).put("dirty", true)
+        preferences.edit().putString("players", StoreCodec.encodePlayers(updated)).putString("sync-meta:$playerId", meta.toString()).commit()
+    }
+
+    fun addPlayer(player: SavedPlayer): Boolean = synchronized(lock) {
+        val current = readPlayers()
+        if (current.players.size >= PlayerProfiles.MAX_PLAYERS || current.players.any { it.id == player.id || it.name.equals(player.name, ignoreCase = true) }) return@synchronized false
+        writePlayers(current.copy(players = current.players + player))
+    }
+
+    fun updatePlayer(playerId: String, name: String, avatar: String): Boolean = synchronized(lock) {
+        val current = readPlayers()
+        if (current.players.none { it.id == playerId } || current.players.any { it.id != playerId && it.name.equals(name, ignoreCase = true) }) return@synchronized false
+        writePlayers(current.copy(players = current.players.map { if (it.id == playerId) it.copy(name = name, avatar = avatar) else it }))
+    }
+
+    private fun readPlayers(): PlayerStore {
+        val raw = preferences.getString("players", null)
+        if (raw != null) return checkNotNull(StoreCodec.decodePlayers(raw)) { "Não foi possível ler os perfis salvos neste aparelho." }
+        // Keep the exact legacy value as a backup. New profiles never write to the old state key.
+        val migrated = PlayerStore(listOf(SavedPlayer("daniel", "Daniel", "atom", StoreCodec.decode(preferences.getString("state", null))), SavedPlayer("larissa", "Larissa", "flower")))
+        check(writePlayers(migrated)) { "Não foi possível salvar os perfis neste aparelho." }
+        return migrated
+    }
+
+    private fun writePlayers(value: PlayerStore): Boolean = preferences.edit().putString("players", StoreCodec.encodePlayers(value)).commit()
+
+    fun syncCode(): String = preferences.getString("sync-code", "").orEmpty()
+    fun connectCode(code: String): Boolean = synchronized(lock) {
+        val editor = preferences.edit().putString("sync-code", code)
+        if (syncCode() != code) for (id in listOf("daniel", "larissa")) editor.remove("sync-meta:$id")
+        editor.commit()
+    }
+    fun syncMeta(id: String): JSONObject = runCatching { JSONObject(preferences.getString("sync-meta:$id", "{}").orEmpty()) }.getOrElse { JSONObject() }
+    fun setSyncMeta(id: String, meta: JSONObject): Boolean = preferences.edit().putString("sync-meta:$id", meta.toString()).commit()
+    fun keepBackup(id: String, raw: String): Boolean = preferences.edit().putString("sync-backup:$id", raw).commit()
+    fun saveCloud(id: String, game: SavedGame, etag: String, expectedSnapshot: String? = null, expectedCode: String? = null): Boolean = synchronized(lock) {
+        val current = readPlayers()
+        if (current.players.none { it.id == id }) return@synchronized false
+        if (expectedCode != null && syncCode() != expectedCode) return@synchronized false
+        if (expectedSnapshot != null && CloudCodec.encode(current.players.first { it.id == id }.game) != expectedSnapshot) return@synchronized false
+        val updated = current.copy(players = current.players.map { if (it.id == id) it.copy(game = game) else it })
+        val meta = JSONObject().put("etag", etag).put("dirty", false).put("snapshot", CloudCodec.encode(game))
+        preferences.edit().putString("players", StoreCodec.encodePlayers(updated)).putString("sync-meta:$id", meta.toString()).commit()
+    }
+
+    private companion object { val lock = Any() }
 }
 
 /** Kept free of Context so corruption handling and process-restoration can be tested on the JVM. */
@@ -25,6 +78,25 @@ object StoreCodec {
     private fun cells(values: List<Cell>): JSONArray = JSONArray(values.map(::cell))
     private fun readCells(value: JSONArray): List<Cell> = value.objects().map { Cell(it.optInt("row", -1), it.optInt("col", -1)) }
     private inline fun <reified T : Enum<T>> enum(value: String, fallback: T): T = enumValues<T>().firstOrNull { it.name == value } ?: fallback
+
+    fun encodePlayers(store: PlayerStore): String = JSONObject().put("version", 2).put("players", JSONArray(store.players.map {
+        JSONObject().put("id", it.id).put("name", it.name).put("avatar", it.avatar).put("game", JSONObject(encode(it.game)))
+    })).toString()
+
+    fun decodePlayers(raw: String): PlayerStore? = runCatching {
+        val json = JSONObject(raw)
+        require(json.optInt("version") == 2)
+        val players = json.getJSONArray("players").objects().map {
+            val id = it.getString("id")
+            val name = it.getString("name").trim()
+            val avatar = it.getString("avatar")
+            require(id.matches(Regex("[A-Za-z0-9-]{1,80}")) && name.length in 1..PlayerProfiles.MAX_NAME_LENGTH && avatar in PlayerProfiles.avatars)
+            SavedPlayer(id, name, avatar, decode(it.getJSONObject("game").toString()))
+        }
+        require(players.size in 1..PlayerProfiles.MAX_PLAYERS && players.map { it.id }.distinct().size == players.size)
+        require(players.none { a -> players.any { b -> a.id != b.id && a.name.equals(b.name, ignoreCase = true) } })
+        PlayerStore(players)
+    }.getOrNull()
 
     fun catalog(raw: String): Pair<List<Category>, List<Theme>> {
         val json = JSONObject(raw)

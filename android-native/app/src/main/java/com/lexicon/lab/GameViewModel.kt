@@ -5,11 +5,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.util.UUID
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = GameRepository(application)
+    private val cloud = CloudSync(repository)
+    private val syncJobs = mutableMapOf<String, Job>()
+    private var playerGeneration = 0L
+    private var saveRevision = 0L
     private var selectionStart: Cell? = null
     private var selectionEnd: Cell? = null
     private var feedbackSequence = 0L
@@ -19,40 +29,108 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     init {
         runCatching {
             val (categories, themes) = repository.catalog()
-            val saved = repository.load()
-            state = state.copy(
-                categories = categories, themes = themes, profile = saved.profile, settings = saved.settings,
-                favorites = saved.favorites.filter { id -> themes.any { it.id == id } }.toSet(),
+            state = state.copy(categories = categories, themes = themes)
+            state = state.copy(players = repository.players(), syncCode = repository.syncCode())
+        }.onFailure { state = state.copy(errorMessage = "Não foi possível abrir os dados do laboratório. Feche e reabra o aplicativo; seus dados continuam guardados.") }
+    }
+
+    fun selectPlayer(id: String) {
+        if (id == state.activePlayerId) return
+        if (state.activePlayerId != null && !saveBeforeLeaving()) return
+        runCatching {
+            val saved = repository.load(id) ?: error("Este perfil não foi encontrado.")
+            selectionStart = null; selectionEnd = null
+            playerGeneration++
+            state = GameUiState(
+                categories = state.categories, themes = state.themes, players = repository.players(), activePlayerId = id,
+                profile = saved.profile, settings = saved.settings,
+                favorites = saved.favorites.filter { themeId -> state.themes.any { it.id == themeId } }.toSet(),
                 selectedDifficulty = saved.selectedDifficulty,
-                session = saved.session?.takeIf { session -> themes.any { it.id == session.themeId } }?.copy(paused = true),
+                session = saved.session?.takeIf { session -> state.themes.any { it.id == session.themeId } }?.copy(paused = true),
+                syncCode = repository.syncCode(),
             )
-        }.onFailure { state = state.copy(errorMessage = "Não foi possível abrir o catálogo do laboratório. Feche e reabra o aplicativo.") }
+            syncNow()
+        }.onFailure { state = state.copy(errorMessage = "Não foi possível abrir este perfil. Tente novamente.") }
+    }
+
+    fun showPlayerPicker() {
+        if (state.activePlayerId != null && !saveBeforeLeaving()) return
+        selectionStart = null; selectionEnd = null
+        playerGeneration++
+        state = GameUiState(categories = state.categories, themes = state.themes, players = state.players, syncCode = repository.syncCode())
+    }
+
+    fun createPlayer(name: String, avatar: String): Boolean {
+        if (!validPlayer(name, avatar)) return false
+        if (state.players.size >= PlayerProfiles.MAX_PLAYERS) {
+            state = state.copy(errorMessage = "O laboratório comporta até 6 perfis.")
+            return false
+        }
+        return editPlayers { repository.addPlayer(SavedPlayer("player-${UUID.randomUUID()}", name.trim(), avatar)) }
+    }
+
+    fun updatePlayer(id: String, name: String, avatar: String): Boolean {
+        if (!validPlayer(name, avatar, id)) return false
+        return editPlayers { repository.updatePlayer(id, name.trim(), avatar) }
+    }
+
+    private fun validPlayer(name: String, avatar: String, id: String? = null): Boolean {
+        val trimmed = name.trim()
+        val message = when {
+            trimmed.length !in 1..PlayerProfiles.MAX_NAME_LENGTH || trimmed.any { it.isISOControl() } -> "Use um nome de 1 a 24 caracteres."
+            avatar !in PlayerProfiles.avatars -> "Escolha um avatar do laboratório."
+            state.players.any { it.id != id && it.name.equals(trimmed, ignoreCase = true) } -> "Esse nome já está em uso. Escolha outro para distinguir os perfis."
+            else -> null
+        }
+        if (message != null) state = state.copy(errorMessage = message)
+        return message == null
+    }
+
+    private fun editPlayers(action: () -> Boolean): Boolean {
+        return runCatching {
+            check(action())
+            state = state.copy(players = repository.players(), errorMessage = null)
+            true
+        }.getOrElse {
+            state = state.copy(errorMessage = "Não foi possível salvar o perfil. Verifique o espaço disponível e tente novamente.")
+            false
+        }
+    }
+
+    private fun saveBeforeLeaving(): Boolean {
+        cancelSelection()
+        state = state.copy(session = state.session?.copy(paused = true), feedback = null)
+        return persist()
     }
 
     fun navigate(screen: Screen) {
+        if (state.activePlayerId == null) return
         cancelSelection()
         state = state.copy(screen = screen, feedback = null,
             session = if (screen != Screen.GAME) state.session?.copy(paused = true) else state.session)
         persist()
     }
 
-    fun setDifficulty(difficulty: Difficulty) { state = state.copy(selectedDifficulty = difficulty); persist() }
-    fun setCategory(category: String?) { state = state.copy(selectedCategory = category) }
-    fun setQuery(query: String) { state = state.copy(query = query) }
-    fun toggleFavoritesOnly() { state = state.copy(favoritesOnly = !state.favoritesOnly) }
+    fun setDifficulty(difficulty: Difficulty) { if (state.activePlayerId == null) return; state = state.copy(selectedDifficulty = difficulty); persist() }
+    fun setCategory(category: String?) { if (state.activePlayerId == null) return; state = state.copy(selectedCategory = category) }
+    fun setQuery(query: String) { if (state.activePlayerId == null) return; state = state.copy(query = query) }
+    fun toggleFavoritesOnly() { if (state.activePlayerId == null) return; state = state.copy(favoritesOnly = !state.favoritesOnly) }
     fun toggleFavorite(themeId: String) {
+        if (state.activePlayerId == null) return
         if (state.themes.none { it.id == themeId }) return
         state = state.copy(favorites = if (themeId in state.favorites) state.favorites - themeId else state.favorites + themeId)
         persist()
     }
 
     fun startGame(themeId: String, daily: Boolean = false) {
+        if (state.activePlayerId == null) return
         if (daily) { startDaily(); return }
         val theme = state.themes.firstOrNull { it.id == themeId } ?: return
         start(theme, state.selectedDifficulty, GameMode.FREE, UUID.randomUUID().toString())
     }
 
     private fun start(theme: Theme, difficulty: Difficulty, mode: GameMode, seed: String) {
+        if (state.activePlayerId == null) return
         runCatching {
             val puzzle = PuzzleEngine.generate(theme.words, difficulty, seed)
             cancelSelection()
@@ -62,7 +140,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun startDaily() {
-        if (state.themes.isEmpty()) return
+        if (state.activePlayerId == null || state.themes.isEmpty()) return
         val today = LocalDate.now()
         val day = today.toString()
         val current = state.session
@@ -88,6 +166,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun available(cell: Cell): Boolean {
+        if (state.activePlayerId == null) return false
         val session = state.session ?: return false
         return state.screen == Screen.GAME && !session.paused && !session.completed && cell.row in 0 until session.puzzle.size && cell.col in 0 until session.puzzle.size
     }
@@ -177,11 +256,57 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         persist()
     }
 
-    fun toggleSound() { state = state.copy(settings = state.settings.copy(sound = !state.settings.sound)); persist() }
-    fun toggleHaptics() { state = state.copy(settings = state.settings.copy(haptics = !state.settings.haptics)); persist() }
-    fun toggleReduceMotion() { state = state.copy(settings = state.settings.copy(reduceMotion = !state.settings.reduceMotion)); persist() }
+    fun toggleSound() { if (state.activePlayerId == null) return; state = state.copy(settings = state.settings.copy(sound = !state.settings.sound)); persist() }
+    fun toggleHaptics() { if (state.activePlayerId == null) return; state = state.copy(settings = state.settings.copy(haptics = !state.settings.haptics)); persist() }
+    fun toggleReduceMotion() { if (state.activePlayerId == null) return; state = state.copy(settings = state.settings.copy(reduceMotion = !state.settings.reduceMotion)); persist() }
     fun dismissFeedback() { state = state.copy(feedback = null) }
     fun dismissError() { state = state.copy(errorMessage = null) }
+
+    fun newSyncCode(): String = cloud.newCode()
+    fun formattedSyncCode(): String = cloud.format(state.syncCode)
+    fun connectDevices(code: String, create: Boolean = false) {
+        if (state.syncing) return
+        state = state.copy(syncing = true, errorMessage = null)
+        viewModelScope.launch {
+            runCatching { withContext(Dispatchers.IO) { cloud.connect(code, create) } }
+                .onSuccess { state = state.copy(syncCode = it, syncStatus = "Aparelhos conectados", syncing = false); syncNow() }
+                .onFailure { state = state.copy(syncing = false, errorMessage = it.message ?: "Conecte-se à internet para conectar os aparelhos.") }
+        }
+    }
+    fun syncNow(resolve: String? = null) {
+        val id = state.activePlayerId ?: return
+        if (state.syncing) return
+        syncPlayer(id, resolve)
+    }
+    private fun syncPlayer(id: String, resolve: String? = null) {
+        if (repository.syncCode().isEmpty()) return
+        val generation = playerGeneration
+        val revision = saveRevision
+        if (state.activePlayerId == id) state = state.copy(syncing = true, syncStatus = "Sincronizando…")
+        val themes = state.themes
+        viewModelScope.launch {
+            val result = withContext(Dispatchers.IO) { cloud.sync(id, themes, resolve) }
+            if (state.activePlayerId != id || playerGeneration != generation) {
+                if (result.kind == "pending") scheduleSync(id)
+                return@launch
+            }
+            state = state.copy(syncing = false, syncStatus = result.message, syncConflict = result.kind == "conflict", players = repository.players())
+            if (result.kind == "loaded" && saveRevision == revision && repository.load(id) == result.game) {
+                val saved = result.game!!
+                selectionStart = null; selectionEnd = null
+                state = state.copy(profile = saved.profile, settings = saved.settings, favorites = saved.favorites,
+                    session = saved.session?.copy(paused = true), selectedDifficulty = saved.selectedDifficulty, selection = emptyList(), feedback = null)
+            }
+            if (result.kind == "pending") scheduleSync(id)
+        }
+    }
+    fun onForeground() { if (state.activePlayerId != null) syncNow() }
+    private fun scheduleSync(playerId: String? = state.activePlayerId) {
+        val id = playerId ?: return
+        if (repository.syncCode().isEmpty()) return
+        syncJobs[id]?.cancel()
+        syncJobs[id] = viewModelScope.launch { delay(1500); if (state.activePlayerId != id || !state.syncing) syncPlayer(id) }
+    }
 
     private fun showCompleted(session: GameSession) {
         feedback(FeedbackKind.COMPLETE, "Experimento concluído!", "${session.foundCount} descobertas para o seu caderno. A curiosidade continua!", xp = session.earnedXP)
@@ -191,10 +316,19 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         state = state.copy(feedback = GameFeedback(++feedbackSequence, kind, title, message, word, xp))
     }
 
-    private fun persist() {
-        if (!repository.save(SavedGame(state.profile, state.settings, state.favorites, state.session, state.selectedDifficulty))) {
+    private fun persist(): Boolean {
+        val playerId = state.activePlayerId ?: return true
+        val saved = runCatching {
+            check(repository.save(playerId, SavedGame(state.profile, state.settings, state.favorites, state.session, state.selectedDifficulty)))
+            saveRevision++
+            state = state.copy(players = repository.players())
+            true
+        }.getOrDefault(false)
+        if (!saved) {
             state = state.copy(errorMessage = "O aparelho não conseguiu salvar o progresso. Verifique o espaço disponível e tente novamente.")
         }
+        if (saved) scheduleSync()
+        return saved
     }
 }
 

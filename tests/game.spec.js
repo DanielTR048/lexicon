@@ -22,6 +22,7 @@ test.afterEach(({ page }) => {
 
 async function loadGame(page) {
   await page.goto("/");
+  await page.getByRole("button", { name: "Entrar como Daniel" }).click();
   await expect(page.getByRole("grid")).toBeVisible();
 }
 
@@ -405,6 +406,7 @@ test("the daily challenge is deterministic and awards its daily bonus only once"
     const other = await otherContext.newPage();
     await other.clock.install({ time: fixed });
     await other.goto("http://127.0.0.1:5184");
+    await other.getByRole("button", { name: "Entrar como Daniel" }).click();
     await other.locator('[data-action="daily"]').click();
     expect((await store(other)).session.seed).toBe(original.seed);
     expect((await store(other)).session.themeId).toBe(original.themeId);

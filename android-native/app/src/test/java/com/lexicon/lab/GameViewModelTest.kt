@@ -21,7 +21,7 @@ class GameViewModelTest {
     }
 
     @Test fun timerStartsWithInteractionAndPausesWhenAppLeavesForeground() {
-        val vm = GameViewModel(application)
+        val vm = GameViewModel(application).apply { selectPlayer("daniel") }
         assertEquals(42, vm.state.themes.size)
         vm.startGame(vm.state.themes.first().id)
         vm.tick()
@@ -33,7 +33,7 @@ class GameViewModelTest {
         vm.tick()
         assertEquals(1, vm.state.session!!.seconds)
         assertTrue(vm.state.session!!.paused)
-        val restored = GameViewModel(application)
+        val restored = GameViewModel(application).apply { selectPlayer("daniel") }
         assertEquals(1, restored.state.session!!.seconds)
         assertTrue(restored.state.session!!.paused)
         restored.resumeGame()
@@ -45,14 +45,14 @@ class GameViewModelTest {
     }
 
     @Test fun endpointsSaveExactFoundPathAndProfileAcrossProcessRecreation() {
-        val vm = GameViewModel(application)
+        val vm = GameViewModel(application).apply { selectPlayer("daniel") }
         vm.startGame(vm.state.themes.first().id)
         val word = vm.state.session!!.puzzle.placements.first()
         vm.tapCell(word.cells.last())
         vm.tapCell(word.cells.first())
         assertEquals(1, vm.state.profile.words)
         assertEquals(word.cells, vm.state.session!!.found[word.normalized])
-        val restored = GameViewModel(application)
+        val restored = GameViewModel(application).apply { selectPlayer("daniel") }
         assertEquals(vm.state.profile, restored.state.profile)
         assertEquals(vm.state.session!!.puzzle, restored.state.session!!.puzzle)
         assertEquals(vm.state.session!!.found, restored.state.session!!.found)
@@ -60,7 +60,7 @@ class GameViewModelTest {
     }
 
     @Test fun hintsRespectPauseAndThreeHintBudget() {
-        val vm = GameViewModel(application)
+        val vm = GameViewModel(application).apply { selectPlayer("daniel") }
         vm.startGame(vm.state.themes.first().id)
         vm.togglePause()
         vm.requestHint()
@@ -70,11 +70,11 @@ class GameViewModelTest {
         assertEquals(3, vm.state.session!!.hintsUsed)
         assertEquals(0, vm.state.session!!.score)
         assertNotNull(vm.state.session!!.hintCell)
-        assertEquals(3, GameViewModel(application).state.session!!.hintsUsed)
+        assertEquals(3, GameViewModel(application).apply { selectPlayer("daniel") }.state.session!!.hintsUsed)
     }
 
     @Test fun invalidDragGivesErrorWithoutChangingProgress() {
-        val vm = GameViewModel(application)
+        val vm = GameViewModel(application).apply { selectPlayer("daniel") }
         vm.startGame(vm.state.themes.first().id)
         vm.beginSelection(Cell(0, 0))
         vm.updateSelection(Cell(1, 2))
@@ -86,7 +86,7 @@ class GameViewModelTest {
     }
 
     @Test fun hintedWordCanBeFoundThenRestoredWithHintHistoryAndNullHighlight() {
-        val vm = GameViewModel(application)
+        val vm = GameViewModel(application).apply { selectPlayer("daniel") }
         vm.startGame("mentes-brilhantes")
         vm.toggleFavorite("mentes-brilhantes")
         vm.requestHint()
@@ -99,7 +99,7 @@ class GameViewModelTest {
         vm.onBackground()
         val encoded = StoreCodec.encode(SavedGame(profile = vm.state.profile, session = vm.state.session))
         assertEquals(encoded, vm.state.session, StoreCodec.decode(encoded).session)
-        val restored = GameViewModel(application)
+        val restored = GameViewModel(application).apply { selectPlayer("daniel") }
         assertNotNull("error=${restored.state.errorMessage}; themes=${restored.state.themes.size}; saved=$encoded", restored.state.session)
         assertEquals(vm.state.session, restored.state.session)
         assertTrue("mentes-brilhantes" in restored.state.favorites)

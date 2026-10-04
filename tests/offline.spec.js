@@ -65,6 +65,7 @@ test("production installs its cache, reloads offline, finds real words and resto
 
   try {
     await page.goto("/");
+    await page.getByRole("button", { name: "Entrar como Daniel" }).click();
     await expectProductionArtwork(page);
     expect(
       await page.locator('script[type="module"]').getAttribute("src"),

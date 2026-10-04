@@ -32,6 +32,7 @@ async function savedGame(page) {
 
 async function loadPuzzle(page) {
   await page.goto("/");
+  await page.getByRole("button", { name: "Entrar como Daniel" }).click();
   await expect(page.getByRole("grid")).toBeVisible();
   const { session } = await savedGame(page);
   const theme =

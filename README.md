@@ -2,7 +2,7 @@
 
 [Jogar online](https://danieltr048.github.io/lexicon/) · [Baixar para Android](https://danieltr048.github.io/lexicon/android/lexicon.apk)
 
-Projeto pessoal de [DanielTR048](https://github.com/DanielTR048): um caça-palavras em português com estética de laboratório científico dos anos 1950/60. Versão web estática e aplicativo Android nativo em Kotlin/Jetpack Compose, sem conta, servidor de dados, API ou assinatura.
+Projeto pessoal de [DanielTR048](https://github.com/DanielTR048): um caça-palavras em português com estética de laboratório científico dos anos 1950/60. Versão web no GitHub Pages e aplicativo Android nativo em Kotlin/Jetpack Compose, com jogo offline e sincronização opcional por código de conexão.
 
 **42 temas · 756 palavras · 3 dificuldades · desafio diário · jogo offline**
 
@@ -24,7 +24,7 @@ npm run build
 npm run preview -- --port 4184
 ```
 
-Depois da primeira carga completa da versão de produção, o service worker guarda a aplicação, as fontes e a ilustração para uso offline no mesmo navegador. O servidor local continua sendo a forma recomendada de iniciar. Abrir `index.html` com `file://` não executa o projeto. Não há sincronização entre dispositivos; limpar os dados do site remove o progresso. Cada endereço/porta possui seu próprio salvamento.
+Depois da primeira carga completa da versão de produção, o service worker guarda a aplicação, as fontes e a ilustração para uso offline no mesmo navegador. O servidor local continua sendo a forma recomendada de iniciar. Abrir `index.html` com `file://` não executa o projeto. Cada endereço/porta possui seu próprio salvamento local; conecte os aparelhos para compartilhar o progresso. Limpar os dados do site remove o progresso local e o código de conexão.
 
 ## Jogar no Android
 
@@ -39,7 +39,21 @@ npm run android:sync
 
 O script sincroniza os recursos novamente, executa testes e lint e, se tudo passar, grava `output/Lexicon-Android-release.apk`. Transfira esse arquivo para o celular e abra-o para confirmar a instalação pelo Android. O aplicativo não é instalado automaticamente ao visitar o site. Veja [a configuração de build, assinatura e CI](android-native/README.md).
 
-O progresso do Android fica no armazenamento local do aplicativo. Ele é independente do progresso do navegador: não há migração ou sincronização entre as duas versões. Remover os dados do aplicativo apaga seu progresso local.
+O progresso do Android fica no armazenamento local do aplicativo e pode ser sincronizado com o navegador. Atualize instalando o APK assinado sobre a versão anterior, sem desinstalar: a identidade de assinatura é mantida. Remover os dados do aplicativo apaga seu progresso local e o código de conexão.
+
+## Perfis Daniel e Larissa e sincronização
+
+A entrada oferece os perfis **Daniel** e **Larissa**, com partidas, palavras, XP, conquistas, favoritos e preferências separados. **Trocar perfil** guarda a partida antes de abrir a seleção. O progresso anterior à atualização é preservado no perfil Daniel, tanto no navegador quanto no Android.
+
+1. No primeiro aparelho, abra **Conectar site e app Android** e crie um código de conexão.
+2. Copie o código completo `LEX-…`. No outro aparelho, abra a conexão e cole o mesmo código.
+3. Escolha Daniel ou Larissa. As alterações são enviadas automaticamente quando há conexão; **Sincronizar agora** permite atualizar manualmente. O Android também busca o progresso ao voltar ao primeiro plano.
+
+Quem tem o código pode acessar os dois perfis. Guarde-o para reconectar após trocar de aparelho ou limpar os dados. Se houver alterações diferentes nos dois aparelhos, escolha qual progresso continuar: a versão substituída é guardada como cópia local, e o servidor recusa sobrescrever uma versão que mudou depois da consulta. O jogo continua disponível offline.
+
+O Android permite perfis locais adicionais e edição dos nomes/avatares; a sincronização conecta as identidades Daniel e Larissa. Temas personalizados continuam disponíveis na web; o app informa quando uma partida personalizada precisa ser continuada no site, preservando o salvamento online.
+
+A API em `sync-service/worker.js` usa o bucket R2 do projeto Sites existente. Os salvamentos são separados pelo código de conexão e pelo perfil; o servidor guarda somente o hash do código na chave de armazenamento. O site permanece no GitHub Pages. A publicação antiga do Sites serve os mesmos arquivos, preservando seu endereço e permitindo conectar os salvamentos daquele navegador. `VITE_SYNC_API_URL` pode configurar outro endereço da API no build.
 
 Também é possível instalar a **versão web** pelo navegador Android. O cartão no site oferece o botão de instalação quando o navegador disponibiliza o prompt; nos demais casos, mostra como usar o menu do navegador. A confirmação é sempre do usuário. A mensagem **“Pronto para jogar offline neste aparelho”** só aparece depois que o service worker verifica todos os arquivos necessários no cache. Esse preparo exige uma primeira visita completa com internet. O cartão desaparece no modo instalado e pode ser fechado durante a sessão.
 
@@ -90,9 +104,11 @@ Temas próprios escolhem apenas termos que caibam no tabuleiro. Se houver menos 
 
 ## Desenvolvimento e validação
 
-Entrega local validada em 03/10/2026: **50 testes web e 28 testes Android passaram**. O APK release foi compilado, assinado e verificado; o lint Android terminou com zero erros. Os testes nativos executaram Compose em um runtime Android local (Robolectric), com capturas de tela, toque, arraste e retomada do salvamento. Vibração, áudio e instalação em aparelho físico ainda precisam dessa verificação no dispositivo.
+As suítes exercitam regras, partidas, cache offline, separação de perfis, migração do progresso anterior e conflitos entre aparelhos. Os testes nativos executam Compose em um runtime Android local (Robolectric), com capturas de tela, toque, arraste e retomada do salvamento. O teste de sincronização real pode ser habilitado com `LEXICON_LIVE_SYNC_TEST=1`: cria um código de teste separado, transfere uma partida web para o Android, envia novas descobertas e verifica a recusa de uma escrita antiga. Vibração, áudio e instalação em aparelho físico exigem verificação no dispositivo.
 
-Artefatos em `output/`: `Lexicon-Android-release.apk` (3.449.690 bytes), `Lexicon-Site.zip` (site com download Android), `android-home.png`, `android-game.png` e `android-download.png`. O download pelo botão do site foi conferido por SHA-256 e não acontece automaticamente ao abrir a página.
+Validação de 04/10/2026: **56 testes web e 33 testes Android passaram**, incluindo a transferência pelo serviço de sincronização publicado. O APK 1.1.0 foi compilado e assinado com a identidade anterior; lint e build release passaram.
+
+Artefatos em `output/`: `Lexicon-Android-release.apk`, `Lexicon-Site.zip` (site com download Android) e capturas de validação da web e do Android. O download pelo botão do site não acontece automaticamente ao abrir a página.
 
 ```powershell
 npm run dev -- --port 5184
@@ -108,6 +124,9 @@ A suíte E2E inicia automaticamente o servidor de desenvolvimento na porta 5184 
 - `src/engine.js`: geração por semente, normalização e validação de seleção.
 - `src/data.js`: biblioteca editorial dos temas e pistas.
 - `src/storage.js`: armazenamento defensivo e calendário diário.
+- `src/sync.js`: conexão de aparelhos, sincronização e resolução de conflitos.
+- `src/profiles.css`: seleção de perfis e conexão de aparelhos.
+- `sync-service/worker.js`: API de salvamentos com controle de versão no R2.
 - `src/style.css`: direção visual e layouts responsivos.
 - `src/motion.js` e `src/motion.css`: animações, reações do jogo e redução de movimento.
 - `src/install.js` e `src/install.css`: instalação pelo navegador e confirmação do cache offline.

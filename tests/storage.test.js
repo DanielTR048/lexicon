@@ -38,6 +38,18 @@ test("new profiles do not share mutable collections", () => {
   assert.equal(second.xp, 0);
 });
 
+test("Daniel retains the previous save while Larissa has an independent session and progress", () => {
+  withStorage(JSON.stringify({ version: 1, profile: { ...emptyProfile(), xp: 500 }, favorites: ["astronomia"], settings: { sound: true }, session: { seed: "old-daniel" } }), () => {
+    assert.equal(readStore("daniel").profile.xp, 500);
+    assert.equal(readStore("larissa"), null);
+    writeStore({ profile: { ...emptyProfile(), xp: 150 }, favorites: [], settings: { sound: false }, session: { seed: "larissa-board" } }, "larissa");
+    assert.equal(readStore("daniel").session.seed, "old-daniel");
+    assert.equal(readStore("daniel").settings.sound, true);
+    assert.equal(readStore("larissa").profile.xp, 150);
+    assert.equal(writeStore({}, "invalid-profile"), false);
+  });
+});
+
 test("missing, unreadable and unsupported saves return a fresh-start signal", () => {
   for (const raw of [
     undefined,

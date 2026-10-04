@@ -1,0 +1,461 @@
+{
+  "save": {
+    "version": 1,
+    "profile": {
+      "xp": 0,
+      "wins": 0,
+      "words": 1,
+      "seconds": 0,
+      "themes": [],
+      "dailyDays": [],
+      "history": [],
+      "discoveries": [
+        {
+          "word": "Faraday",
+          "clue": "Cientista que investigou a indução eletromagnética.",
+          "themeTitle": "Mentes brilhantes"
+        }
+      ],
+      "achievements": []
+    },
+    "settings": {
+      "sound": true,
+      "haptics": true,
+      "reduceMotion": false
+    },
+    "favorites": [
+      "mentes-brilhantes"
+    ],
+    "selectedDifficulty": "easy",
+    "session": {
+      "themeId": "mentes-brilhantes",
+      "seed": "lexicon-cross-platform-v1",
+      "difficulty": "easy",
+      "found": [
+        "FARADAY"
+      ],
+      "foundPaths": {
+        "FARADAY": [
+          {
+            "row": 1,
+            "col": 1
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 3
+          },
+          {
+            "row": 1,
+            "col": 4
+          },
+          {
+            "row": 1,
+            "col": 5
+          },
+          {
+            "row": 1,
+            "col": 6
+          },
+          {
+            "row": 1,
+            "col": 7
+          }
+        ]
+      },
+      "hintedWords": [],
+      "hintsUsed": 0,
+      "seconds": 17,
+      "score": 50,
+      "earnedXP": 0,
+      "mode": "free",
+      "day": "2026-10-04",
+      "paused": true,
+      "started": true,
+      "completed": false
+    }
+  },
+  "grid": [
+    [
+      "H",
+      "S",
+      "O",
+      "O",
+      "K",
+      "E",
+      "P",
+      "L",
+      "E",
+      "R"
+    ],
+    [
+      "E",
+      "F",
+      "A",
+      "R",
+      "A",
+      "D",
+      "A",
+      "Y",
+      "I",
+      "E"
+    ],
+    [
+      "I",
+      "T",
+      "L",
+      "E",
+      "R",
+      "E",
+      "S",
+      "L",
+      "J",
+      "I"
+    ],
+    [
+      "A",
+      "U",
+      "U",
+      "E",
+      "A",
+      "E",
+      "T",
+      "U",
+      "I",
+      "N"
+    ],
+    [
+      "D",
+      "R",
+      "M",
+      "E",
+      "N",
+      "D",
+      "E",
+      "L",
+      "U",
+      "S"
+    ],
+    [
+      "U",
+      "I",
+      "U",
+      "B",
+      "A",
+      "E",
+      "U",
+      "P",
+      "A",
+      "T"
+    ],
+    [
+      "I",
+      "N",
+      "I",
+      "G",
+      "O",
+      "D",
+      "R",
+      "Q",
+      "T",
+      "E"
+    ],
+    [
+      "E",
+      "G",
+      "A",
+      "I",
+      "X",
+      "H",
+      "U",
+      "U",
+      "E",
+      "I"
+    ],
+    [
+      "O",
+      "A",
+      "V",
+      "E",
+      "D",
+      "A",
+      "R",
+      "W",
+      "I",
+      "N"
+    ],
+    [
+      "L",
+      "I",
+      "A",
+      "Q",
+      "A",
+      "G",
+      "B",
+      "U",
+      "A",
+      "J"
+    ]
+  ],
+  "placements": [
+    {
+      "word": "Faraday",
+      "normalized": "FARADAY",
+      "clue": "Cientista que investigou a indução eletromagnética.",
+      "cells": [
+        {
+          "row": 1,
+          "col": 1
+        },
+        {
+          "row": 1,
+          "col": 2
+        },
+        {
+          "row": 1,
+          "col": 3
+        },
+        {
+          "row": 1,
+          "col": 4
+        },
+        {
+          "row": 1,
+          "col": 5
+        },
+        {
+          "row": 1,
+          "col": 6
+        },
+        {
+          "row": 1,
+          "col": 7
+        }
+      ]
+    },
+    {
+      "word": "Mendel",
+      "normalized": "MENDEL",
+      "clue": "Monge cujos experimentos com ervilhas fundamentaram a genética.",
+      "cells": [
+        {
+          "row": 4,
+          "col": 2
+        },
+        {
+          "row": 4,
+          "col": 3
+        },
+        {
+          "row": 4,
+          "col": 4
+        },
+        {
+          "row": 4,
+          "col": 5
+        },
+        {
+          "row": 4,
+          "col": 6
+        },
+        {
+          "row": 4,
+          "col": 7
+        }
+      ]
+    },
+    {
+      "word": "Pasteur",
+      "normalized": "PASTEUR",
+      "clue": "Pesquisador associado à pasteurização e ao estudo de microrganismos.",
+      "cells": [
+        {
+          "row": 0,
+          "col": 6
+        },
+        {
+          "row": 1,
+          "col": 6
+        },
+        {
+          "row": 2,
+          "col": 6
+        },
+        {
+          "row": 3,
+          "col": 6
+        },
+        {
+          "row": 4,
+          "col": 6
+        },
+        {
+          "row": 5,
+          "col": 6
+        },
+        {
+          "row": 6,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "word": "Turing",
+      "normalized": "TURING",
+      "clue": "Matemático fundamental para a ciência da computação.",
+      "cells": [
+        {
+          "row": 2,
+          "col": 1
+        },
+        {
+          "row": 3,
+          "col": 1
+        },
+        {
+          "row": 4,
+          "col": 1
+        },
+        {
+          "row": 5,
+          "col": 1
+        },
+        {
+          "row": 6,
+          "col": 1
+        },
+        {
+          "row": 7,
+          "col": 1
+        }
+      ]
+    },
+    {
+      "word": "Darwin",
+      "normalized": "DARWIN",
+      "clue": "Naturalista que formulou a evolução por seleção natural.",
+      "cells": [
+        {
+          "row": 8,
+          "col": 4
+        },
+        {
+          "row": 8,
+          "col": 5
+        },
+        {
+          "row": 8,
+          "col": 6
+        },
+        {
+          "row": 8,
+          "col": 7
+        },
+        {
+          "row": 8,
+          "col": 8
+        },
+        {
+          "row": 8,
+          "col": 9
+        }
+      ]
+    },
+    {
+      "word": "Kepler",
+      "normalized": "KEPLER",
+      "clue": "Astrônomo que descreveu leis do movimento planetário.",
+      "cells": [
+        {
+          "row": 0,
+          "col": 4
+        },
+        {
+          "row": 0,
+          "col": 5
+        },
+        {
+          "row": 0,
+          "col": 6
+        },
+        {
+          "row": 0,
+          "col": 7
+        },
+        {
+          "row": 0,
+          "col": 8
+        },
+        {
+          "row": 0,
+          "col": 9
+        }
+      ]
+    },
+    {
+      "word": "Bohr",
+      "normalized": "BOHR",
+      "clue": "Físico que propôs um modelo atômico com níveis de energia.",
+      "cells": [
+        {
+          "row": 5,
+          "col": 3
+        },
+        {
+          "row": 6,
+          "col": 4
+        },
+        {
+          "row": 7,
+          "col": 5
+        },
+        {
+          "row": 8,
+          "col": 6
+        }
+      ]
+    },
+    {
+      "word": "Einstein",
+      "normalized": "EINSTEIN",
+      "clue": "Físico associado à teoria da relatividade.",
+      "cells": [
+        {
+          "row": 1,
+          "col": 9
+        },
+        {
+          "row": 2,
+          "col": 9
+        },
+        {
+          "row": 3,
+          "col": 9
+        },
+        {
+          "row": 4,
+          "col": 9
+        },
+        {
+          "row": 5,
+          "col": 9
+        },
+        {
+          "row": 6,
+          "col": 9
+        },
+        {
+          "row": 7,
+          "col": 9
+        },
+        {
+          "row": 8,
+          "col": 9
+        }
+      ]
+    }
+  ]
+}

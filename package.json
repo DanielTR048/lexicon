@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --test tests/engine.test.js tests/data.test.js tests/storage.test.js",
+    "test": "node --test tests/engine.test.js tests/data.test.js tests/storage.test.js tests/sync.test.js",
     "test:e2e": "playwright test",
     "android:sync": "node scripts/sync-android-assets.mjs",
     "package:mobile": "node scripts/package-mobile-site.mjs"

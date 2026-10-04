@@ -74,7 +74,9 @@ import "@fontsource/space-mono/400.css";
 import "@fontsource/space-mono/700.css";
 import "./style.css";
 import "./motion.css";
-import { initInstall } from "./install.js";
+import { initInstall, apkURL } from "./install.js";
+import { markDirty, syncProfile, syncStatus, syncConflict, setSyncListener, getSyncCode, formatCode, newConnectionCode, connectDevices } from "./sync.js";
+import "./profiles.css";
 import {
   clearMotion,
   motionAllowed,
@@ -156,10 +158,14 @@ const icons = {
   PartyPopper,
   Award,
 };
-const saved = readStore();
-let profile = saved?.profile || emptyProfile();
-let settings = saved?.settings || { sound: false };
-let favorites = saved?.favorites || [];
+const players = [{ id: "daniel", name: "Daniel", icon: "Atom", color: "green" }, { id: "larissa", name: "Larissa", icon: "Heart", color: "coral" }];
+let activeProfile;
+try { activeProfile = players.find(p => p.id === sessionStorage.getItem("lexicon-active-profile")); } catch { /* Start at the picker. */ }
+let profile = emptyProfile();
+let settings = { sound: false };
+let favorites = [];
+let pickingProfile = false;
+const syncTimers = new Map();
 let session;
 let puzzle;
 let view = "lab";
@@ -252,13 +258,21 @@ const level = () =>
         : "Aprendiz curioso";
 
 function persist() {
-  const ok = writeStore({ profile, settings, favorites, session });
+  if (!activeProfile) return;
+  const ok = writeStore({ profile, settings, favorites, session }, activeProfile.id);
+  if (ok) {
+    markDirty(activeProfile.id);
+    const id = activeProfile.id;
+    clearTimeout(syncTimers.get(id));
+    syncTimers.set(id, setTimeout(() => syncProfile(id), 1500));
+  }
   if (!ok && !storageWarned) {
     storageWarned = true;
     toast(
       "O navegador não permitiu salvar. Seu jogo continua disponível nesta aba.",
     );
   }
+  return ok;
 }
 function newSession(
   theme,
@@ -300,6 +314,11 @@ function newSession(
   activeCell = { row: 0, col: 0 };
   persist();
 }
+function restoreGame(saved) {
+profile = saved?.profile || emptyProfile();
+settings = saved?.settings || { sound: false };
+favorites = saved?.favorites || [];
+hintCell = null;
 try {
   if (
     (saved?.session && THEMES.some((t) => t.id === saved.session.themeId)) ||
@@ -352,6 +371,74 @@ try {
 } catch {
   newSession(THEMES[0]);
 }
+}
+
+function pickerView() {
+  const apk = apkURL();
+  return `<main class="profile-picker"><a class="picker-brand" href="./" aria-label="Lexicon">${icon("Atom")}lexicon<span>.</span></a><span class="eyebrow">DUAS MENTES. INFINITAS DESCOBERTAS.</span><h1>Quem vai explorar hoje?</h1><p class="picker-intro">Cada pessoa tem seu próprio laboratório.<br>Escolha um perfil e continue de onde parou.</p><div class="player-list" aria-label="Escolha seu perfil">${players.map(player => {
+    const saved = readStore(player.id);
+    return `<button class="player-card ${player.color}" data-action="choose-profile" data-profile="${player.id}" aria-label="Entrar como ${player.name}" ${pickingProfile ? "disabled" : ""}><span class="player-avatar">${icon(player.icon)}<span class="avatar-star">✳</span></span><strong>${player.name}</strong><span class="player-progress">${saved?.profile?.xp?.toLocaleString("pt-BR") || "0"} XP · ${saved?.profile?.wins || 0} experimentos</span><span class="player-continue">${saved?.session?.started && !saved.session.completed ? "Retomar experimento" : "Entrar no laboratório"} ${icon("ArrowRight")}</span></button>`;
+  }).join("")}</div><button class="button secondary picker-sync" data-action="sync-setup">${icon("Orbit")}${getSyncCode() ? "Código dos aparelhos" : "Conectar site e app Android"}</button>${apk ? `<a class="button secondary picker-download" href="${escapeHTML(apk)}" download="lexicon-android.apk">Baixar app Android ${icon("ArrowUpRight")}</a>` : ""}<p class="picker-note">${getSyncCode() ? "Use o mesmo código no site e no app para sincronizar." : "Seu progresso fica separado e salvo neste aparelho."}</p><p class="profile-loading" role="status">${pickingProfile ? "Abrindo seu laboratório…" : ""}</p></main><div id="toast" class="toast" role="status" aria-live="polite"></div><dialog id="modal" class="modal"></dialog>`;
+}
+
+async function chooseProfile(id) {
+  if (pickingProfile) return;
+  const player = players.find(p => p.id === id);
+  if (!player) return;
+  pickingProfile = true;
+  render();
+  const result = await syncProfile(id);
+  activeProfile = player;
+  pickingProfile = false;
+  try { sessionStorage.setItem("lexicon-active-profile", id); } catch { /* Profile works for this page. */ }
+  view = "lab"; query = ""; category = "all"; favoritesOnly = false; paused = false; focusMode = false;
+  selected = []; anchor = null; pointerStart = null; dragging = false; lastDiscovery = null;
+  restoreGame(readStore(id));
+  render({ entrance: true, board: true });
+  window.scrollTo(0, 0);
+  if (result.kind === "conflict") showSyncConflict(id);
+}
+
+function switchProfile() {
+  if (persist() === false) return;
+  closeModal();
+  activeProfile = null;
+  selected = []; anchor = null; pointerStart = null;
+  try { sessionStorage.removeItem("lexicon-active-profile"); } catch { /* Picker stays open. */ }
+  render();
+  window.scrollTo(0, 0);
+  document.querySelector('[data-action="choose-profile"]')?.focus();
+}
+
+function showSyncSetup() {
+  const code = getSyncCode();
+  showModal(`<div class="modal-symbol">${icon("Orbit")}</div><span class="eyebrow">O MESMO LABORATÓRIO, EM TODO LUGAR</span><h2>Conectar seus aparelhos</h2><p>${code ? "Copie este código e conecte o outro navegador ou o app Android. Quem tem o código pode acessar os dois perfis." : "Crie um código no primeiro aparelho. No outro, cole o mesmo código para continuar Daniel ou Larissa."}</p>${code ? `<label class="field-label" for="device-code">Código dos aparelhos</label><input id="device-code" class="sync-code" readonly value="${formatCode(code)}"><div class="modal-actions"><button class="button primary" data-action="copy-sync-code">Copiar código ${icon("Check")}</button><button class="button secondary" data-action="sync-now">Sincronizar agora</button></div>` : `<button class="button primary sync-create" data-action="create-sync-code">Criar código de conexão ${icon("Plus")}</button><form id="sync-connect-form"><label class="field-label" for="device-code">Já tem o código do outro aparelho?</label><input id="device-code" class="sync-code" required autocomplete="off" spellcheck="false" placeholder="LEX-…"><button class="button secondary" type="submit">Conectar aparelhos ${icon("ArrowRight")}</button></form>`}<p id="sync-message" class="form-note" role="status"></p>`);
+}
+
+function showSyncConflict(id) {
+  const conflict = syncConflict(id);
+  if (!conflict) return;
+  const summary = save => `${save?.profile?.xp || 0} XP · ${save?.profile?.words || 0} palavras · ${save?.session?.found?.length || 0} encontradas nesta partida`;
+  showModal(`<div class="modal-symbol">${icon("LibraryBig")}</div><h2>Qual progresso continuar?</h2><p>Este perfil foi jogado em dois aparelhos. Escolha a versão que quer continuar. A outra fica guardada como cópia neste aparelho.</p><p class="sync-summary"><b>Neste aparelho:</b> ${summary(conflict.local)}<br><b>Online:</b> ${summary(conflict.remote)}</p><div class="modal-actions"><button class="button primary" data-action="sync-resolve" data-profile="${id}" data-choice="cloud">Continuar progresso online</button><button class="button secondary" data-action="sync-resolve" data-profile="${id}" data-choice="local">Usar este aparelho</button></div>`);
+}
+
+setSyncListener((id, message) => {
+  if (activeProfile?.id === id) {
+    const label = document.querySelector(".profile-sync-status");
+    if (label) label.textContent = message;
+  }
+});
+
+async function synchronizeCurrent() {
+  const ids = activeProfile ? [activeProfile.id] : players.map(p => p.id);
+  for (const id of ids) {
+    const result = await syncProfile(id);
+    if (result.kind === "loaded" && activeProfile?.id === id) { restoreGame(result.save); render(); }
+    if (result.kind === "conflict") { showSyncConflict(id); return; }
+  }
+  if (!activeProfile) render();
+  else toast(syncStatus(activeProfile.id));
+}
 
 function header() {
   return `<div class="institution-bar"><span>INSTITUTO DE MENTES INQUIETAS</span><span>CIÊNCIA, CURIOSIDADE & UM POUCO DE LOUCURA <span class="tiny-star">✳</span> EST. 1962</span></div>
@@ -367,7 +454,7 @@ function header() {
       )
       .join("")}</nav>
     <div class="header-actions"><button class="icon-button sound-button ${settings.sound ? "is-on" : ""}" data-action="sound" aria-label="${settings.sound ? "Desativar" : "Ativar"} sons" title="${settings.sound ? "Desativar" : "Ativar"} sons">${icon(settings.sound ? "Volume2" : "VolumeX")}</button><button class="profile-button" data-action="view" data-view="discoveries">${icon("Sparkles")}<span><small>${level()}</small><strong>${profile.xp.toLocaleString("pt-BR")} XP</strong></span></button></div>
-  </header>`;
+  </header><div class="profile-toolbar"><span class="active-player ${activeProfile.color}">${icon(activeProfile.icon)}<strong>${activeProfile.name}</strong></span><button class="sync-status-button" data-action="sync-setup"><span class="profile-sync-status">${syncStatus(activeProfile.id)}</span>${icon("Orbit")}</button><button class="text-button" data-action="switch-profile">Trocar perfil ${icon("ChevronDown")}</button></div>`;
 }
 function hero() {
   return `<section class="hero"><div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> O LABORATÓRIO ESTÁ ABERTO</p><h1>Grandes ideias começam<br>com uma <span>boa descoberta.</span></h1><p>Encontre palavras. Conecte universos. Alimente sua curiosidade.</p><div class="hero-tags"><span>${icon("Layers")}${THEMES.length} temas para explorar</span><span>${icon("Infinity")}Descobertas sem fim</span></div></div><div class="hero-art"><img src="${import.meta.env.BASE_URL}images/lab-genius.png" alt="Cientista excêntrico entre átomos, livros e frascos em uma ilustração dos anos 60" fetchpriority="high"><span class="art-note">A curiosidade é o<br>nosso combustível!</span></div><span class="hero-edition">VOL. 01 / EXPERIMENTOS LEXICAIS</span></section>`;
@@ -473,6 +560,11 @@ function discoveriesView() {
 }
 function render({ entrance = false, board = false } = {}) {
   clearMotion();
+  if (!activeProfile) {
+    $("#app").innerHTML = pickerView();
+    refreshIcons();
+    return;
+  }
   $("#app").innerHTML =
     `${header()}<main>${view === "lab" ? labView() : view === "themes" ? catalogView() : discoveriesView()}</main><footer><div class="footer-brand">${icon("Atom")} lexicon<span>.</span></div><p>Feito para quem nunca deixou de perguntar “por quê?”.</p><span>EXPLORE. DESCUBRA. REPITA.</span><button class="text-button" data-action="help">Manual do laboratório ${icon("ArrowUpRight")}</button></footer><div id="toast" class="toast" role="status" aria-live="polite"></div><dialog id="modal" class="modal"></dialog><div class="sr-only" id="live-announcement" aria-live="polite"></div>`;
   refreshIcons();
@@ -731,7 +823,7 @@ function paintSelection() {
   traceSelection(selected);
 }
 function canSelect() {
-  return view === "lab" && !paused && !session.completed && !$("#modal")?.open;
+  return activeProfile && view === "lab" && !paused && !session.completed && !$("#modal")?.open;
 }
 function cellFromEvent(event) {
   const element = document
@@ -858,10 +950,35 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]");
   if (!button || button.disabled) return;
   const action = button.dataset.action;
+  if (action === "choose-profile") { await chooseProfile(button.dataset.profile); return; }
+  if (action === "switch-profile") { switchProfile(); return; }
+  if (action === "sync-setup") { showSyncSetup(); return; }
+  if (action === "sync-now") { closeModal(); await synchronizeCurrent(); return; }
+  if (action === "copy-sync-code") {
+    try { await navigator.clipboard.writeText(formatCode(getSyncCode())); $("#sync-message").textContent = "Código copiado. Cole no outro aparelho."; }
+    catch { $("#device-code").select(); $("#sync-message").textContent = "Selecione e copie o código acima."; }
+    return;
+  }
+  if (action === "create-sync-code") {
+    button.disabled = true;
+    try { await connectDevices(newConnectionCode(), true); showSyncSetup(); }
+    catch (error) { $("#sync-message").textContent = error.message; button.disabled = false; }
+    return;
+  }
+  if (action === "sync-resolve") {
+    button.disabled = true;
+    const id = button.dataset.profile;
+    const result = await syncProfile(id, button.dataset.choice);
+    if (result.kind === "saved" || result.kind === "loaded") {
+      if (activeProfile?.id === id) { restoreGame(readStore(id)); render(); } else { closeModal(); render(); }
+    } else if (result.kind === "conflict") { showSyncConflict(id); }
+    else { button.disabled = false; toast(result.error || "Não foi possível sincronizar agora. Tente novamente."); }
+    return;
+  }
   if (action === "view") {
     setView(button.dataset.view);
     return;
@@ -1074,7 +1191,15 @@ document.addEventListener("input", (event) => {
     refreshIcons();
   }
 });
-document.addEventListener("submit", (event) => {
+document.addEventListener("submit", async (event) => {
+  if (event.target.id === "sync-connect-form") {
+    event.preventDefault();
+    const submit = event.target.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    try { await connectDevices($("#device-code").value); closeModal(); await synchronizeCurrent(); }
+    catch (error) { $("#sync-message").textContent = error.message; submit.disabled = false; }
+    return;
+  }
   if (event.target.id !== "custom-form") return;
   event.preventDefault();
   const title = $("#custom-title").value.trim();
@@ -1143,6 +1268,7 @@ function showHelp() {
 }
 setInterval(() => {
   if (
+    activeProfile &&
     session.started &&
     !session.completed &&
     !paused &&
@@ -1166,5 +1292,8 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 window.addEventListener("pagehide", persist);
+if (activeProfile) restoreGame(readStore(activeProfile.id));
 render({ entrance: true, board: true });
 initInstall();
+window.addEventListener("online", synchronizeCurrent);
+if (activeProfile && getSyncCode()) synchronizeCurrent();

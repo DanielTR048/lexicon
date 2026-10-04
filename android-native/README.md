@@ -1,8 +1,8 @@
 # Lexicon para Android
 
-Aplicativo nativo em **Kotlin e Jetpack Compose**, com interface e motor próprios. Requer Android 8.0/API 26 ou superior; o projeto compila e tem como alvo a API 35. O APK inclui os 42 temas, 756 palavras e a ilustração. O jogo funciona offline desde a primeira abertura após a instalação e não solicita permissão de internet.
+Aplicativo nativo em **Kotlin e Jetpack Compose**, com interface e motor próprios. Requer Android 8.0/API 26 ou superior; o projeto compila e tem como alvo a API 35. O APK inclui os 42 temas, 756 palavras e a ilustração. O jogo funciona offline desde a primeira abertura após a instalação; a permissão de internet permite a sincronização opcional.
 
-Inclui três dificuldades, desafio diário, dicas, XP, conquistas, favoritos, caderno, pausa, sons opcionais, resposta tátil e redução de movimento. O progresso é local e independente do navegador. Temas personalizados e impressão permanecem exclusivos da versão web nesta versão.
+Inclui três dificuldades, desafio diário, dicas, XP, conquistas, favoritos, caderno, pausa, sons opcionais, resposta tátil e redução de movimento. Daniel e Larissa têm progressos locais separados e podem conectar o mesmo código `LEX-…` do site para sincronizar. Perfis adicionais são locais. Temas personalizados e impressão permanecem exclusivos da versão web nesta versão.
 
 ## Preparar o ambiente
 

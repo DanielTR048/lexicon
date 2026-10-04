@@ -72,6 +72,8 @@ test.afterAll(async () => new Promise((done) => server.close(done)));
 
 async function openGame(page, path = "/repositorio-do-jogo/") {
   await page.goto(origin + path);
+  const choose = page.getByRole("button", { name: "Entrar como Daniel" });
+  if (await choose.isVisible()) await choose.click();
   await expect(page.getByRole("grid")).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute(
     "data-offline-ready",

@@ -116,9 +116,23 @@ data class SavedGame(
     val session: GameSession? = null,
     val selectedDifficulty: Difficulty = Difficulty.EASY,
 )
+data class PlayerSummary(val id: String, val name: String, val avatar: String, val xp: Int = 0, val wins: Int = 0)
+data class SavedPlayer(val id: String, val name: String, val avatar: String, val game: SavedGame = SavedGame()) {
+    val summary: PlayerSummary get() = PlayerSummary(id, name, avatar, game.profile.xp, game.profile.wins)
+}
+data class PlayerStore(val players: List<SavedPlayer>)
+
+object PlayerProfiles {
+    const val MAX_PLAYERS = 6
+    const val MAX_NAME_LENGTH = 24
+    val avatars = setOf("atom", "rocket", "flask", "planet", "brain", "flower")
+}
+
 data class GameUiState(
     val themes: List<Theme> = emptyList(),
     val categories: List<Category> = emptyList(),
+    val players: List<PlayerSummary> = emptyList(),
+    val activePlayerId: String? = null,
     val screen: Screen = Screen.HOME,
     val selectedDifficulty: Difficulty = Difficulty.EASY,
     val selectedCategory: String? = null,
@@ -131,7 +145,12 @@ data class GameUiState(
     val selection: List<Cell> = emptyList(),
     val feedback: GameFeedback? = null,
     val errorMessage: String? = null,
+    val syncCode: String = "",
+    val syncStatus: String = "Salvo neste aparelho",
+    val syncing: Boolean = false,
+    val syncConflict: Boolean = false,
 ) {
+    val activePlayer: PlayerSummary? get() = players.firstOrNull { it.id == activePlayerId }
     val currentTheme: Theme? get() = themes.firstOrNull { it.id == session?.themeId }
     val filteredThemes: List<Theme> get() {
         val search = PuzzleEngine.normalizeWord(query)

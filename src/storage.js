@@ -10,9 +10,14 @@ export const emptyProfile = () => ({
   discoveries: [],
   achievements: [],
 });
-export function readStore() {
+export const PROFILE_IDS = ["daniel", "larissa"];
+export const profileKey = (id = "daniel") => {
+  if (!PROFILE_IDS.includes(id)) throw new Error("Perfil inválido.");
+  return id === "daniel" ? KEY : `${KEY}:${id}`;
+};
+export function readStore(id = "daniel") {
   try {
-    const saved = JSON.parse(localStorage.getItem(KEY));
+    const saved = JSON.parse(localStorage.getItem(profileKey(id)));
     if (!saved || saved.version !== 1) return null;
     const profile = { ...emptyProfile(), ...saved.profile };
     for (const key of ["xp", "wins", "words", "seconds"])
@@ -58,9 +63,9 @@ export function readStore() {
     return null;
   }
 }
-export function writeStore(data) {
+export function writeStore(data, id = "daniel") {
   try {
-    localStorage.setItem(KEY, JSON.stringify({ ...data, version: 1 }));
+    localStorage.setItem(profileKey(id), JSON.stringify({ ...data, version: 1 }));
     return true;
   } catch {
     return false;

@@ -33,6 +33,7 @@ class NativeUiTest {
             val factoryApp = model.getApplication<Application>()
             val providerApp = ApplicationProvider.getApplicationContext<Application>()
             assertSame("The factory must use this activity's application, not a prior test sandbox", providerApp, factoryApp)
+            model.selectPlayer("daniel")
             if (!model.state.settings.reduceMotion) model.toggleReduceMotion()
         }
     }
@@ -54,6 +55,18 @@ class NativeUiTest {
         screenshot("android-home")
     }
 
+    @Test fun playerPickerOpensLarissaAndReturnsToDaniel() {
+        compose.runOnIdle { model.showPlayerPicker() }
+        compose.onNodeWithContentDescription("Jogar como Daniel").assertExists()
+        compose.onNodeWithContentDescription("Jogar como Larissa").assertExists()
+        screenshot("android-profiles")
+        compose.onNodeWithContentDescription("Jogar como Larissa").performClick()
+        compose.runOnIdle { assertEquals("larissa", model.state.activePlayerId); assertEquals(0, model.state.profile.words) }
+        compose.runOnIdle { model.showPlayerPicker() }
+        compose.onNodeWithContentDescription("Jogar como Daniel").performClick()
+        compose.runOnIdle { assertEquals("daniel", model.state.activePlayerId) }
+    }
+
     @Test fun realEndpointTapsCompleteAnOfflineGameAndPersistExactlyOnce() {
         compose.runOnIdle { model.setDifficulty(Difficulty.EASY); model.startGame("mentes-brilhantes") }
         compose.waitForIdle()
@@ -72,8 +85,8 @@ class NativeUiTest {
         screenshot("android-victory")
         val application = model.getApplication<Application>()
         compose.runOnIdle {
-            assertNotNull(application.getSharedPreferences("lexicon_native_v1", 0).getString("state", null))
-            val reloaded = GameViewModel(application)
+            assertNotNull(application.getSharedPreferences("lexicon_native_v1", 0).getString("players", null))
+            val reloaded = GameViewModel(application).apply { selectPlayer("daniel") }
             assertEquals(model.state.profile.xp, reloaded.state.profile.xp)
             assertEquals(model.state.session!!.found, reloaded.state.session!!.found)
             reloaded.resumeGame()
@@ -92,9 +105,9 @@ class NativeUiTest {
             model.onBackground()
             val application = model.getApplication<Application>()
             val saved = application
-                .getSharedPreferences("lexicon_native_v1", android.content.Context.MODE_PRIVATE).getString("state", null)
+                .getSharedPreferences("lexicon_native_v1", android.content.Context.MODE_PRIVATE).getString("players", null)
             assertNotNull(saved)
-            val reloaded = GameViewModel(application)
+            val reloaded = GameViewModel(application).apply { selectPlayer("daniel") }
             assertNotNull("error=${reloaded.state.errorMessage}; themes=${reloaded.state.themes.size}; saved=$saved", reloaded.state.session)
             assertTrue(reloaded.state.session!!.paused)
             assertEquals(model.state.session!!.puzzle, reloaded.state.session!!.puzzle)
