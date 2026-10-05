@@ -34,11 +34,46 @@ function neonState(seed = 'neon-test', mode = 'classic', level = 1) {
   };
 }
 const code = '00112233445566778899aabbccddeeff';
+function magazineState(level = 1) {
+  const save = neonState('magazine-sync', 'magazine', level); save.results.magazine = {};
+  const session = save.sessions[`magazine:${level}`];
+  session.puzzle.rows = 2; session.puzzle.cols = 4;
+  session.puzzle.words[0].row = 1; session.puzzle.words[0].col = 1;
+  session.values = { '1:1': 'Z' }; session.revealed = {}; session.hints = 0;
+  return save;
+}
 function client(env, token = code) {
   return (path, method = 'GET', data, headers = {}) => worker.fetch(new Request('https://sync.test/api/' + path, {
     method, headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json', ...headers }, body: data === undefined ? undefined : JSON.stringify(data),
   }), env);
 }
+
+test('magazine drafts and completed grids sync per profile, and partial confirmations are rejected', async () => {
+  const env = { BUCKET: memoryBucket() }, request = client(env);
+  await request('family', 'POST');
+  const save = magazineState(); assert.equal(validNeonSave(save), true);
+  assert.equal((await request('neon/profiles/daniel', 'PUT', save, { 'If-None-Match': '*' })).status, 200);
+  const loaded = await (await request('neon/profiles/daniel')).json(); assert.deepEqual(loaded.save, save);
+  assert.equal((await request('neon/profiles/larissa')).status, 404);
+  const partial = structuredClone(save); partial.sessions['magazine:1'].solved = ['nature:abc'];
+  assert.equal(validNeonSave(partial), false);
+  const complete = structuredClone(save), session = complete.sessions['magazine:1'];
+  session.values = { '1:1': 'A', '1:2': 'B', '1:3': 'C' }; session.revealed = { ...session.values }; session.solved = ['nature:abc']; session.completed = true;
+  assert.equal((await request('neon/profiles/daniel', 'PUT', complete, { 'If-Match': loaded.etag })).status, 200);
+  const overlapping = structuredClone(save); overlapping.sessions['magazine:1'].puzzle.words[0].col = 0;
+  assert.equal(validNeonSave(overlapping), false);
+});
+
+test('all three 100-phase campaigns fit the synchronized save while older two-mode saves remain valid', () => {
+  const save = magazineState(); save.sessions = {};
+  for (const mode of ['classic', 'magazine', 'cascade']) for (let level = 1; level <= 100; level++) {
+    const sample = mode === 'magazine' ? magazineState(level) : neonState('all-campaigns', mode, level);
+    save.sessions[`${mode}:${level}`] = sample.sessions[`${mode}:${level}`];
+  }
+  assert.equal(validNeonSave(save), true); assert.equal(Object.keys(save.sessions).length, 300);
+  assert.equal(validNeonSave(neonState()), true);
+  save.results.magazine = 'corrupted'; assert.equal(validNeonSave(save), false);
+});
 test('sync protects saves with connection code, separates people and rejects stale overwrites', async () => {
   const env = { BUCKET: memoryBucket() }; const request = client(env);
   assert.equal((await request('family')).status, 404);

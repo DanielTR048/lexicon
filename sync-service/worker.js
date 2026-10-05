@@ -31,7 +31,7 @@ export function validSave(save) {
 // Limits bound validation work as well as storage; semantic checks prevent a
 // corrupted grid or completion flag from replacing a healthy device save.
 export function validNeonSave(save) {
-  const modes = ['classic', 'cascade'];
+  const modes = ['classic', 'magazine', 'cascade'];
   const record = value => value && typeof value === 'object' && !Array.isArray(value)
     && Object.keys(value).every(key => !['__proto__', 'prototype', 'constructor'].includes(key));
   const keys = (value, expected) => record(value) && Object.keys(value).length === expected.length && expected.every(key => Object.hasOwn(value, key));
@@ -40,9 +40,10 @@ export function validNeonSave(save) {
   const number = (value, max, min = 0, integer = true) => typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max && (!integer || Number.isInteger(value));
   const list = (value, max) => Array.isArray(value) && value.length <= max && value.every(identifier) && new Set(value).size === value.length;
   if (!keys(save, ['version', 'seed', 'results', 'sessions', 'settings']) || save.version !== 1 || !text(save.seed, 128)
-    || !keys(save.results, modes) || !record(save.sessions) || Object.keys(save.sessions).length > 200
+    || !(keys(save.results, modes) || keys(save.results, ['classic', 'cascade'])) || !record(save.sessions) || Object.keys(save.sessions).length > 300
     || !keys(save.settings, ['sound', 'reducedMotion']) || typeof save.settings.sound !== 'boolean' || typeof save.settings.reducedMotion !== 'boolean') return false;
   for (const mode of modes) {
+    if (mode === 'magazine' && !Object.hasOwn(save.results, mode)) continue;
     const results = save.results[mode];
     if (!record(results) || Object.keys(results).length > 100) return false;
     for (const [level, result] of Object.entries(results)) {
@@ -51,7 +52,7 @@ export function validNeonSave(save) {
     }
   }
   for (const [key, session] of Object.entries(save.sessions)) {
-    if (!/^(classic|cascade):(?:[1-9]\d?|100)$/.test(key)
+    if (!/^(classic|magazine|cascade):(?:[1-9]\d?|100)$/.test(key)
       || !keys(session, ['puzzle', 'values', 'solved', 'revealed', 'mistakes', 'hints', 'elapsed', 'completed'])) return false;
     const puzzle = session.puzzle;
     if (!keys(puzzle, ['id', 'mode', 'level', 'themeIds', 'words', 'rows', 'cols', 'difficulty'])
@@ -76,6 +77,13 @@ export function validNeonSave(save) {
     if (!list(session.solved, puzzle.words.length) || session.solved.some(id => !ids.has(id))
       || typeof session.completed !== 'boolean' || session.completed !== (session.solved.length === puzzle.words.length)
       || !number(session.mistakes, 1_000_000) || !number(session.hints, 1_000_000) || !number(session.elapsed, 1_000_000_000, 0, false)) return false;
+    if (puzzle.mode === 'magazine') {
+      if (!session.completed && session.solved.length) return false;
+      for (const word of puzzle.words) {
+        const row = word.row - (word.direction === 'down' ? 1 : 0), col = word.col - (word.direction === 'across' ? 1 : 0);
+        if (row < 0 || col < 0 || solution[`${row}:${col}`]) return false;
+      }
+    }
     for (const field of ['values', 'revealed']) {
       if (!record(session[field]) || Object.keys(session[field]).length > Object.keys(solution).length) return false;
       for (const [cell, letter] of Object.entries(session[field])) {
